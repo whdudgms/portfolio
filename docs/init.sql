@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS `portfolio_2024`.`member` (
   `member_name` VARCHAR(50) NOT NULL,
   `member_nick` VARCHAR(24) NOT NULL,
   `email` VARCHAR(50) NULL,
-  `birth_date` DATETIME NULL,
   `create_dtm` VARCHAR(14) NOT NULL,
   `update_dtm` VARCHAR(14) NULL,
   `membercol` VARCHAR(45) NULL,

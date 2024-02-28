@@ -16,6 +16,21 @@
 	</properties>
 
 	<dependencies>
+		
+	<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+	<dependency>
+	    <groupId>com.sun.mail</groupId>
+	    <artifactId>javax.mail</artifactId>
+	    <version>1.6.2</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>5.3.31</version>
+	</dependency>
+	
+		
 		<!-- 비밀번호 확인 용 메일수신 library -->
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 		<dependency>
@@ -171,12 +186,6 @@
 		    <version>2.0.12</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-		<dependency>
-		    <groupId>com.mysql</groupId>
-		    <artifactId>mysql-connector-j</artifactId>
-		    <version>8.3.0</version>
-		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
 		<dependency>
@@ -238,6 +247,14 @@
 		    <version>1.18.30</version>
 		    <scope>provided</scope>
 		</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+	<dependency>
+	    <groupId>org.mariadb.jdbc</groupId>
+	    <artifactId>mariadb-java-client</artifactId>
+	    <version>3.3.3</version>
+	</dependency>
+
 		
 	</dependencies>
 

@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/member/authNumMail.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/member/emailAuth.jsp=UTF-8
+encoding//WebContent/WEB-INF/views/member/sendAuthMail.jsp=UTF-8
 encoding//src/main/java=UTF-8
 encoding//src/main/resources-common=UTF-8
 encoding//src/test/java=UTF-8

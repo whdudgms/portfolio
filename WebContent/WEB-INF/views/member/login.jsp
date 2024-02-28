@@ -20,7 +20,7 @@
 			$("#loading-div-background").css({'z-index' : '9999'}).show();
 			var formData = new FormData(document.loginForm);
 			$.ajax({
-				url: 'URL',
+				url: "<c:url value='/member/login.do'/>",
 				type: "POST",
 				data: formData,
 				dataType:'TEXT',
@@ -68,7 +68,7 @@
 							<h2 class="fs-20">LOGIN</h2>
 						</div>
 	
-						<form class="m-0" method="post" name="loginForm" autocomplete="off">
+						<form class="m-0" method="post"  name="loginForm" autocomplete="off">
 							<div class="clearfix">
 								
 								<!-- Email -->
@@ -104,7 +104,7 @@
 					</div>
 					
 					<div class="mt-30 text-center">
-						<a href="javascript:movePage(this, '/member/goRegisterPage.do')"><strong>Create Account</strong></a>
+						<a href="javascript:movePage('/member/goRegisterPage.do')"><strong>Create Account</strong></a>
 					</div>
 	
 				</div>

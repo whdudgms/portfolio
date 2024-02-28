@@ -45,18 +45,20 @@ public class MemberController {
 	@ResponseBody
 	public HashMap<String, Object> checkId(@RequestParam HashMap<String, String> params){
 		int cnt = 0;
+		cnt = mService.checkId(params);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("cnt", cnt);
 		map.put("msg", cnt==1? "중복된 ID 입니다.":"");
-
 		return map;
 	}
 
 	@RequestMapping("/member/join.do")
 	@ResponseBody
 	public HashMap<String, Object> join(@RequestParam HashMap<String, String> params){		
+		System.out.println(params);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int cnt = 0;
+		cnt = mService.join(params);
 		map.put("cnt", cnt);
 		map.put("msg", cnt==1?"회원 가입 완료!":"회원 가입 실패!");
 		map.put("nextPage", cnt==1?"/member/goLoginPage.do" : "/member/goRegisterPage.do");
@@ -76,12 +78,26 @@ public class MemberController {
 	@ResponseBody
 	public HashMap<String, Object> login(@RequestParam HashMap<String, String> params, HttpSession session){
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		try {			
+		System.out.println("\"/member/login.do\")의 시작.");
+		System.out.println("\"/member/login.do\")의 시작.");
+		System.out.println("\"/member/login.do\")의 시작.");
+
+		
+		try {
+			if(mService.login(params,session)) {
+			System.out.println(session.getAttribute("memberId"));
+			System.out.println(session.getAttribute("typeSep"));
+			System.out.println(session.getAttribute("memberNick"));
 			map.put("nextPage", "/index.do");
-		} catch (Exception e) {
+
+			}else{
+				map.put("msg", "LoginFail");
+				map.put("nextPage", "/member/goLoginPage.do");
+			}
+		}catch(Exception e) {
 			e.printStackTrace();
 			log.error("", e);
-			map.put("nextPage", "/index.do");
+			map.put("nextPage", "/member/gologinPage.do");
 			map.put("msg", e.getMessage());
 		}
 		return map;

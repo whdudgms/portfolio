@@ -19,6 +19,30 @@ public class IndexController {
 
 	Logger logger = Logger.getLogger(MemberController.class);
 
+	@RequestMapping("/authNumMail.do")
+	public ModelAndView authNumMail(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("member/authNumMail");
+		return mv;
+	}
+	
+	@RequestMapping("/sendAuthMail.do")
+	public ModelAndView sendAuthMail(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("member/sendAuthMail");
+		return mv;
+	}
+	
+	@RequestMapping("/emailAuth.do")
+	public ModelAndView emailAuth(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("member/emailAuth");
+		return mv;
+	}
+	
 	@RequestMapping("/index.do")
 	public ModelAndView index(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();

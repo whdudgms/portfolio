@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 							$("#loading-div-background").hide();	// overlay 숨기기
 							
-							movePage(null, data.nextPage);
+							movePage(data.nextPage);
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
 							$("#loading-div-background").hide();	// overlay 숨기기
@@ -125,7 +125,7 @@ $(document).ready(function(){
 									<label for="register:pass2">Password Again *</label>
 									<label class="input mb-10">
 										<i class="ico-append fa fa-lock"></i>
-										<input required="" type="password" id="pwAgain" class="err">
+										<input required="" type="password" id="pwAgain" class="err" name="againPw">
 										<b class="tooltip tooltip-bottom-right">Type the password again</b>
 									</label>
 								</div>
@@ -134,7 +134,7 @@ $(document).ready(function(){
 							
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
-									<label for="register:phone">Nick *</label>
+									<label for="/member/join.do">Nick *</label>
 									<label class="input mb-10">
 										<i class="ico-append fa fa-phone"></i>
 										<input required="" type="text" id="memberNick" name="memberNick" />

@@ -3,18 +3,17 @@
 	USED BY:	pack-photography-home-2.html
  **************************************************************** **/
 
-
 /** CUSTOM HEADER
  *************************** **/
-body.custom-pack-style #header.fixed,
-body.custom-pack-style #header:not(.transparent),
-body.custom-pack-style #header:not(.transparent) #topMain { /* force header color */
+body.custom-pack-style #header.fixed, body.custom-pack-style #header:not(.transparent),
+	body.custom-pack-style #header:not(.transparent) #topMain {
+	/* force header color */
 	background: #495560 !important;
 }
 
 /* header default font size */
 body.custom-pack-style #header {
-	font-size:15px;
+	font-size: 15px;
 }
 
 /* main menu links color - for a good contrast */
@@ -22,15 +21,13 @@ body.custom-pack-style #header.dark #topMain li>a {
 	color: #fff !important;
 }
 
-
 /* dropdown background color */
 body.custom-pack-style #topNav div.submenu-color ul.dropdown-menu {
 	color: #fff;
 	background-color: #495560;
 	border-color: #495560;
-	border-top-color: rgba(0,0,0,0.2);
+	border-top-color: rgba(0, 0, 0, 0.2);
 }
-
 
 /* we want a very clean dropdown menu - no border bottom separator */
 body.custom-pack-style #topNav ul.dropdown-menu li {
@@ -38,15 +35,9 @@ body.custom-pack-style #topNav ul.dropdown-menu li {
 }
 
 /* cancel uppercase text transformation */
-#topBar ul li a, 
-#mainMenu ul li a, 
-#topMain ul li a {
+#topBar ul li a, #mainMenu ul li a, #topMain ul li a {
 	text-transform: none;
 }
-
-
-
-
 
 /** CUSTOM FOOTER
  *************************** **/
@@ -55,11 +46,9 @@ body.custom-pack-style #footer {
 	background: #495560;
 }
 
-
 /* footer text contrast */
-body.custom-pack-style #footer form input, 
-body.custom-pack-style #footer form textarea,
-body.custom-pack-style #footer a.social-icon {
+body.custom-pack-style #footer form input, body.custom-pack-style #footer form textarea,
+	body.custom-pack-style #footer a.social-icon {
 	color: #fff !important;
 }
 
@@ -69,33 +58,21 @@ body.custom-pack-style #footer a.social-icon {
 	set #fff or #000, according to background color!
 */
 #body.custom-pack-style #footer    input::-webkit-input-placeholder,
-body.custom-pack-style  #footer textarea::-webkit-input-placeholder {
+	body.custom-pack-style  #footer textarea::-webkit-input-placeholder {
 	color: #fff;
 	opacity: 0.4;
 }
 
-
-
-
-
 /** CUSTOM ELEMENTS
  *************************** **/
-body.custom-pack-style #header.static + section.page-header {
-	margin-top:70px;
+body.custom-pack-style #header.static+section.page-header {
+	margin-top: 70px;
 }
-
-
-
-
-
-
 
 /** RESPONSIVE
  *************************** **/
 @media only screen and (max-width: 960px) {
-
-	body.custom-pack-style #header.static + section.page-header {
-		margin-top:60px;
+	body.custom-pack-style #header.static+section.page-header {
+		margin-top: 60px;
 	}
-
 }

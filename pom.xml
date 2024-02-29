@@ -16,21 +16,21 @@
 	</properties>
 
 	<dependencies>
-		
-	<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
-	<dependency>
-	    <groupId>com.sun.mail</groupId>
-	    <artifactId>javax.mail</artifactId>
-	    <version>1.6.2</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context-support</artifactId>
-	    <version>5.3.31</version>
-	</dependency>
-	
-		
+
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.3.31</version>
+		</dependency>
+
+
 		<!-- 비밀번호 확인 용 메일수신 library -->
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
 		<dependency>
@@ -178,12 +178,12 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.5.0</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-api</artifactId>
-		    <version>2.0.12</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.12</version>
 		</dependency>
 
 
@@ -194,20 +194,20 @@
 			<version>1.2.5</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
-		    <groupId>jakarta.servlet</groupId>
-		    <artifactId>jakarta.servlet-api</artifactId>
-		    <version>4.0.4</version>
-		    <scope>provided</scope>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>4.0.4</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
 		<dependency>
-		    <groupId>jakarta.servlet.jsp.jstl</groupId>
-		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-		    <version>1.2.7</version>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>1.2.7</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
@@ -239,23 +239,23 @@
 			<artifactId>HikariCP</artifactId>
 			<version>5.1.0</version>
 		</dependency>
-	
+
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.30</version>
-		    <scope>provided</scope>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
 		</dependency>
-			
-			<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
-	<dependency>
-	    <groupId>org.mariadb.jdbc</groupId>
-	    <artifactId>mariadb-java-client</artifactId>
-	    <version>3.3.3</version>
-	</dependency>
 
-		
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<!-- 적혀진 id에 해당하는 profile의 env 설정 -->

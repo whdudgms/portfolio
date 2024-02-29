@@ -1,7 +1,4 @@
 /* LayerSlider Full Width Skin */
-
-
-
 .ls-v5 .ls-playvideo {
 	width: 60px;
 	height: 60px;
@@ -9,15 +6,9 @@
 	margin-top: -30px;
 }
 
-.ls-v5 .ls-playvideo,
-.ls-v5 .ls-nav-sides,
-.ls-v5 .ls-bottom-slidebuttons a,
-.ls-v5 .ls-nav-prev,
-.ls-v5 .ls-nav-next,
-.ls-v5 .ls-nav-start,
-.ls-v5 .ls-nav-stop,
-.ls-v5 .ls-fullscreen,
-.ls-v5 .ls-loading-container {
+.ls-v5 .ls-playvideo, .ls-v5 .ls-nav-sides, .ls-v5 .ls-bottom-slidebuttons a,
+	.ls-v5 .ls-nav-prev, .ls-v5 .ls-nav-next, .ls-v5 .ls-nav-start, .ls-v5 .ls-nav-stop,
+	.ls-v5 .ls-fullscreen, .ls-v5 .ls-loading-container {
 	background-image: url(skin.png);
 }
 
@@ -25,8 +16,7 @@
 	background-position: -300px -150px;
 }
 
-.ls-v5 .ls-playvideo:hover,
-.ls-v5 .ls-vpcontainer:hover .ls-playvideo {
+.ls-v5 .ls-playvideo:hover, .ls-v5 .ls-vpcontainer:hover .ls-playvideo {
 	background-position: -375px -150px;
 }
 
@@ -50,8 +40,7 @@
 	background-position: -300px 0px;
 }
 
-.ls-v5 .ls-nav-start:hover,
-.ls-v5 .ls-nav-start-active {
+.ls-v5 .ls-nav-start:hover, .ls-v5 .ls-nav-start-active {
 	background-position: -300px -75px;
 }
 
@@ -59,8 +48,7 @@
 	background-position: -450px 0px;
 }
 
-.ls-v5 .ls-nav-stop:hover,
-.ls-v5 .ls-nav-stop-active {
+.ls-v5 .ls-nav-stop:hover, .ls-v5 .ls-nav-stop-active {
 	background-position: -450px -75px;
 }
 
@@ -68,8 +56,8 @@
 	background-position: 0px -150px;
 }
 
-.ls-v5 .ls-bottom-slidebuttons a.ls-nav-active,
-.ls-v5 .ls-bottom-slidebuttons a:hover {
+.ls-v5 .ls-bottom-slidebuttons a.ls-nav-active, .ls-v5 .ls-bottom-slidebuttons a:hover
+	{
 	background-position: -75px -150px;
 }
 
@@ -81,10 +69,7 @@
 	background-position: -225px -150px;
 }
 
-
-
-.ls-v5 .ls-nav-prev,
-.ls-v5 .ls-nav-next {
+.ls-v5 .ls-nav-prev, .ls-v5 .ls-nav-next {
 	width: 40px;
 	height: 50px;
 	z-index: 10000;
@@ -101,21 +86,13 @@
 	right: 10px;
 }
 
-
-
-.ls-v5 .ls-bottom-slidebuttons,
-.ls-v5 .ls-bottom-slidebuttons a,
-.ls-v5 .ls-nav-start,
-.ls-v5 .ls-nav-stop,
-.ls-v5 .ls-nav-sides {
+.ls-v5 .ls-bottom-slidebuttons, .ls-v5 .ls-bottom-slidebuttons a, .ls-v5 .ls-nav-start,
+	.ls-v5 .ls-nav-stop, .ls-v5 .ls-nav-sides {
 	height: 20px;
 }
 
-.ls-v5 .ls-bottom-slidebuttons,
-.ls-v5 .ls-bottom-slidebuttons a,
-.ls-v5 .ls-nav-start,
-.ls-v5 .ls-nav-stop,
-.ls-v5 .ls-nav-sides {
+.ls-v5 .ls-bottom-slidebuttons, .ls-v5 .ls-bottom-slidebuttons a, .ls-v5 .ls-nav-start,
+	.ls-v5 .ls-nav-stop, .ls-v5 .ls-nav-sides {
 	display: inline-block;
 }
 
@@ -123,8 +100,7 @@
 	top: -30px;
 }
 
-.ls-v5 .ls-nav-start,
-.ls-v5 .ls-nav-stop {
+.ls-v5 .ls-nav-start, .ls-v5 .ls-nav-stop {
 	width: 25px;
 }
 
@@ -135,8 +111,6 @@
 .ls-v5 .ls-nav-sides {
 	width: 0px;
 }
-
-
 
 .ls-v5 .ls-thumbnail-hover {
 	bottom: 30px;
@@ -152,8 +126,6 @@
 	border: 5px solid #eee;
 	margin-left: -5px;
 }
-
-
 
 .ls-v5 .ls-thumbnail {
 	top: 10px;
@@ -173,8 +145,6 @@
 	background: #eee;
 }
 
-
-
 .ls-v5 .ls-loading-container {
 	width: 40px;
 	height: 40px;
@@ -189,8 +159,6 @@
 	margin-top: 9px;
 	background-image: url(loading.gif);
 }
-
-
 
 .ls-v5 .ls-fullscreen {
 	width: 30px;

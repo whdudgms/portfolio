@@ -1,7 +1,4 @@
 /* LayerSlider Glass Skin */
-
-
-
 .ls-glass {
 	padding: 10px;
 	background: #fff;
@@ -28,15 +25,10 @@
 	margin-top: -25px;
 }
 
-.ls-glass .ls-playvideo,
-.ls-glass .ls-nav-sides,
-.ls-glass .ls-bottom-slidebuttons a,
-.ls-glass .ls-nav-prev,
-.ls-glass .ls-nav-next,
-.ls-glass .ls-nav-start,
-.ls-glass .ls-nav-stop,
-.ls-glass .ls-fullscreen,
-.ls-glass .ls-loading-container {
+.ls-glass .ls-playvideo, .ls-glass .ls-nav-sides, .ls-glass .ls-bottom-slidebuttons a,
+	.ls-glass .ls-nav-prev, .ls-glass .ls-nav-next, .ls-glass .ls-nav-start,
+	.ls-glass .ls-nav-stop, .ls-glass .ls-fullscreen, .ls-glass .ls-loading-container
+	{
 	background-image: url(skin.png);
 }
 
@@ -44,8 +36,8 @@
 	background-position: -300px -150px;
 }
 
-.ls-glass .ls-playvideo:hover,
-.ls-glass .ls-vpcontainer:hover .ls-playvideo {
+.ls-glass .ls-playvideo:hover, .ls-glass .ls-vpcontainer:hover .ls-playvideo
+	{
 	background-position: -375px -150px;
 }
 
@@ -69,8 +61,7 @@
 	background-position: -300px 0px;
 }
 
-.ls-glass .ls-nav-start:hover,
-.ls-glass .ls-nav-start-active {
+.ls-glass .ls-nav-start:hover, .ls-glass .ls-nav-start-active {
 	background-position: -300px -75px;
 }
 
@@ -78,8 +69,7 @@
 	background-position: -450px 0px;
 }
 
-.ls-glass .ls-nav-stop:hover,
-.ls-glass .ls-nav-stop-active {
+.ls-glass .ls-nav-stop:hover, .ls-glass .ls-nav-stop-active {
 	background-position: -450px -75px;
 }
 
@@ -87,8 +77,8 @@
 	background-position: 0px -150px;
 }
 
-.ls-glass .ls-bottom-slidebuttons a.ls-nav-active,
-.ls-glass .ls-bottom-slidebuttons a:hover {
+.ls-glass .ls-bottom-slidebuttons a.ls-nav-active, .ls-glass .ls-bottom-slidebuttons a:hover
+	{
 	background-position: -75px -150px;
 }
 
@@ -100,10 +90,7 @@
 	background-position: -225px -150px;
 }
 
-
-
-.ls-glass .ls-nav-prev,
-.ls-glass .ls-nav-next {
+.ls-glass .ls-nav-prev, .ls-glass .ls-nav-next {
 	width: 22px;
 	height: 50px;
 	z-index: 10000;
@@ -120,26 +107,19 @@
 	right: -22px;
 }
 
-
-
-.ls-glass .ls-bottom-slidebuttons,
-.ls-glass .ls-bottom-slidebuttons a,
-.ls-glass .ls-nav-start,
-.ls-glass .ls-nav-stop,
-.ls-glass .ls-nav-sides {
+.ls-glass .ls-bottom-slidebuttons, .ls-glass .ls-bottom-slidebuttons a,
+	.ls-glass .ls-nav-start, .ls-glass .ls-nav-stop, .ls-glass .ls-nav-sides
+	{
 	height: 30px;
 }
 
-.ls-glass .ls-bottom-slidebuttons,
-.ls-glass .ls-bottom-slidebuttons a,
-.ls-glass .ls-nav-start,
-.ls-glass .ls-nav-stop,
-.ls-glass .ls-nav-sides {
+.ls-glass .ls-bottom-slidebuttons, .ls-glass .ls-bottom-slidebuttons a,
+	.ls-glass .ls-nav-start, .ls-glass .ls-nav-stop, .ls-glass .ls-nav-sides
+	{
 	display: inline-block;
 }
 
-.ls-glass .ls-nav-start,
-.ls-glass .ls-nav-stop {
+.ls-glass .ls-nav-start, .ls-glass .ls-nav-stop {
 	width: 28px;
 }
 
@@ -150,8 +130,6 @@
 .ls-glass .ls-nav-sides {
 	width: 9px;
 }
-
-
 
 .ls-glass .ls-thumbnail-hover {
 	bottom: 50px;
@@ -169,8 +147,6 @@
 	border: 5px solid white;
 	margin-left: -5px;
 }
-
-
 
 .ls-glass .ls-thumbnail {
 	top: -20px;
@@ -192,8 +168,6 @@
 	background: #eee;
 }
 
-
-
 .ls-glass .ls-above-thumbnails {
 	display: none;
 }
@@ -203,13 +177,9 @@
 	margin-top: -20px;
 }
 
-
-
 .ls-glass .ls-shadow {
 	display: block;
 }
-
-
 
 .ls-glass .ls-loading-container {
 	width: 40px;
@@ -225,8 +195,6 @@
 	margin-top: 9px;
 	background-image: url(loading.gif);
 }
-
-
 
 .ls-glass .ls-fullscreen {
 	width: 30px;

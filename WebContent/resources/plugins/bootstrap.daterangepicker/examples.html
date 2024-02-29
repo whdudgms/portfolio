@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
-   <head>
-      <meta charset="UTF-8" />
-      <title>A date range picker for Bootstrap</title>
-      <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-      <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" media="all" href="daterangepicker-bs3.css" />
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="moment.js"></script>
-      <script type="text/javascript" src="daterangepicker.js"></script>
-   </head>
-   <body>
+<head>
+<meta charset="UTF-8" />
+<title>A date range picker for Bootstrap</title>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all"
+	href="daterangepicker-bs3.css" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="moment.js"></script>
+<script type="text/javascript" src="daterangepicker.js"></script>
+</head>
+<body>
 
-      <div class="container">
-         <div class="span12">
+	<div class="container">
+		<div class="span12">
 
-          <h1>Usage Examples</h1>
+			<h1>Usage Examples</h1>
 
-          <hr />
+			<hr />
 
-            <h4>Basic Date Range Picker</h4>
-            <div class="well">
+			<h4>Basic Date Range Picker</h4>
+			<div class="well">
 
-               <form class="form-horizontal">
-                 <fieldset>
-                  <div class="control-group">
-                    <div class="controls">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="03/18/2013 - 03/23/2013" /> 
-                     </div>
-                    </div>
-                  </div>
-                 </fieldset>
-               </form>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-prepend input-group">
+									<span class="add-on input-group-addon"><i
+										class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input
+										type="text" style="width: 200px" name="reservation"
+										id="reservation" class="form-control"
+										value="03/18/2013 - 03/23/2013" />
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
                   $('#reservation').daterangepicker(null, function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
@@ -43,25 +54,28 @@
                });
                </script>
 
-            </div>
+			</div>
 
 
-            <h4>Basic Single Date Picker</h4>
-            <div class="well">
+			<h4>Basic Single Date Picker</h4>
+			<div class="well">
 
-               <form class="form-horizontal">
-                 <fieldset>
-                  <div class="control-group">
-                    <div class="controls">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" style="width: 200px" name="birthday" id="birthday" class="form-control" value="03/18/2013" /> 
-                     </div>
-                    </div>
-                  </div>
-                 </fieldset>
-               </form>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-prepend input-group">
+									<span class="add-on input-group-addon"><i
+										class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input
+										type="text" style="width: 200px" name="birthday" id="birthday"
+										class="form-control" value="03/18/2013" />
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
                   $('#birthday').daterangepicker({ singleDatePicker: true }, function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
@@ -69,26 +83,30 @@
                });
                </script>
 
-            </div>
+			</div>
 
-            <h4>Date Range &amp; Time Picker with 30 Minute Increments</h4>
-            <div class="well">
+			<h4>Date Range &amp; Time Picker with 30 Minute Increments</h4>
+			<div class="well">
 
-               <form class="form-horizontal">
-                 <fieldset>
-                  <div class="control-group">
-                    <label class="control-label" for="reservationtime">Choose your check-in and check-out times:</label>
-                    <div class="controls">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                       <input type="text" style="width: 400px" name="reservation" id="reservationtime" class="form-control" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM"  class="span4"/>
-                     </div>
-                    </div>
-                  </div>
-                 </fieldset>
-               </form>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<label class="control-label" for="reservationtime">Choose
+								your check-in and check-out times:</label>
+							<div class="controls">
+								<div class="input-prepend input-group">
+									<span class="add-on input-group-addon"><i
+										class="glyphicon glyphicon-calendar fa fa-calendar"></i></span> <input
+										type="text" style="width: 400px" name="reservation"
+										id="reservationtime" class="form-control"
+										value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM" class="span4" />
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
                   $('#reservationtime').daterangepicker({
                     timePicker: true,
@@ -100,24 +118,28 @@
                });
                </script>
 
-            </div>            
+			</div>
 
-            <h4>Options Usage</h4>
+			<h4>Options Usage</h4>
 
-            <div class="well" style="overflow: auto">
+			<div class="well" style="overflow: auto">
 
-              <button id="options1" class="btn btn-primary">Apply Option Set 1</button>
+				<button id="options1" class="btn btn-primary">Apply Option
+					Set 1</button>
 
-              <button id="options2" class="btn btn-primary">Apply Option Set 2</button>
+				<button id="options2" class="btn btn-primary">Apply Option
+					Set 2</button>
 
-              <button id="destroy" class="btn btn-primary">Remove DateRangePicker</button>
+				<button id="destroy" class="btn btn-primary">Remove
+					DateRangePicker</button>
 
-               <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span></span> <b class="caret"></b>
-               </div>
+				<div id="reportrange" class="pull-right"
+					style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
+					<b class="caret"></b>
+				</div>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
 
                   var cb = function(start, end, label) {
@@ -207,26 +229,28 @@
                });
                </script>
 
-            </div>
+			</div>
 
 
-            <h4>Plays nicely with Bootstrap dropdowns</h4>
+			<h4>Plays nicely with Bootstrap dropdowns</h4>
 
-            <div class="well">
+			<div class="well">
 
-               <div class="dropdown" style="display: inline-block;">
-                 <a data-toggle="dropdown" class="btn btn-primary" href="#">Regular bootstrap dropdown</a>
-                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                   <li><a href="#">item</a></li>
-                 </ul>
-               </div>
+				<div class="dropdown" style="display: inline-block;">
+					<a data-toggle="dropdown" class="btn btn-primary" href="#">Regular
+						bootstrap dropdown</a>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+						<li><a href="#">item</a></li>
+					</ul>
+				</div>
 
-               <div id="reportrange2" class="btn" style="display: inline-block; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span></span> <b class="caret"></b>
-               </div>
+				<div id="reportrange2" class="btn"
+					style="display: inline-block; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> <span></span>
+					<b class="caret"></b>
+				</div>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
                   $('#reportrange2 span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
                   $('#reportrange2').daterangepicker({
@@ -235,26 +259,29 @@
                });
                </script>
 
-            </div>
+			</div>
 
 
-            <h4>And also can drop "up"</h4>
+			<h4>And also can drop "up"</h4>
 
-            <div class="well">
+			<div class="well">
 
-               <form class="form-horizontal">
-                 <fieldset>
-                  <div class="control-group">
-                    <div class="controls">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" style="width: 200px" name="dropup" id="dropup" class="form-control" value="03/18/2013 - 03/23/2013" /> 
-                     </div>
-                    </div>
-                  </div>
-                 </fieldset>
-               </form>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-prepend input-group">
+									<span class="add-on input-group-addon"><i
+										class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input
+										type="text" style="width: 200px" name="dropup" id="dropup"
+										class="form-control" value="03/18/2013 - 03/23/2013" />
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
 
-               <script type="text/javascript">
+				<script type="text/javascript">
                $(document).ready(function() {
                   $('#dropup').daterangepicker({
                       drops:'up'
@@ -262,11 +289,11 @@
                });
                </script>
 
-            </div>
+			</div>
 
 
-         </div>
-      </div>
+		</div>
+	</div>
 
-   </body>
+</body>
 </html>

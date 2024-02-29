@@ -1,53 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-	<!-- mobile settings -->
-		
-	
-		<!-- JQGRID TABLE ㅇㅇㅇㅇㅇ-->
-		
-		
-		<link href="<c:url value='/resources/plugins/jqgrid/css/ui.jqgrid.css'/>" rel="stylesheet" type="text/css" />
-		<link href="<c:url value='/resources/css/layout-jqgrid.css'/>" rel="stylesheet" type="text/css" />
-	</head>
+<head>
+<!-- mobile settings -->
+
+
+<!-- JQGRID TABLE ㅇㅇㅇㅇㅇ-->
+
+
+<link
+	href="<c:url value='/resources/plugins/jqgrid/css/ui.jqgrid.css'/>"
+	rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/css/layout-jqgrid.css'/>"
+	rel="stylesheet" type="text/css" />
+</head>
 <body>
 
 
 	<section class="page-header page-header-xs">
-				<div class="container">
-					<h1>회원 관리 - 조회 및 삭제 </h1>
-				</div>
-			</section>
-			<!-- /PAGE HEADER -->
+	<div class="container">
+		<h1>회원 관리 - 조회 및 삭제</h1>
+	</div>
+	</section>
+	<!-- /PAGE HEADER -->
 
-			<!-- -->
-			<section>
-				<div class="container">
+	<!-- -->
+	<section>
+	<div class="container">
 
-				<table id="jqgrid"></table>
-				<div id="pager_jqgrid"></div>
+		<table id="jqgrid"></table>
+		<div id="pager_jqgrid"></div>
 
-				<br />
-
-
-				<div class="divider divider-dotted"></div>
+		<br />
 
 
+		<div class="divider divider-dotted"></div>
 
-				</div>
-			</section>
-			<!-- / "<c:url value='/resources/~~'/>" -->
-			
-			
+
+
+	</div>
+	</section>
+	<!-- / "<c:url value='/resources/~~'/>" -->
+
+
 
 
 	<!-- PAGE LEVEL SCRIPTS ㅇㅇㅇㅇㅇ-->
-		<script src="<c:url value='/resources/plugins/jqgrid/js/jquery.jqGrid.js'/>"></script>
-		<script src="<c:url value='/resources/plugins/jqgrid/js/i18n/grid.locale-en.js'/>"></script>
-		<script src="<c:url value='/resources/plugins/bootstrap.datepicker/js/bootstrap-datepicker.min.js'/>"></script>
-		<script>
+	<script
+		src="<c:url value='/resources/plugins/jqgrid/js/jquery.jqGrid.js'/>"></script>
+	<script
+		src="<c:url value='/resources/plugins/jqgrid/js/i18n/grid.locale-en.js'/>"></script>
+	<script
+		src="<c:url value='/resources/plugins/bootstrap.datepicker/js/bootstrap-datepicker.min.js'/>"></script>
+	<script>
 		
 $(document).ready(function(){		
 			var jqgrid_data = [{

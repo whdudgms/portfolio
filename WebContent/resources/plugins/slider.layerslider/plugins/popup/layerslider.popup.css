@@ -1,4 +1,3 @@
-
 /*
 	* LayerSlider Plugin: Popup Slider Styles
 	*
@@ -7,9 +6,6 @@
 	* Plugin web:			https://layerslider.kreaturamedia.com/
 	* licenses:				http://codecanyon.net/licenses/standard
 */
-
-
-
 .ls-popup-overlay {
 	position: fixed !important;
 	z-index: 999999 !important;
@@ -43,8 +39,7 @@
 	height: 100% !important;
 }
 
-.ls-popup,
-.ls-popup-inner {
+.ls-popup, .ls-popup-inner {
 	border: 0 !important;
 	margin: 0 !important;
 	padding: 0 !important;
@@ -69,12 +64,11 @@
 	cursor: pointer;
 	opacity: .75;
 	transition: opacity .3s ease-in-out;
-	background: rgba(0,0,0,.25);
+	background: rgba(0, 0, 0, .25);
 	box-sizing: content-box !important;
 }
 
-.ls-popup-close-button:before,
-.ls-popup-close-button:after {
+.ls-popup-close-button:before, .ls-popup-close-button:after {
 	content: '';
 	width: 20px;
 	height: 2px;

@@ -1,7 +1,4 @@
 /* LayerSlider Full Width Skin */
-
-
-
 .ls-fullwidth .ls-playvideo {
 	width: 50px;
 	height: 50px;
@@ -9,15 +6,10 @@
 	margin-top: -25px;
 }
 
-.ls-fullwidth .ls-playvideo,
-.ls-fullwidth .ls-nav-sides,
-.ls-fullwidth .ls-bottom-slidebuttons a,
-.ls-fullwidth .ls-nav-prev,
-.ls-fullwidth .ls-nav-next,
-.ls-fullwidth .ls-nav-start,
-.ls-fullwidth .ls-nav-stop,
-.ls-fullwidth .ls-fullscreen,
-.ls-fullwidth .ls-loading-container {
+.ls-fullwidth .ls-playvideo, .ls-fullwidth .ls-nav-sides, .ls-fullwidth .ls-bottom-slidebuttons a,
+	.ls-fullwidth .ls-nav-prev, .ls-fullwidth .ls-nav-next, .ls-fullwidth .ls-nav-start,
+	.ls-fullwidth .ls-nav-stop, .ls-fullwidth .ls-fullscreen, .ls-fullwidth .ls-loading-container
+	{
 	background-image: url(skin.png);
 }
 
@@ -25,8 +17,8 @@
 	background-position: -300px -150px;
 }
 
-.ls-fullwidth .ls-playvideo:hover,
-.ls-fullwidth .ls-vpcontainer:hover .ls-playvideo {
+.ls-fullwidth .ls-playvideo:hover, .ls-fullwidth .ls-vpcontainer:hover .ls-playvideo
+	{
 	background-position: -375px -150px;
 }
 
@@ -50,8 +42,7 @@
 	background-position: -300px 0px;
 }
 
-.ls-fullwidth .ls-nav-start:hover,
-.ls-fullwidth .ls-nav-start-active {
+.ls-fullwidth .ls-nav-start:hover, .ls-fullwidth .ls-nav-start-active {
 	background-position: -300px -75px;
 }
 
@@ -59,8 +50,7 @@
 	background-position: -450px 0px;
 }
 
-.ls-fullwidth .ls-nav-stop:hover,
-.ls-fullwidth .ls-nav-stop-active {
+.ls-fullwidth .ls-nav-stop:hover, .ls-fullwidth .ls-nav-stop-active {
 	background-position: -450px -75px;
 }
 
@@ -68,8 +58,8 @@
 	background-position: 0px -150px;
 }
 
-.ls-fullwidth .ls-bottom-slidebuttons a.ls-nav-active,
-.ls-fullwidth .ls-bottom-slidebuttons a:hover {
+.ls-fullwidth .ls-bottom-slidebuttons a.ls-nav-active, .ls-fullwidth .ls-bottom-slidebuttons a:hover
+	{
 	background-position: -75px -150px;
 }
 
@@ -81,10 +71,7 @@
 	background-position: -225px -150px;
 }
 
-
-
-.ls-fullwidth .ls-nav-prev,
-.ls-fullwidth .ls-nav-next {
+.ls-fullwidth .ls-nav-prev, .ls-fullwidth .ls-nav-next {
 	width: 40px;
 	height: 40px;
 	z-index: 10000;
@@ -101,21 +88,15 @@
 	right: 10px;
 }
 
-
-
-.ls-fullwidth .ls-bottom-slidebuttons,
-.ls-fullwidth .ls-bottom-slidebuttons a,
-.ls-fullwidth .ls-nav-start,
-.ls-fullwidth .ls-nav-stop,
-.ls-fullwidth .ls-nav-sides {
+.ls-fullwidth .ls-bottom-slidebuttons, .ls-fullwidth .ls-bottom-slidebuttons a,
+	.ls-fullwidth .ls-nav-start, .ls-fullwidth .ls-nav-stop, .ls-fullwidth .ls-nav-sides
+	{
 	height: 20px;
 }
 
-.ls-fullwidth .ls-bottom-slidebuttons,
-.ls-fullwidth .ls-bottom-slidebuttons a,
-.ls-fullwidth .ls-nav-start,
-.ls-fullwidth .ls-nav-stop,
-.ls-fullwidth .ls-nav-sides {
+.ls-fullwidth .ls-bottom-slidebuttons, .ls-fullwidth .ls-bottom-slidebuttons a,
+	.ls-fullwidth .ls-nav-start, .ls-fullwidth .ls-nav-stop, .ls-fullwidth .ls-nav-sides
+	{
 	display: inline-block;
 }
 
@@ -123,8 +104,7 @@
 	top: -30px;
 }
 
-.ls-fullwidth .ls-nav-start,
-.ls-fullwidth .ls-nav-stop {
+.ls-fullwidth .ls-nav-start, .ls-fullwidth .ls-nav-stop {
 	width: 25px;
 }
 
@@ -135,8 +115,6 @@
 .ls-fullwidth .ls-nav-sides {
 	width: 0px;
 }
-
-
 
 .ls-fullwidth .ls-thumbnail-hover {
 	bottom: 30px;
@@ -152,8 +130,6 @@
 	border: 5px solid #eee;
 	margin-left: -5px;
 }
-
-
 
 .ls-fullwidth .ls-thumbnail {
 	top: 10px;
@@ -173,8 +149,6 @@
 	background: #eee;
 }
 
-
-
 .ls-fullwidth .ls-loading-container {
 	width: 40px;
 	height: 40px;
@@ -189,8 +163,6 @@
 	margin-top: 9px;
 	background-image: url(loading.gif);
 }
-
-
 
 .ls-fullwidth .ls-fullscreen {
 	width: 30px;

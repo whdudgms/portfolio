@@ -1,7 +1,4 @@
 /* LayerSlider No Skin */
-
-
-
 .ls-noskin .ls-playvideo {
 	width: 50px;
 	height: 50px;
@@ -9,21 +6,15 @@
 	margin-top: -25px;
 }
 
-.ls-noskin .ls-nav-sides,
-.ls-noskin .ls-bottom-nav-wrapper,
-.ls-noskin .ls-bottom-slidebuttons a,
-.ls-noskin .ls-nav-prev,
-.ls-noskin .ls-nav-next,
-.ls-noskin .ls-nav-start,
-.ls-noskin .ls-nav-stop {
+.ls-noskin .ls-nav-sides, .ls-noskin .ls-bottom-nav-wrapper, .ls-noskin .ls-bottom-slidebuttons a,
+	.ls-noskin .ls-nav-prev, .ls-noskin .ls-nav-next, .ls-noskin .ls-nav-start,
+	.ls-noskin .ls-nav-stop {
 	display: none;
 	visibility: hidden;
 }
 
-
-.ls-noskin .ls-playvideo,
-.ls-noskin .ls-loading-container,
-.ls-noskin .ls-fullscreen {
+.ls-noskin .ls-playvideo, .ls-noskin .ls-loading-container, .ls-noskin .ls-fullscreen
+	{
 	background-image: url(skin.png);
 }
 
@@ -31,8 +22,8 @@
 	background-position: -300px -150px;
 }
 
-.ls-noskin .ls-playvideo:hover,
-.ls-noskin .ls-vpcontainer:hover .ls-playvideo {
+.ls-noskin .ls-playvideo:hover, .ls-noskin .ls-vpcontainer:hover .ls-playvideo
+	{
 	background-position: -375px -150px;
 }
 

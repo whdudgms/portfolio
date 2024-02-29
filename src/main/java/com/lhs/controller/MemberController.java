@@ -60,18 +60,15 @@ public class MemberController {
 		int cnt = 0;
 		cnt = mService.join(params);
 		map.put("cnt", cnt);
-		map.put("msg", cnt==1?"회원 가입 완료!":"회원 가입 실패!");
+		map.put("msg", cnt==1?"회원 가입 완료!!!":"회원 가입 실패!!!");
 		map.put("nextPage", cnt==1?"/member/goLoginPage.do" : "/member/goRegisterPage.do");
 		return map;
 	}
 
 	@RequestMapping("/member/logout.do")
-	public ModelAndView logout(HttpSession session){
-		session.invalidate();
-		ModelAndView mv = new ModelAndView();
-		RedirectView rv = new RedirectView(ctx+"/index.do");
-		mv.setView(rv);		
-		return mv;
+	public String logout(HttpSession session){
+	    session.invalidate();
+	    return "redirect:/index.do";
 	}
 
 	@RequestMapping("/member/login.do")
@@ -89,7 +86,6 @@ public class MemberController {
 			System.out.println(session.getAttribute("typeSep"));
 			System.out.println(session.getAttribute("memberNick"));
 			map.put("nextPage", "/index.do");
-
 			}else{
 				map.put("msg", "LoginFail");
 				map.put("nextPage", "/member/goLoginPage.do");

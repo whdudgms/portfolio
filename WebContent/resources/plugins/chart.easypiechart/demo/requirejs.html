@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8"/>
-	<title>Angular</title>
-	<meta name="viewport" content="width=device-width"/>
-	<link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8" />
+<title>Angular</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -18,19 +18,19 @@
 	<div class="span6">
 		<h2>Angular module</h2>
 		<div class="angular" ng-controller="chartCtrl">
-			<span class="chart" easypiechart ng-init="options = { animate:false, barColor:'#E67E22', scaleColor:false, lineWidth:3, lineCap:'butt' }" percent="percent" options="options">
-				<span class="percent" ng-bind="percent"></span>
-			</span>
-			<input type="range" min="-100" max="100" step="1" ng-model="percent" />
+			<span class="chart" easypiechart
+				ng-init="options = { animate:false, barColor:'#E67E22', scaleColor:false, lineWidth:3, lineCap:'butt' }"
+				percent="percent" options="options"> <span class="percent"
+				ng-bind="percent"></span>
+			</span> <input type="range" min="-100" max="100" step="1" ng-model="percent" />
 		</div>
 	</div>
 
 	<div class="span6">
 		<h2>jQuery module</h2>
-		<span id="chart" class="chart" data-percent="12">
-			<span class="percent"></span>
-		</span>
-		<input type="range" min="-100" max="100" step="1" id="updater" />
+		<span id="chart" class="chart" data-percent="12"> <span
+			class="percent"></span>
+		</span> <input type="range" min="-100" max="100" step="1" id="updater" />
 	</div>
 
 	<script src="../bower_components/requirejs/require.js"></script>

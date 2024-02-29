@@ -1,7 +1,4 @@
 /* LayerSlider Carousel Skin */
-
-
-
 .ls-carousel .ls-bottom-nav-wrapper {
 	margin: 10px auto;
 }
@@ -13,24 +10,19 @@
 	margin-top: -25px;
 }
 
-.ls-carousel .ls-playvideo,
-.ls-carousel .ls-nav-sides,
-.ls-carousel .ls-bottom-slidebuttons a,
-.ls-carousel .ls-nav-prev,
-.ls-carousel .ls-nav-next,
-.ls-carousel .ls-nav-start,
-.ls-carousel .ls-nav-stop,
-.ls-carousel .ls-fullscreen,
-.ls-carousel .ls-loading-container {
-	background-image: url(skin.png);	
+.ls-carousel .ls-playvideo, .ls-carousel .ls-nav-sides, .ls-carousel .ls-bottom-slidebuttons a,
+	.ls-carousel .ls-nav-prev, .ls-carousel .ls-nav-next, .ls-carousel .ls-nav-start,
+	.ls-carousel .ls-nav-stop, .ls-carousel .ls-fullscreen, .ls-carousel .ls-loading-container
+	{
+	background-image: url(skin.png);
 }
 
 .ls-carousel .ls-playvideo {
 	background-position: -300px -150px;
 }
 
-.ls-carousel .ls-playvideo:hover,
-.ls-carousel .ls-vpcontainer:hover .ls-playvideo {
+.ls-carousel .ls-playvideo:hover, .ls-carousel .ls-vpcontainer:hover .ls-playvideo
+	{
 	background-position: -375px -150px;
 }
 
@@ -54,8 +46,7 @@
 	background-position: -300px 0px;
 }
 
-.ls-carousel .ls-nav-start:hover,
-.ls-carousel .ls-nav-start-active {
+.ls-carousel .ls-nav-start:hover, .ls-carousel .ls-nav-start-active {
 	background-position: -300px -75px;
 }
 
@@ -63,8 +54,7 @@
 	background-position: -450px 0px;
 }
 
-.ls-carousel .ls-nav-stop:hover,
-.ls-carousel .ls-nav-stop-active {
+.ls-carousel .ls-nav-stop:hover, .ls-carousel .ls-nav-stop-active {
 	background-position: -450px -75px;
 }
 
@@ -72,59 +62,49 @@
 	background-position: 0px -150px;
 }
 
-.ls-carousel .ls-bottom-slidebuttons a.ls-nav-active,
-.ls-carousel .ls-bottom-slidebuttons a:hover {
+.ls-carousel .ls-bottom-slidebuttons a.ls-nav-active, .ls-carousel .ls-bottom-slidebuttons a:hover
+	{
 	background-position: -75px -150px;
 }
 
 .ls-carousel .ls-nav-sideleft {
-	background-position: -150px -150px;	
+	background-position: -150px -150px;
 }
 
 .ls-carousel .ls-nav-sideright {
-	background-position: -225px -150px;	
+	background-position: -225px -150px;
 }
 
-
-
-.ls-carousel .ls-nav-prev,
-.ls-carousel .ls-nav-next {
+.ls-carousel .ls-nav-prev, .ls-carousel .ls-nav-next {
 	width: 50px;
 	height: 50px;
 	z-index: 10000;
 	top: 50%;
-	margin-top: -22px;	
+	margin-top: -22px;
 	position: absolute;
 }
 
 .ls-carousel .ls-nav-prev {
-	left: 10px;	
+	left: 10px;
 }
 
 .ls-carousel .ls-nav-next {
-	right: 10px;	
+	right: 10px;
 }
 
-
-
-.ls-carousel .ls-bottom-slidebuttons,
-.ls-carousel .ls-bottom-slidebuttons a,
-.ls-carousel .ls-nav-start,
-.ls-carousel .ls-nav-stop,
-.ls-carousel .ls-nav-sides {
+.ls-carousel .ls-bottom-slidebuttons, .ls-carousel .ls-bottom-slidebuttons a,
+	.ls-carousel .ls-nav-start, .ls-carousel .ls-nav-stop, .ls-carousel .ls-nav-sides
+	{
 	height: 36px;
 }
 
-.ls-carousel .ls-bottom-slidebuttons,
-.ls-carousel .ls-bottom-slidebuttons a,
-.ls-carousel .ls-nav-start,
-.ls-carousel .ls-nav-stop,
-.ls-carousel .ls-nav-sides {
+.ls-carousel .ls-bottom-slidebuttons, .ls-carousel .ls-bottom-slidebuttons a,
+	.ls-carousel .ls-nav-start, .ls-carousel .ls-nav-stop, .ls-carousel .ls-nav-sides
+	{
 	display: inline-block;
 }
 
-.ls-carousel .ls-nav-start,
-.ls-carousel .ls-nav-stop {
+.ls-carousel .ls-nav-start, .ls-carousel .ls-nav-stop {
 	width: 24px;
 }
 
@@ -133,10 +113,8 @@
 }
 
 .ls-carousel .ls-nav-sides {
-	width: 13px;	
+	width: 13px;
 }
-
-
 
 .ls-carousel .ls-thumbnail-hover {
 	bottom: 45px;
@@ -154,8 +132,6 @@
 	border: 5px solid #eee;
 	margin-left: -5px;
 }
-
-
 
 .ls-carousel .ls-thumbnail {
 	top: 10px;
@@ -176,8 +152,6 @@
 	background: #eee;
 }
 
-
-
 .ls-carousel .ls-above-thumbnails {
 	display: none;
 }
@@ -187,24 +161,20 @@
 	margin-top: 10px;
 }
 
-
-
 .ls-carousel .ls-loading-container {
 	width: 50px;
 	height: 50px;
 	margin-left: -25px;
 	margin-top: -22px;
-	background-position: -450px -150px;	
+	background-position: -450px -150px;
 }
 
 .ls-carousel .ls-loading-indicator {
 	width: 22px;
 	height: 22px;
 	margin-top: 11px;
-	background-image: url(loading.gif);	
+	background-image: url(loading.gif);
 }
-
-
 
 .ls-carousel .ls-fullscreen {
 	width: 30px;

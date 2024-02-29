@@ -56,8 +56,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int join(HashMap<String, String> params) {
 		//아이디  검증하기 중복x 
-		if(Objects.nonNull(mDao.getMemberById(params))|| params.get("memberPw").equals(params.get("againPw")))
+		if(Objects.nonNull(mDao.getMemberById(params))|| params.get("memberPw").equals(params.get("pwAgain"))) {
+			System.out.println("중복또는 비밀번호 체크에서 오류.");
 			return 0;
+		}
 		try {
 			
 			params.put("memberPw", encoder.aesEncode(params.get("memberPw")));
@@ -73,7 +75,6 @@ public class MemberServiceImpl implements MemberService {
 			emailDto.setFrom("whdudgms321@naver.com");
 			emailDto.setReceiver(params.get("email"));
 			emailDto.setSubject("회원가입을 환영합니다.");
-				
 			emailDto.setText(params.get("memberId") + "님의 가입을 진심으로 환영합니다.");
 			try {
 				emailUtil.sendHtmlMail(emailDto);

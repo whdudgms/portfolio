@@ -23,6 +23,8 @@ public class AES256Util {
 
 	private String iv;
 	private Key keySpec;
+	
+	
 
 	// 이 클래스에 접근하기 위해 key검사함(bean에서 넘어오는 key)
 	public AES256Util(String key) throws UnsupportedEncodingException {

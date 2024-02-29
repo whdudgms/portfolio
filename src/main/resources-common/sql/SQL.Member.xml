@@ -33,6 +33,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		count(1) FROM S_whdudgms.`member`
 		WHERE member_id = #{memberId}
 	</select>
+	<update id="updatetype" parameterType="String">
+			UPDATE S_whdudgms.`member`
+			SET type_seq=5
+			WHERE member_id=#{memberId};
+	</update>
 
 	<insert id="join" parameterType="map">
 		INSERT INTO S_whdudgms.`member`

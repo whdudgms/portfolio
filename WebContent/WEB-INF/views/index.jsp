@@ -66,6 +66,7 @@
 <script
 	src="<c:url value='/resources/js/view/demo.revolution_slider.js'/>"></script>
 <script type="text/javascript">
+		var typeSep = '${sessionScope.typeSep }';
 		var ctx = '<%= request.getContextPath() %>';
 	    $(document).ready(function() {
 	    	//movePage('/home.do');
@@ -100,7 +101,17 @@
 							<li class="text-welcome hidden-xs-down">Welcome!! <strong>${sessionScope.memberNick}</strong></li>
 							<li><a tabindex="-1"
 								href="<c:url value='/member/logout.do'/>"><i
+									
 									class="glyphicon glyphicon-off"></i> LOGOUT</a></li>
+						<c:choose>
+					
+						<c:when test='${sessionScope.typeSep != "5" || sessionScope.typeSep != "9"}'>
+								<li><a tabindex="-1"
+								href="javascript:movePage('/member/email.do')"><i
+								class="glyphicon glyphicon-off"></i>register Email</a></li>
+						</c:when>	
+						</c:choose>
+						
 						</c:when>
 						<c:otherwise>
 							<li><a tabindex="-1"

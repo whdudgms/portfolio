@@ -1,29 +1,25 @@
 package com.lhs.service.impl;
 
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
+
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.ConstructorArgs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lhs.dao.MemberDao;
+import com.lhs.dto.MemberDto;
 import com.lhs.exception.PasswordMissMatchException;
 import com.lhs.exception.UserNotFoundException;
 import com.lhs.service.MemberService;
 import com.lhs.util.AES256Util;
 import com.lhs.util.EmailUtil;
+import com.lhs.util.RandomNum;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -118,6 +114,60 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int delMember(HashMap<String, Object> params) {	
 		return mDao.delMember(params);
+	}
+
+	@Override
+	public String getEamil(String memberId) {
+		HashMap<String,String> params = new HashMap<String, String>();
+		params.put("memberId", memberId);
+		HashMap<String, Object> member = mDao.getMemberById(params);
+		System.out.println("Service getEamil email = " + (String)member.get("email"));
+
+		
+		return (String)member.get("email");
+	}
+
+	@Override
+	public MemberDto getMember(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getVNum(String email, HttpSession session) {
+		//이메일 인증 번호 나중에 메서드로 바꾸기 !!!!
+		String VNum = RandomNum.randum();
+		session.setAttribute("VNum", VNum);
+		
+		com.lhs.dto.EmailDto emailDto = new com.lhs.dto.EmailDto();
+		emailDto.setFrom("whdudgms321@naver.com");
+		emailDto.setReceiver(email);
+		emailDto.setSubject("이메일 인증번호");
+		emailDto.setText("인증번호 입니다."+ VNum);
+		try {
+			emailUtil.sendHtmlMail(emailDto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean checkVNum(HashMap<String, String> params, HttpSession session) {
+		System.out.println("Service checkVNum()");
+		System.out.println("params.get(\"VNum\")      "+params.get("VNum"));
+		System.out.println("session.getAttribute(\"VNum\")      "+session.getAttribute("VNum"));
+		
+		boolean result = params.get("VNum").equals( session.getAttribute("VNum"));
+		if(result) {
+			System.out.println("입력값 변경 !!");
+		 mDao.updatetype((String)session.getAttribute("memberId"));
+			System.out.println("입력값 변경 !!");
+
+		}
+		
+		return result;
+	
 	}
 
 

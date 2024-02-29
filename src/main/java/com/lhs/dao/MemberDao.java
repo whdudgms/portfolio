@@ -13,6 +13,9 @@ public interface MemberDao {
 	
 	public int checkId(HashMap<String, String> params);
 	
+	public int updatetype(String memberId);
+
+	
 	public HashMap<String, Object> getMemberById(HashMap<String, String> params);
 	
 	public String makeCipherText(HashMap<String, String> params);

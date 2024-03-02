@@ -36,8 +36,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<mvc:resources mapping="/resources/**"
-		location="/resources/" />
+	<mvc:resources mapping="/resources*/**"
+		location="/resources*/" />
 
 	<mvc:annotation-driven />
 

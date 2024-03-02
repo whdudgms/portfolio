@@ -23,12 +23,15 @@ public class BoardController {
 	@Autowired AttFileService attFileService;
 	@Autowired FileUtil fileUtil;
 
-	private String typeSeq = "2";
+	private String typeSeq = "2";  // 이코드가 꼭 필요할까?? 
 
 	@RequestMapping("/board/list.do")
 	public ModelAndView goLogin(@RequestParam HashMap<String, String> params){
-		return null;
-	}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/list");
+
+		return mv;
+	} 
 
 	@RequestMapping("/test.do")
 	public ModelAndView test() {

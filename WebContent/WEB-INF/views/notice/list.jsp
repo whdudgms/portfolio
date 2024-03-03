@@ -32,17 +32,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td align="center">글번호</td>
-						<td><span class="bold"> <a
-								href="javascript:movePage(null,'/notice/read.do?boardSeq=boardSeq&currentPage=currentPage')">
-									title </a>
-						</span></td>
-						<td>memberNick</td>
-						<td>hits</td>
-						<td>hasFile</td>
-						<td>createDate</td>
-					</tr>
+					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
+    	                <tr>
+                        <th class="text-center">${rowStatus.index} </th>
+                        <th>${board.title} </th>
+                        <th>${board.memberNick} </th>
+                        <th>${board.hits} </th>
+                        <th>${board.hasFile} </th>
+                        <th>${board.createDtm} </th>
+                    </tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

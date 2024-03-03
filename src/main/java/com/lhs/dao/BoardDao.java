@@ -3,13 +3,15 @@ package com.lhs.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.lhs.dto.BoardDto;
+
 public interface BoardDao {
 	/**
 	 * 모든 리스트 select  
 	 * @param typeSeq
 	 * @return
 	 */
-	public ArrayList<HashMap<String, Object>> list(HashMap<String, String> params);
+	public ArrayList<BoardDto> list(HashMap<String, String> params);
 	
 	/**
 	 * 총 글 수 

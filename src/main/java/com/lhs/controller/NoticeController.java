@@ -1,5 +1,6 @@
 package com.lhs.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lhs.dto.BoardDto;
 import com.lhs.service.AttFileService;
 import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
@@ -33,6 +35,15 @@ public class NoticeController {
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
+		
+		
+		params.put("typeSeq", "1");
+		ArrayList<BoardDto> boardlist= bService.list(params);
+		mv.addObject("Boardlist", boardlist);
+		System.out.println();
+		System.out.println(boardlist.toString());
+		System.out.println(mv);
+		System.out.println();
 		mv.setViewName("notice/list");
 
 		return mv;

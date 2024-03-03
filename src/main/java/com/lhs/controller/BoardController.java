@@ -1,7 +1,11 @@
 package com.lhs.controller;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lhs.dto.BoardDto;
 import com.lhs.service.AttFileService;
 import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
@@ -24,14 +29,33 @@ public class BoardController {
 	@Autowired FileUtil fileUtil;
 
 	private String typeSeq = "2";  // 이코드가 꼭 필요할까?? 
+	
 
 	@RequestMapping("/board/list.do")
 	public ModelAndView goLogin(@RequestParam HashMap<String, String> params){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/list");
+		
+		
+		params.put("typeSeq", "2");
+		ArrayList<BoardDto> boardlist= bService.list(params);
+		mv.addObject("Boardlist", boardlist);
+		System.out.println();
+		System.out.println();
 
+		
 		return mv;
 	} 
+	
+	@RequestMapping("/board/download.do")
+	@ResponseBody
+	public byte[] downloadFile(@RequestParam int fileIdx, HttpServletResponse response) {
+		
+		HashMap<String,Object> fileInfo = null;
+		
+		
+		return null;
+	}
 
 	@RequestMapping("/test.do")
 	public ModelAndView test() {
@@ -55,10 +79,15 @@ public class BoardController {
 	@ResponseBody
 	public HashMap<String, Object> write(
 			@RequestParam HashMap<String, Object> params, 
-			MultipartHttpServletRequest mReq) {
+			MultipartHttpServletRequest mReq,HttpSession session) {
+		System.out.println("세션에 MemberId");
+		System.out.println (session.getAttribute("memeberId"));
+		params.put("memberId","whdudgms1234");
+		System.out.println(mReq);
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
+		bService.write(params, mReq.getFiles("attFiles"));
 
 		return null;
 	}

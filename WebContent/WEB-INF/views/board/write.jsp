@@ -165,9 +165,12 @@ function customAjax(url, responseUrl) {
 
 										<!-- custom file upload -->
 										<div class="fancy-file-upload fancy-file-primary">
-											<i class="fa fa-upload"></i> <input type="file"
+											<i class="fa fa-upload"></i>
+											 <input type="file"
 												class="form-control" name="attFiles"
-												onchange="jQuery(this).next('input').val(this.value);" /> <input
+												onchange="jQuery(this).next('input').val(this.value);" /> 
+												
+												<input
 												type="text" class="form-control"
 												placeholder="no file selected" readonly="" /> <span
 												class="button">Choose File</span>

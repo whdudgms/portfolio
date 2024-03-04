@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.lhs.dto.BoardAttach;
+
 
 
 public interface AttFileDao {
@@ -13,7 +15,7 @@ public interface AttFileDao {
 	 * @param params
 	 * @return
 	 */
-	public int addAttFile(HashMap<String, Object> params);
+	public int addAttFile(BoardAttach boardAttach);
 	
 	/** type, board_seq 통한 해당 게시글의 모든 첨부파일 불러오기. 
 	 * @param params

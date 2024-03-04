@@ -18,14 +18,14 @@ public interface MemberService {
 	
 	public MemberDto getMember(String memberId);
 
-	public int join(HashMap<String, String> params);
+	public int join( MemberDto memberDto);
 	
 	public String getVNum(String email, HttpSession session);
 
 	
 	public int checkId(HashMap<String, String> params);
 	
-	public boolean login(HashMap<String, String> params, HttpSession session) throws UserNotFoundException, PasswordMissMatchException;
+	public boolean login( MemberDto memberDto, HttpSession session) throws UserNotFoundException, PasswordMissMatchException;
 
 	public int delMember(HashMap<String,Object> params);
 

@@ -26,7 +26,7 @@ public interface BoardDao {
 	 * @param params
 	 * @return
 	 */
-	public int write(HashMap<String, Object> params);
+	public int write(BoardDto boardDto);
 	
 	/**
 	 * 글 조회  

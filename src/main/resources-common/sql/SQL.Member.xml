@@ -16,14 +16,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-	<select id="getMemberById" parameterType="HashMap"
-		resultType="HashMap">
+	<select id="getMemberById" parameterType="com.lhs.dto.MemberDto"
+		resultType="com.lhs.dto.MemberDto">
 		SELECT member_idx, type_seq, member_id, member_pw,
 		member_name, member_nick, email, create_dtm, update_dtm, membercol
 		FROM S_whdudgms.`member` where member_id = #{memberId};
 	</select>
 
-	<select id="makeCipherText" parameterType="map"
+	<select id="makeCipherText" parameterType="com.lhs.dto.MemberDto"
 		resultType="String">
 		SELECT SHA2(MD5(#{memberPw}), 256) AS pw
 	</select>
@@ -33,13 +33,14 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		count(1) FROM S_whdudgms.`member`
 		WHERE member_id = #{memberId}
 	</select>
+	
 	<update id="updatetype" parameterType="String">
 			UPDATE S_whdudgms.`member`
 			SET type_seq=5
 			WHERE member_id=#{memberId};
 	</update>
 
-	<insert id="join" parameterType="map">
+	<insert id="join" parameterType="com.lhs.dto.MemberDto">
 		INSERT INTO S_whdudgms.`member`
 		( type_seq, member_id, member_pw, member_name, member_nick, email,
 		create_dtm, update_dtm, membercol)

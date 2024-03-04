@@ -3,6 +3,7 @@ package com.lhs.controller;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
@@ -78,16 +79,17 @@ public class BoardController {
 	@RequestMapping("/board/write.do")
 	@ResponseBody
 	public HashMap<String, Object> write(
-			@RequestParam HashMap<String, Object> params, 
+			BoardDto boardDto, 
 			MultipartHttpServletRequest mReq,HttpSession session) {
-		System.out.println("세션에 MemberId");
-		System.out.println (session.getAttribute("memeberId"));
-		params.put("memberId","whdudgms1234");
+		
+
+//		boardDto.put("memberId","whdudgms1234");
 		System.out.println(mReq);
-		if(!params.containsKey("typeSeq")) {
-			params.put("typeSeq", this.typeSeq);
+		if(Objects.nonNull(boardDto.getTypeSeq())) {
+			boardDto.setTypeSeq(Integer.parseInt(this.typeSeq));
 		}
-		bService.write(params, mReq.getFiles("attFiles"));
+		
+		bService.write(boardDto, mReq.getFiles("attFiles"));
 
 		return null;
 	}

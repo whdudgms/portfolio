@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lhs.dao.AttFileDao;
 import com.lhs.dao.BoardDao;
+import com.lhs.dto.BoardAttach;
 import com.lhs.dto.BoardDto;
 import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
@@ -22,6 +24,10 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired BoardDao bDao;
 	@Autowired AttFileDao attFileDao;
 	@Autowired FileUtil fileUtil;
+	
+	
+	@Value("#{config['project.file.upload.location']}")
+	private String saveLocation;
 	
 	
 	@Override
@@ -35,29 +41,35 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int write(HashMap<String, Object> params, List<MultipartFile> mFiles) {	
+	public int write(BoardDto boardDto, List<MultipartFile> mFiles) {	
 		
 		//1. board DB에 글 정보등록 + hasFile
-		int write = bDao.write(params);
+		int write = bDao.write(boardDto);
 		System.out.println();
+		System.out.println("BoardDto boardDto의 값입니다.");
+		System.out.println(boardDto);
+		System.out.println();
+		System.out.println("write의 값입니다.");
 		System.out.println(write);
 		System.out.println();
 		for(MultipartFile mFile: mFiles) {
 			HashMap<String, Object> params1 =  new HashMap<String, Object>();
-			params1.put("boardSeq", params.get("boardSeq"));   // file_type
-			params1.put("typeSeq", params.get("typeSeq"));
-			params1.put("fileType",mFile.getContentType());   // file_type
-			params1.put("fileName",mFile.getOriginalFilename()); //file_name
-			//params1.put("fileName",mFile.getName());   //fake_filename
-			params1.put("fileSize",mFile.getSize());  // file_size
+			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
+				continue;
+			BoardAttach boardAttach = new BoardAttach();
+			boardAttach.setBoardSeq(boardDto.getBoardSeq());  // boardSeq
+			boardAttach.setTypeSeq(boardDto.getTypeSeq());	   //
+			boardAttach.setFileType(mFile.getContentType());   // file_type
+			boardAttach.setFileName(mFile.getOriginalFilename()); //file_name
+			boardAttach.setFileSize(mFile.getSize());  // file_size
 			System.out.println("--");
-			params1.put("saveLoc", "/Users/mast er/dev/file/");
+			boardAttach.setSaveLoc( saveLocation);
 			// to-do : smart_123.pdf -> (UUID).pdf
 			// to-do : smart_123.456.pdf -> (UUID).PDF
 			// 
 			//확장자 떨어져 나간다 
 			String fakeName = UUID.randomUUID().toString().replaceAll("-", "");
-			params1.put("fakeFilename", fakeName);
+			boardAttach.setFakeFilename(fakeName);
 			
 			try {
 				fileUtil.copyFile(mFile, fakeName);
@@ -65,18 +77,15 @@ public class BoardServiceImpl implements BoardService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println();
-			System.out.println();
-			System.out.println(params1);
-			System.out.println();
-			System.out.println();
-			attFileDao.addAttFile(params1);
+			System.out.println("값이 모두 넣어진 boardAttach");
+			System.out.println(boardAttach);
+			attFileDao.addAttFile(boardAttach);
 			  
 		//file seq  board seq =write
 
 		}
 		
-		System.out.println("result of params : "  + params);
+		System.out.println("result of boardDto : "  + boardDto);
 		return 0;
 	}
 

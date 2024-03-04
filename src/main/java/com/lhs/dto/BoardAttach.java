@@ -13,18 +13,15 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @ToString
-@Alias(value = "member")
-public class MemberDto {
-	Integer memberIdx;
-	Integer typeSeq;
-	String memberId;
-	String memberPw;
-	String againPw;
-	String memberName;
-	String memberNick;
-	String email;
-	String createDtm;
-	String updateDtm;
-	String membercol;
-	
+@Alias(value = "board_attch")
+public class BoardAttach {
+	int fileIdx;
+	int typeSeq;
+	int boardSeq;
+	String fileName;
+	String fakeFilename;
+	long fileSize;
+	String fileType;
+	String saveLoc;
+	String createDtm;	
 }

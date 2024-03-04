@@ -50,28 +50,28 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public int join(HashMap<String, String> params) {
+	public int join(MemberDto membetDto) {
 		//아이디  검증하기 중복x 
-		if(Objects.nonNull(mDao.getMemberById(params))|| params.get("memberPw").equals(params.get("pwAgain"))) {
+		if(Objects.nonNull(mDao.getMemberById(membetDto))|| !(membetDto.getMemberPw().equals(membetDto.getAgainPw()))) {
 			System.out.println("중복또는 비밀번호 체크에서 오류.");
 			return 0;
 		}
 		try {
 			
-			params.put("memberPw", encoder.aesEncode(params.get("memberPw")));
+			membetDto.setMemberPw(encoder.aesEncode(membetDto.getMemberPw()));
 			
 		} catch (Exception e) {
 		
 
 			e.printStackTrace();
 		} 
-		int result =  mDao.join(params);
+		int result =  mDao.join(membetDto);
 		if(result==1) {
 			com.lhs.dto.EmailDto emailDto = new com.lhs.dto.EmailDto();
 			emailDto.setFrom("whdudgms321@naver.com");
-			emailDto.setReceiver(params.get("email"));
+			emailDto.setReceiver(membetDto.getEmail());
 			emailDto.setSubject("회원가입을 환영합니다.");
-			emailDto.setText(params.get("memberId") + "님의 가입을 진심으로 환영합니다.");
+			emailDto.setText(membetDto.getMemberId() + "님의 가입을 진심으로 환영합니다.");
 			try {
 				emailUtil.sendHtmlMail(emailDto);
 			}catch(Exception e) {
@@ -89,18 +89,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean login(HashMap<String, String> params, HttpSession session) throws UserNotFoundException, PasswordMissMatchException {
-		HashMap<String, Object> member = mDao.getMemberById(params);
+	public boolean login(MemberDto memberDto, HttpSession session) throws UserNotFoundException, PasswordMissMatchException {
+		MemberDto member = mDao.getMemberById(memberDto);
 		if(Objects.isNull(member))
 			return false;
 		try {
 			System.out.println("member = ");
 			System.out.println(member);
-			String equPw = encoder.aesDecode( (String)member.get("member_pw"));
-			if(equPw.equals(params.get("memberPw"))) {
-				session.setAttribute("memberId", member.get("member_id"));
-				session.setAttribute("memberNick", member.get("member_nick"));
-				session.setAttribute("typeSep", member.get("type_seq"));
+			String equPw = encoder.aesDecode( member.getMemberPw());
+			if(equPw.equals(memberDto.getMemberPw() )) {
+				System.out.println("세션에 저장하는 부분 코드입니다.");
+				System.out.println(member.toString());
+				
+				session.setAttribute("memberId", member.getMemberId());
+				session.setAttribute("memberNick", member.getMemberNick());
+				session.setAttribute("typeSep", member.getTypeSeq());
+				session.setAttribute("memberIdx", member.getMemberIdx());
 				return true;
 			}
 		} catch (Exception e) {
@@ -118,13 +122,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public String getEamil(String memberId) {
-		HashMap<String,String> params = new HashMap<String, String>();
-		params.put("memberId", memberId);
-		HashMap<String, Object> member = mDao.getMemberById(params);
-		System.out.println("Service getEamil email = " + (String)member.get("email"));
+		MemberDto membetDto = new MemberDto();
+		membetDto.setMemberId(memberId);
+		MemberDto member = mDao.getMemberById(membetDto);
+		System.out.println("Service getEamil email = " + (String)member.getEmail());
 
 		
-		return (String)member.get("email");
+		return (String)member.getEmail();
 	}
 
 	@Override

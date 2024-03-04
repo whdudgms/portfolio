@@ -22,37 +22,66 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		limit 5
 		;
 	</select>
+	
+	
+	<select id="read" parameterType="String" resultType="com.lhs.dto.BoardDto">
+		SELECT 
+		board_seq, 
+		type_seq, 
+		member_id, 
+		member_nick, 
+		title, 
+		content, 
+		has_file, 
+		hits, 
+		create_dtm, 
+		update_dtm
+		FROM S_whdudgms.board
+		where board_seq = #{boardSeq}
+		;
+	</select>
+
 
 	<select id="getTotalArticleCnt" parameterType="HashMap"
 		resultType="int">
-
+	select count(*) from S_whdudgms.board;
 	</select>
 <!-- boardSeq가 전달된다  -->
-	<insert id="write" parameterType="map"
+	<insert id="write" parameterType="com.lhs.dto.BoardDto"
 		useGeneratedKeys="true" keyProperty="boardSeq">
-		INSERT INTO S_whdudgms.board
-(type_seq, member_id, member_nick, title, content, has_file, hits, create_dtm, update_dtm)
-	VALUES(#{typeSeq}, #{memberId}, #{memberNick}, #{title}, #{content}, 
-	NULL, 0, DATE_FORMAT(now(), '%Y%m%d%H%i%s'), DATE_FORMAT(now(), '%Y%m%d%H%i%s'));
-
+	INSERT INTO S_whdudgms.board
+	(type_seq, member_id, member_nick, title, content, 
+	 hits, create_dtm, update_dtm)
+	VALUES(
+	#{typeSeq}, #{memberId}, #{memberNick}, #{title}, #{content}, 
+	 0, DATE_FORMAT(now(), '%Y%m%d%H%i%s'), DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+	);
 	</insert>
 
-	<select id="read" parameterType="HashMap" resultType="HashMap">
-	</select>
-
 	<update id="updateHits" parameterType="HashMap">
+		UPDATE S_whdudgms.board
+		set hits= hits+1
+		WHERE board_seq = #{boardSeq};
 	</update>
 
-	<update id="update" parameterType="HashMap">
-
+	<update id="update" parameterType="com.lhs.dto.BoardDto">
+	UPDATE S_whdudgms.board
+ 	set 
+ 	title= #{title}, 
+ 	content = #{content},
+ 	update_dtm = DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+	WHERE board_seq = #{boardSeq};
 	</update>
 
-	<update id="updateHasFileToZero" parameterType="HashMap">
-
+	<update id="updateHasFile" parameterType="HashMap">
+		UPDATE S_whdudgms.board
+	 	set has_file= #{hasFile}
+		WHERE board_seq = #{boardSeq};
 	</update>
 
 	<delete id="delete" parameterType="HashMap">
-
+		DELETE FROM S_whdudgms.board
+		WHERE board_seq= #{boardSeq};
 	</delete>
 
 

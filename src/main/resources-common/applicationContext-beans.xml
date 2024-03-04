@@ -63,7 +63,7 @@
 
 		<!-- myBatis 기본 설정 -->
 		<property name="configLocation"
-			value="classpath:mybatis-configuration.xml"></property>
+			value="classpath:mybatis-config.xml"></property>
 
 		<!-- SQL 적힌 mapper(xml) 위치 -->
 		<property name="mapperLocations"

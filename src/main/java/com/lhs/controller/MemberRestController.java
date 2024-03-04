@@ -1,3 +1,4 @@
+
 package com.lhs.controller;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lhs.dto.MemberDto;
 import com.lhs.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,11 +46,13 @@ public class MemberRestController {
 	
 	@RequestMapping("/member/join.do")
 	@ResponseBody
-	public HashMap<String, Object> join(@RequestParam HashMap<String, String> params){		
-		System.out.println(params);
+	public HashMap<String, Object> join(MemberDto memberDto){	
+		System.out.println("\"/member/login.do\")의 시작.");
+		System.out.println("MemberController의 join메서드에 전달받은 파라미터 출력");
+		System.out.println("memberDto = "+memberDto);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int cnt = 0;
-		cnt = mService.join(params);
+		cnt = mService.join(memberDto);
 		map.put("cnt", cnt);
 		map.put("msg", cnt==1?"회원 가입 완료!!!":"회원 가입 실패!!!");
 		map.put("nextPage", cnt==1?"/member/goLoginPage.do" : "/member/goRegisterPage.do");
@@ -96,18 +100,26 @@ public class MemberRestController {
 	
 		@RequestMapping("/member/login.do")
 		@ResponseBody
-		public HashMap<String, Object> login(@RequestParam HashMap<String, String> params, HttpSession session){
+		public HashMap<String, Object> login( MemberDto memberDto, HttpSession session){
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			System.out.println("\"/member/login.do\")의 시작.");
-			System.out.println("\"/member/login.do\")의 시작.");
-			System.out.println("\"/member/login.do\")의 시작.");
+			System.out.println("MemberController의 login메서드에 전달받은 파라미터 출력");
+			System.out.println("memberDto = "+memberDto);
 			
 			try {
-				if(mService.login(params,session)) {
+				if(mService.login(memberDto,session)) {
+				System.out.println(".");
+				System.out.println(memberDto);
+				System.out.println("로그인 성공 메서드.");
+			
+				System.out.println("세션에 저장된 요소들 출력.");
 				System.out.println(session.getAttribute("memberId"));
-				System.out.println(session.getAttribute("typeSep"));
 				System.out.println(session.getAttribute("memberNick"));
+				System.out.println(session.getAttribute("memberIdx"));
+
+				
 				map.put("nextPage", "/index.do");
+				
 				}else{
 					map.put("msg", "LoginFail");
 					map.put("nextPage", "/member/goLoginPage.do");

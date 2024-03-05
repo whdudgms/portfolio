@@ -31,7 +31,7 @@ public interface BoardDao {
 	/**
 	 * 글 조회  
 	 */
-	public HashMap<String, Object> read(HashMap<String, Object> params);
+	public BoardDto read(HashMap<String, Object> params);
 	
 	/**
 	 * 조회수 증가.
@@ -45,7 +45,7 @@ public interface BoardDao {
 	 * @param params
 	 * @return
 	 */
-	public int update(HashMap<String, Object> params);
+	public int update(BoardDto boardDto);
 	
 	/**
 	 * 모든 첨부파일 삭제시 has_file = 0 으로 수정 

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lhs.dao.AttFileDao;
@@ -40,6 +42,7 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.getTotalArticleCnt(params);
 	}
 
+	@Transactional
 	@Override
 	public int write(BoardDto boardDto, List<MultipartFile> mFiles) {	
 		
@@ -91,24 +94,25 @@ public class BoardServiceImpl implements BoardService{
 
 	//글 조회 
 	@Override
-	public HashMap<String, Object> read(HashMap<String, Object> params) {
+	public BoardDto read(HashMap<String, Object> params) {
 		
 		return bDao.read(params);
 	}
 
 	@Override
-	public int update(HashMap<String, Object> params, List<MultipartFile> mFiles) {
-		if(params.get("hasFile").equals("Y")) { // 첨부파일 존재시 			
+	public int update(BoardDto boardDto, List<MultipartFile> mFiles) {
+		if(boardDto.getHasFile().equals("Y")) { // 첨부파일 존재시 			
 			// 파일 처리
 		}	
 		// 글 수정 dao 
-		return bDao.update(params);
+		return bDao.update(boardDto);
 	}
 
 	@Override
 	public int delete(HashMap<String, Object> params) {
-		if(params.get("hasFile").equals("Y")) { // 첨부파일 있으면 		
-			 // 파일 처리
+		if(Objects.nonNull(params.get("hasFile")) && params.get("hasFile").equals("Y")) { // 첨부파일 있으면 		
+			if( attFileDao.deleteAttFileByBoard(params)>= 1)
+				System.out.println("첨부 파일도 삭제했습니");
 		}
 		return bDao.delete(params);
 	}

@@ -24,6 +24,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<delete id="deleteAttFileByBoard" parameterType="HashMap">
+		DELETE FROM S_whdudgms.board_attach
+		WHERE board_seq=#{boardSeq};
 	</delete>
 
 	<select id="readAllAttFiles" resultType="HashMap">

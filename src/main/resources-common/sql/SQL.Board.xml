@@ -44,7 +44,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getTotalArticleCnt" parameterType="HashMap"
 		resultType="int">
-	select count(*) from S_whdudgms.board;
+	select count(*) from S_whdudgms.board
+	where typeSeq = #{typeSeq}
+	;
 	</select>
 <!-- boardSeq가 전달된다  -->
 	<insert id="write" parameterType="com.lhs.dto.BoardDto"

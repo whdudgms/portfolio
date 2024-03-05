@@ -35,14 +35,13 @@
 					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
                     <tr>
                         <th class="text-center">${rowStatus.index} </th>
-                        <th>${board.title} </th>
+                       <th> <a href="javascript:movePage('/board/read.do?boardSeq=${board.boardSeq}')" >${board.title}</a></th>
                         <th>${board.memberNick} </th>
                         <th>${board.hits} </th>
                         <th>${board.hasFile} </th>
                         <th>${board.createDtm} </th>
                     </tr>
 					</c:forEach>
-					</tr>
 				</tbody>
 			</table>
 		</div>

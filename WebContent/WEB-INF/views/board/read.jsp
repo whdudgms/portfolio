@@ -19,7 +19,36 @@ $(document).ready(function(){
 	
 	$('#btnDelete').on('click', function(){		
 		if(confirm("삭제하시겠습니까?")){
-			// code here
+			// code here /board/delete.do 삭제 버튼 클릭시 
+					$.ajax({
+				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}'/>",
+				type: "GET",
+				//data: formData,
+				dataType:'TEXT',
+				cache: false,
+				processData: false,
+				contentType: false,
+				success: function(data, textStatus, jqXHR) {
+					data = $.parseJSON(data);
+					console.log(data);
+					if(data.msg != undefined && data.msg != ''){
+						alert(data.msg)
+						javascript:movePage('/board/list.do?page=${currentPage}' )
+						//window.location.href = ctx + data.nextPage;
+					}
+					else {
+						javascript:movePage('/board/list.do?page=${currentPage}' )
+
+						//window.location.href = ctx + data.nextPage;
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					$("#loading-div-background").hide();	// overlay 숨기기					
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
 		}
 	});
 	
@@ -42,9 +71,9 @@ $(document).ready(function(){
 				<!-- post -->
 				<div class="clearfix mb-80">
 					<div class="border-bottom-1 border-top-1 p-12">
-						<span class="float-right fs-10 mt-10 text-muted">작성일시</span>
+						<span class="float-right fs-10 mt-10 text-muted">작성일시${boardDto.createDtm}</span>
 						<center>
-							<strong>타이틀</strong>
+							<strong>${boardDto.title }</strong>
 						</center>
 					</div>
 					<div class="block-review-content">
@@ -55,10 +84,10 @@ $(document).ready(function(){
 										alt="avatar">
 									<!--  <i class="fa fa-user" style="font-size:30px"></i>-->
 								</div>
-								<small class="block">닉네임</small>
+								<small class="block">${boardDto.memberNick}</small>
 								<hr />
 							</div>
-							<p>본문 내용</p>
+							<p>${boardDto.content}</p>
 							<!-- 컬렉션 형태에서는 (list) items  -->
 
 							<!-- 첨부파일 없으면  -->
@@ -94,7 +123,7 @@ $(document).ready(function(){
 							<div class="col-md-12 text-right">
 								<c:if test="${ true }">
 									<a
-										href="javascript:movePage('/board/goToUpdate.do?boardSeq=PK1')">
+										href="javascript:movePage('/board/goToUpdate.do?boardSeq=${boardSeq}')">
 										<button type="button" class="btn btn-primary">
 											<i class="fa fa-pencil"></i> 수정
 										</button>
@@ -111,7 +140,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<a
-											href="javascript:movePage('/board/list.do?page=currentPage')">
+											href="javascript:movePage('/board/list.do?page=${currentPage} ')">
 											<button type="button" class="btn btn-primary">목록</button>
 										</a>
 									</c:otherwise>

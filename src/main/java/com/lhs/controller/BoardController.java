@@ -38,7 +38,7 @@ public class BoardController {
 		mv.setViewName("board/list");
 		
 		
-		params.put("typeSeq", "2");
+		params.put("typeSeq", this.typeSeq);
 		ArrayList<BoardDto> boardlist= bService.list(params);
 		mv.addObject("Boardlist", boardlist);
 		System.out.println();
@@ -96,10 +96,16 @@ public class BoardController {
 
 	@RequestMapping("/board/read.do")
 	public ModelAndView read(@RequestParam HashMap<String, Object> params) {
+		System.out.println("컨트럴러 =     \"/board/read.do\"");
+		System.out.println(params);
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
 		ModelAndView mv = new ModelAndView();
+	    BoardDto boardDto = bService.read(params);
+	    System.out.println(" bService.read(params) ");
+	    System.out.println(boardDto);
+		mv.addObject(boardDto);
 		mv.setViewName("/board/read");
 		return mv;
 	}	
@@ -108,15 +114,24 @@ public class BoardController {
 	//수정  페이지로 	
 	@RequestMapping("/board/goToUpdate.do")
 	public ModelAndView goToUpdate(@RequestParam HashMap<String, Object> params, HttpSession session) {
+		System.out.println("controller goToUpdate메서드의 params" );
+		System.out.println(params);
+		
 		ModelAndView mv = new ModelAndView();
 
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
-		
+		mv.setViewName("board/update");
 		return mv;
 
 	}
+//	int cnt = bService.delete(params);
+//	HashMap<String, Object> map = new HashMap<String, Object>();
+//
+//	map.put("cnt", cnt);
+//	map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
+//	map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
 
 	@RequestMapping("/board/update.do")
 	@ResponseBody // !!!!!!!!!!!! 비동기 응답 
@@ -133,17 +148,26 @@ public class BoardController {
 	@RequestMapping("/board/delete.do")
 	@ResponseBody
 	public HashMap<String, Object> delete(@RequestParam HashMap<String, Object> params, HttpSession session) {
+		System.out.println("controller delete메서드." );
+		System.out.println(params);
 
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
-		return null; // 비동기: map return 
+		int cnt = bService.delete(params);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("cnt", cnt);
+		map.put("msg", cnt==1?"게시물 삭제 완료!!!":"게시물 삭제 실패!!!");
+		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
+		
+		return map; // 비동기: map return 
 	}
 
 	@RequestMapping("/board/deleteAttFile.do")
 	@ResponseBody
 	public HashMap<String, Object> deleteAttFile(@RequestParam HashMap<String, Object> params) {
-
+		
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}

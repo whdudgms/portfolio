@@ -49,22 +49,32 @@
 			<div class="col-md-12">
 				<ul class="pagination pagination-simple pagination-sm">
 					<!-- 페이징 -->
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=1')">&laquo;</a></li>
-					<li class="page-item"><a class="page-link">1</a></li>
-					<li class="page-item active"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=2')">2</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=3')">3</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=4')">4</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=5')">5</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=6')">6</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/board/list.do?page=99')">&raquo;</a></li>
-					</li>
+					
+					<c:if test="${pageInfo.currentPage != 1}">
+									<li class="page-item"><a class="page-link"
+						href="javascript:movePage('/board/list.do?currentPage=${pageInfo.currentPage - 1}')">&laquo;</a></li>
+					</c:if>
+					
+																
+						
+						<c:set var="totalPages" value="${pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : (pageInfo.totalBoard / pageInfo.pageSize) + 1}" />
+
+						<c:forEach begin="${pageInfo.startNavi}" end="${pageInfo.startNavi + pageInfo.pageNaviSize - 1}" var="i">
+						    <c:if test="${i <= totalPages}">
+						        <li class="page-item ${i == pageInfo.currentPage ? 'active' : ''}">
+						            <a class="page-link" href="javascript:movePage('/board/list.do?currentPage=${i}')">${i}</a>
+						        </li>
+						    </c:if>
+						</c:forEach>
+						
+						
+					<c:if test="${pageInfo.currentPage < (pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : pageInfo.totalBoard / pageInfo.pageSize +1)  }">
+							<li class="page-item"><a class="page-link"
+						href="javascript:movePage('/board/list.do?currentPage=${pageInfo.currentPage + 1}')">&raquo;</a></li>
+					</c:if>
+		
+						
+						
 				</ul>
 			</div>
 		</div>

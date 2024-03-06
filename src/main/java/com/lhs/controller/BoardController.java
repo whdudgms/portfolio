@@ -23,6 +23,7 @@ import com.lhs.dto.BoardDto;
 import com.lhs.service.AttFileService;
 import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
+import com.lhs.util.PageInfo;
 
 @Controller
 public class BoardController {
@@ -35,17 +36,49 @@ public class BoardController {
 	
 
 	@RequestMapping("/board/list.do")
-	public ModelAndView goLogin(@RequestParam HashMap<String, String> params){
+	public ModelAndView goList(@RequestParam HashMap<String, Object> params){
 		ModelAndView mv = new ModelAndView();
+		PageInfo pageInfo = new PageInfo();
+
 		mv.setViewName("board/list");
 		
+		// 게시물 목록을 가져오기 위한 요소들  
+		// 게시물 타입 
+		// 시작 게시물 번호 = (현재페이지 -1) * 10  현재페이지를 전달받아서 구함 
+		// 페이지 사이즈 기본값 10 사용  
+		//  
+		if(params.get("currentPage")==null || params.get("currentPage") == "") {
+		params.put("startBoard", (pageInfo.getCurrentPage() - 1 ) * 10 ); // 전달값 없으면
+		}else {
+		params.put("startBoard", (Integer.parseInt( (String) params.get("currentPage")) - 1) * 10 ); // 전달값 있으면 
+		pageInfo.setCurrentPage(Integer.parseInt( (String) params.get("currentPage")));
+		}
+		params.put("pageSize", pageInfo.getPageSize());
 		
-		params.put("typeSeq", this.typeSeq);
+		if(!params.containsKey("typeSeq")) {
+			params.put("typeSeq", this.typeSeq);
+		}
+		System.out.println(" Board  goList  params:");
+		System.out.println(params);
 		ArrayList<BoardDto> boardlist= bService.list(params);
 		mv.addObject("Boardlist", boardlist);
+		
+		// 게시믈에서 페이지 네이션을 표현하기 위한 요소들 
+		// 총 페이지, 현재 페이지 
+		//  
+		
+		pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
+		//pageInfo.setTotalPageSize(pageInfo.get)
+		//112 111 
+		pageInfo.setStartNavi(((pageInfo.getCurrentPage() -1) / pageInfo.getPageNaviSize())*pageInfo.getPageNaviSize() +1  );
+		System.out.println("list view로 전달되는 내용 ");
+		System.out.println("boardlist = ");
+		System.out.println(boardlist);
 		System.out.println();
+		System.out.println("pageInfo = ");
+		System.out.println(pageInfo);
+		mv.addObject("pageInfo", pageInfo);
 		System.out.println();
-
 		
 		return mv;
 	} 
@@ -135,7 +168,7 @@ public class BoardController {
 //
 //	map.put("cnt", cnt);
 //	map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
-//	map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
+//	map.put("nextPage", cnt==1?"/board/ .do" : "/board/list.do");
 
 	@RequestMapping("/board/update.do")
 	@ResponseBody // !!!!!!!!!!!! 비동기 응답 

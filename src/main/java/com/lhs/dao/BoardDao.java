@@ -11,7 +11,7 @@ public interface BoardDao {
 	 * @param typeSeq
 	 * @return
 	 */
-	public ArrayList<BoardDto> list(HashMap<String, String> params);
+	public ArrayList<BoardDto> list(HashMap<String, Object> params);
 	
 	/**
 	 * 총 글 수 
@@ -19,7 +19,7 @@ public interface BoardDao {
 	 * @return
 	 */
 	
-	public int getTotalArticleCnt(HashMap<String, String> params);
+	public int getTotalArticleCnt(Integer typeSeq);
 	
 	/**
 	 * 글 작성 insert 

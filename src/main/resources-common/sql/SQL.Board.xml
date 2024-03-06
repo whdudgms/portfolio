@@ -19,7 +19,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		update_dtm
 		FROM S_whdudgms.board
 		where type_seq = #{typeSeq}
-		limit 5
+		ORDER BY board_seq ASC
+		limit #{startBoard}, #{pageSize}
 		;
 	</select>
 	
@@ -42,10 +43,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<select id="getTotalArticleCnt" parameterType="HashMap"
+	<select id="getTotalArticleCnt" parameterType="Integer"
 		resultType="int">
-	select count(*) from S_whdudgms.board
-	where typeSeq = #{typeSeq}
+	select count(1) from S_whdudgms.board
+	where type_seq = #{typeSeq}
 	;
 	</select>
 <!-- boardSeq가 전달된다  -->

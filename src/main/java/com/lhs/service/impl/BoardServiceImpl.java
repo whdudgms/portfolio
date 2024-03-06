@@ -33,13 +33,13 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public ArrayList<BoardDto> list(HashMap<String, String> params) {
+	public ArrayList<BoardDto> list(HashMap<String, Object> params) {
 		return bDao.list(params);
 	}
 
 	@Override
-	public int getTotalArticleCnt(HashMap<String, String> params) {
-		return bDao.getTotalArticleCnt(params);
+	public int getTotalArticleCnt(Integer typeSeq) {
+		return bDao.getTotalArticleCnt(typeSeq);
 	}
 
 	@Transactional

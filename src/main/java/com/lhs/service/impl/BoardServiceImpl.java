@@ -102,7 +102,10 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int update(BoardDto boardDto, List<MultipartFile> mFiles) {
 		if(boardDto.getHasFile().equals("Y")) { // 첨부파일 존재시 			
-			// 파일 처리
+			// 기존 첨부파일 삭제 
+				// 기존 첨부파일 검색 받아오기 >>  행 삭제, 실물 데이터 삭
+			// 전달 받은 첨부 파일 넣기 
+				// 기존 
 		}	
 		// 글 수정 dao 
 		return bDao.update(boardDto);

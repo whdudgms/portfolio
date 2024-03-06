@@ -3,6 +3,7 @@ package com.lhs.controller;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -116,12 +118,14 @@ public class BoardController {
 	public ModelAndView goToUpdate(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		System.out.println("controller goToUpdate메서드의 params" );
 		System.out.println(params);
-		
 		ModelAndView mv = new ModelAndView();
-
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
+		BoardDto boardDto  = bService.read(params);
+		System.out.println("controller goToUpdate메서드의  bService.read(params)" );
+		System.out.println(boardDto);
+		mv.addObject(boardDto);
 		mv.setViewName("board/update");
 		return mv;
 
@@ -135,14 +139,21 @@ public class BoardController {
 
 	@RequestMapping("/board/update.do")
 	@ResponseBody // !!!!!!!!!!!! 비동기 응답 
-	public HashMap<String, Object> update(@RequestParam HashMap<String,Object> params, 
+	public HashMap<String, Object> update(BoardDto boardDto, 
 			MultipartHttpServletRequest mReq) {
 
-		if(!params.containsKey("typeSeq")) {
-			params.put("typeSeq", this.typeSeq);
+		if(Objects.isNull( boardDto.getTypeSeq())) {
+			boardDto.setTypeSeq(Integer.parseInt (this.typeSeq ));
 		}
-
-		return null;
+		System.out.println("/board/update.do에서  전달받은 파라미터 출력  ");
+		System.out.println("boardDto  :"+boardDto);
+		int cnt = bService.update(boardDto, mReq.getFiles(typeSeq));
+		HashMap<String, Object> map = new HashMap<String, Object>();
+	
+		map.put("cnt", cnt);
+		map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
+		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
+		return map;
 	}
 
 	@RequestMapping("/board/delete.do")

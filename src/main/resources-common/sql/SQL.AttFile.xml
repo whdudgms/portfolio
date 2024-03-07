@@ -12,12 +12,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="readAttFiles" parameterType="HashMap"
-		resultType="HashMap">
+		resultType="com.lhs.dto.BoardAttach">
+		SELECT file_idx, type_seq, board_seq, file_name, fake_filename, file_size, file_type, save_loc, create_dtm
+		FROM S_whdudgms.board_attach where  board_seq = #{boardSeq} ;
 
 	</select>
 
 	<select id="readAttFileByPk" parameterType="int"
 		resultType="HashMap">
+		SELECT file_idx, type_seq, board_seq, file_name, fake_filename, file_size, file_type, save_loc, create_dtm
+FROM S_whdudgms.board_attach where  file_idx = #{fileIdx} ;
 	</select>
 
 	<delete id="deleteAttFile" parameterType="HashMap">

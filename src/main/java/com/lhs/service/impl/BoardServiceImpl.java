@@ -56,7 +56,6 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println(write);
 		System.out.println();
 		for(MultipartFile mFile: mFiles) {
-			HashMap<String, Object> params1 =  new HashMap<String, Object>();
 			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
 				continue;
 			BoardAttach boardAttach = new BoardAttach();
@@ -85,11 +84,15 @@ public class BoardServiceImpl implements BoardService{
 			attFileDao.addAttFile(boardAttach);
 			  
 		//file seq  board seq =write
-
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("boardSeq", boardDto.getBoardSeq());
+			params.put("hasFile", "Y");
+			bDao.updateHasFile(params);
 		}
 		
+		
 		System.out.println("result of boardDto : "  + boardDto);
-		return 0;
+		return write;
 	}
 
 	//글 조회 
@@ -113,12 +116,26 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int delete(HashMap<String, Object> params) {
+		System.out.println("board  delete메서드를 호출했습니다. !!!!!!!!!!!!!!!!!!!!!");
+		System.out.println("params 의 값은 !!!!");
 		
+		
+		System.out.println(params);
 		if(Objects.nonNull(params.get("hasFile")) && params.get("hasFile").equals("Y")) { // 첨부파일 있으면 		
+			
+			
+			List<BoardAttach> attlist = attFileDao.readAttFiles(params);
+			
+			for(int i = 0; i < attlist.size(); i++) {
+				fileUtil.deleteFile(attlist.get(i).getFakeFilename());
+				System.out.println("첨부 파일도 삭제했습니다. 번째 : " +i + "입니다!" );
+			}
+			
 			if( attFileDao.deleteAttFileByBoard(params)>= 1)
 				System.out.println("첨부 파일도 삭제했습니");
+			//fileUtil.deleteFile("");
 		}
-		System.out.println(params);
+		
 		return bDao.delete(params);
 	}
 

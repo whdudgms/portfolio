@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -54,11 +55,11 @@
 									<li class="page-item"><a class="page-link"
 						href="javascript:movePage('/board/list.do?currentPage=${pageInfo.currentPage - 1}')">&laquo;</a></li>
 					</c:if>
-					
+			
 																
 						
-						<c:set var="totalPages" value="${pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : (pageInfo.totalBoard / pageInfo.pageSize) + 1}" />
-
+<%-- 						<c:set var="totalPages" value="${pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : (pageInfo.totalBoard / pageInfo.pageSize) + 1}" />
+ --%>
 						<c:forEach begin="${pageInfo.startNavi}" end="${pageInfo.startNavi + pageInfo.pageNaviSize - 1}" var="i">
 						    <c:if test="${i <= totalPages}">
 						        <li class="page-item ${i == pageInfo.currentPage ? 'active' : ''}">
@@ -68,11 +69,13 @@
 						</c:forEach>
 						
 						
+						
+						
 					<c:if test="${pageInfo.currentPage < pageInfo.maxNavi  }">
 							<li class="page-item"><a class="page-link"
 						href="javascript:movePage('/board/list.do?currentPage=${pageInfo.currentPage + 1}')">&raquo;</a></li>
 					</c:if>
-		
+					
 						
 						
 				</ul>

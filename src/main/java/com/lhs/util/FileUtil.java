@@ -52,7 +52,10 @@ public class FileUtil {
 	 */
 	public byte[] readFile(HashMap<String, Object> fileInfo) {
 		//1. 파일 찾기 File(파일위치, 파일명)  
-		File f = new File(saveLocation, String.valueOf(fileInfo.get("fake_file_name")));// 파일명 페이크네임으로 저장되어있으므로. 
+		File f = new File(saveLocation, String.valueOf(fileInfo.get("fake_filename")));// 파일명 페이크네임으로 저장되어있으므로.
+		System.out.println("fake_filename 출력해보기 !!!!!!!!!");
+		System.out.println("fake_filename 출력해보기 !!!!!!!!!");
+		System.out.println(String.valueOf(fileInfo.get("fake_filename")));
 		byte[] fileByte = null;
 		if(f.exists()) { // 물리적 위치에 존재하면
 			// 파일 byte단위로 읽어온다.
@@ -70,9 +73,9 @@ public class FileUtil {
 	}
 	
 	/* 파일 삭제 */
-	public boolean deleteFile(HashMap<String, Object> fileInfo) {
+	public boolean deleteFile(String fileInfo) {
 		//1. 파일 찾기 File(파일위치, 파일명)  
-		File f = new File(saveLocation, String.valueOf(fileInfo.get("fake_file_name")));
+		File f = new File(saveLocation, fileInfo);
 		if(f.exists()) { // 물리적 위치에 존재하면
 			return f.delete();	// 지우라.
 			

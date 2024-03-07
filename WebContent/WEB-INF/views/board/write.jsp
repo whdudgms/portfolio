@@ -83,18 +83,17 @@ function customAjax(url, responseUrl) {
          url : url,
          data : formData,
          type : 'POST',
-         dataType : "text",
+         dataType : "TEXT",
          processData : false,
          contentType : false,
          success : function (result, textStatus, XMLHttpRequest) {
              var data = $.parseJSON(result);
              alert(data.msg);
              var boardSeq = data.boardSeq;
-             if(data.result == 1){
-                movePage(responseUrl);
-             } else {
-               window.location.href="<c:url value='/index.do'/>";
-             }
+         
+        	 javascript:movePage('/board/list.do' )
+
+             
          },
          error : function (XMLHttpRequest, textStatus, errorThrown) {
         	 alert("작성 에러\n관리자에게 문의바랍니다.");

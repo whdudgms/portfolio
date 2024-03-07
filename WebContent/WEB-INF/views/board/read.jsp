@@ -52,6 +52,44 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	
+	
+	$('#btnDelete').on('click', function(){		
+		if(confirm("삭제하시겠습니까?")){
+			// code here /board/delete.do 삭제 버튼 클릭시 
+					$.ajax({
+				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}&hasFile=${boardDto.hasFile}&currentPage=${currentPage}'/>",
+				type: "GET",
+				//data: formData,
+				dataType:'TEXT',
+				cache: false,
+				processData: false,
+				contentType: false,
+				success: function(data, textStatus, jqXHR) {
+					data = $.parseJSON(data);
+					console.log(data);
+					if(data.msg != undefined && data.msg != ''){
+						alert(data.msg)
+						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
+						//window.location.href = ctx + data.nextPage;
+					}
+					else {
+						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
+
+						//window.location.href = ctx + data.nextPage;
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					$("#loading-div-background").hide();	// overlay 숨기기					
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
+		}
+	});
+	
 });//ready 
 </script>
 
@@ -101,21 +139,23 @@ $(document).ready(function(){
 
 							<!-- 파일있으면  -->
 							<c:forEach items="${attFiles}" var="file" varStatus="f">
-								</tr>
+								
 								<tr>
 									<th class="tright">첨부파일 ${ f.count }</th>
-									<td colspan="6" class="tleft"><c:choose>
-											<c:when test="${file.linked == 0}">
-												${file.file_name} (서버에 파일을 찾을 수 없습니다.)
-											</c:when>
+									<td colspan="6" class="tleft">
+								 	<c:choose>
+										 	<c:when test="${file.fileSize == 0}">
+												${file.fileName} (서버에 파일을 찾을 수 없습니다.)
+											</c:when> 
 
-											<c:otherwise>
+											<c:otherwise> 
 												<a
-													href="<c:url value='/board/downloadFile.do?fileIdx=${file.file_idx}'/>">
-													${file.file_name} ( ${file.file_size } bytes) </a>
+												href="<c:url value='/board/download.do?fileIdx=${file.fileIdx}'/>">
+													${file.fileName} ( ${file.fileSize } bytes) </a>
 												<br />
-											</c:otherwise>
-										</c:choose></td>
+											</c:otherwise> 
+								 		</c:choose> 
+										</td>
 								</tr>
 							</c:forEach>
 						</div>

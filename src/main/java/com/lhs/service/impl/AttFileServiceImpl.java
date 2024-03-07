@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lhs.dao.AttFileDao;
+import com.lhs.dto.BoardAttach;
 import com.lhs.service.AttFileService;
 
 @Service
@@ -16,7 +17,7 @@ public class AttFileServiceImpl implements AttFileService{
 
 	//해당게시글의 모든첨부파일(다중이니까)
 	@Override
-	public List<HashMap<String, Object>> readAttFiles(HashMap<String, Object> params) {
+	public List<BoardAttach> readAttFiles(HashMap<String, Object> params) {
 
 		return attFileDao.readAttFiles(params);
 	}

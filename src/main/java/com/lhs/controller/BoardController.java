@@ -1,6 +1,8 @@
 package com.lhs.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lhs.dto.BoardAttach;
 import com.lhs.dto.BoardDto;
 import com.lhs.service.AttFileService;
 import com.lhs.service.BoardService;
@@ -86,12 +89,35 @@ public class BoardController {
 	
 	@RequestMapping("/board/download.do")
 	@ResponseBody
-	public byte[] downloadFile(@RequestParam int fileIdx, HttpServletResponse response) {
-		
-		HashMap<String,Object> fileInfo = null;
+	public byte[] downloadFile(@RequestParam int fileIdx, HttpServletResponse response) throws UnsupportedEncodingException {
 		
 		
-		return null;
+		
+		// fileIdx를 가지고 첨부파일 정보 가져오기 
+		System.out.println("파일 번호 값을 출력합니다 "
+				+ "fileIdx  =  "
+				);
+		System.out.println(fileIdx);
+		
+		
+		
+		
+		 // 첨부파일 정보 조회
+        HashMap<String, Object> fileInfo = attFileService.readAttFileByPk(fileIdx);
+        if (fileInfo == null) {
+            // 파일 정보가 없는 경우, 적절한 HTTP 상태 코드 반환
+            return null;
+        }
+		
+		response.setContentType((String) fileInfo.get("file_type"));
+		response.setHeader("Content-Disposition", "attachment; filename=\"" +  URLEncoder.encode((String) fileInfo.get("file_name") , "UTF-8").replaceAll("\\+", "%20")+ "\"");
+		
+		 
+		
+		return	fileUtil.readFile(fileInfo);
+		
+
+		
 	}
 
 	@RequestMapping("/test.do")
@@ -125,9 +151,13 @@ public class BoardController {
 			boardDto.setTypeSeq(Integer.parseInt(this.typeSeq));
 		}
 		
-		bService.write(boardDto, mReq.getFiles("attFiles"));
+		int cnt = bService.write(boardDto, mReq.getFiles("attFiles"));
 
-		return null;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("cnt", cnt);
+		map.put("msg", cnt==1?"게시물 삽입 완료!!!":"게시물 삽입 실패!!!");
+		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
+		return map;
 	}
 
 	@RequestMapping("/board/read.do")
@@ -139,11 +169,14 @@ public class BoardController {
 		}
 		ModelAndView mv = new ModelAndView();
 	    BoardDto boardDto = bService.read(params);
+	    List<BoardAttach> attFiles;
+	    attFiles = attFileService.readAttFiles(params);
+	    
 	    System.out.println(" bService.read(params) ");
 	    System.out.println(boardDto);
 		mv.addObject(boardDto);
 		mv.addObject("currentPage",params.get("currentPage"));
-
+		mv.addObject("attFiles",attFiles);
 		mv.setViewName("/board/read");
 		return mv;
 	}	

@@ -21,7 +21,7 @@ public interface AttFileDao {
 	 * @param params
 	 * @return
 	 */
-	public List<HashMap<String, Object>> readAttFiles(HashMap<String, Object> params);
+	public List<BoardAttach> readAttFiles(HashMap<String, Object> params);
 	
 	/**
 	 *	pk를 통해 해당 첨부파일 불러오기.

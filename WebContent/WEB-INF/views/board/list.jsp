@@ -35,7 +35,7 @@
 					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
                     <tr>
                         <th class="text-center">${rowStatus.index} </th>
-                       <th> <a href="javascript:movePage('/board/read.do?boardSeq=${board.boardSeq}')" >${board.title}</a></th>
+                       <th> <a href="javascript:movePage('/board/read.do?boardSeq=${board.boardSeq}&currentPage=${pageInfo.currentPage}')" >${board.title}</a></th>
                         <th>${board.memberNick} </th>
                         <th>${board.hits} </th>
                         <th>${board.hasFile} </th>
@@ -68,7 +68,7 @@
 						</c:forEach>
 						
 						
-					<c:if test="${pageInfo.currentPage < (pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : pageInfo.totalBoard / pageInfo.pageSize +1)  }">
+					<c:if test="${pageInfo.currentPage < pageInfo.maxNavi  }">
 							<li class="page-item"><a class="page-link"
 						href="javascript:movePage('/board/list.do?currentPage=${pageInfo.currentPage + 1}')">&raquo;</a></li>
 					</c:if>
@@ -91,4 +91,8 @@
 	</section>
 	<!-- / -->
 </body>
+<script>
+		var totalNavi = '${(pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : pageInfo.totalBoard / pageInfo.pageSize +1)  }'
+		console.log(totalNavi);
+</script>
 </html>

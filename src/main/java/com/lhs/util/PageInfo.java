@@ -16,9 +16,9 @@ import lombok.ToString;
 public class PageInfo {
 	private Integer pageSize = 10;  //  페이지를 보여줄 사이즈 (변수로 놓기는 하지만 그냥 10으로 고정할거임 )
 	private Integer currentPage = 1; // 현재 페이 1인지 2인지 그런 것 ~   
-	private Integer totalBoard;
-	private Integer pageNaviSize = 10;
+	private Integer totalBoard;     // 전체 게시
+	private Integer pageNaviSize = 10;  // 
 	
-	private Integer totalPageSize ;
+	private Integer maxNavi; // 네비 전체 사이즈 ex  페이지 사이즈 10 게시물 2584  259
 	private Integer startNavi ;
 }

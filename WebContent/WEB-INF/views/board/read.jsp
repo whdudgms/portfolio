@@ -21,7 +21,7 @@ $(document).ready(function(){
 		if(confirm("삭제하시겠습니까?")){
 			// code here /board/delete.do 삭제 버튼 클릭시 
 					$.ajax({
-				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}'/>",
+				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}'/>",
 				type: "GET",
 				//data: formData,
 				dataType:'TEXT',
@@ -33,11 +33,11 @@ $(document).ready(function(){
 					console.log(data);
 					if(data.msg != undefined && data.msg != ''){
 						alert(data.msg)
-						javascript:movePage('/board/list.do?page=${currentPage}' )
+						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
 						//window.location.href = ctx + data.nextPage;
 					}
 					else {
-						javascript:movePage('/board/list.do?page=${currentPage}' )
+						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
 
 						//window.location.href = ctx + data.nextPage;
 					}
@@ -123,7 +123,7 @@ $(document).ready(function(){
 							<div class="col-md-12 text-right">
 								<c:if test="${ true }">
 									<a
-										href="javascript:movePage('/board/goToUpdate.do?boardSeq=${boardDto.boardSeq}')">
+										href="javascript:movePage('/board/goToUpdate.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}')">
 										<button type="button" class="btn btn-primary">
 											<i class="fa fa-pencil"></i> 수정
 										</button>
@@ -140,7 +140,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<a
-											href="javascript:movePage('/board/list.do?page=${currentPage} ')">
+											href="javascript:movePage('/board/list.do?currentPage=${currentPage}')">
 											<button type="button" class="btn btn-primary">목록</button>
 										</a>
 									</c:otherwise>

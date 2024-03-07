@@ -71,6 +71,7 @@ public class BoardController {
 		//pageInfo.setTotalPageSize(pageInfo.get)
 		//112 111 
 		pageInfo.setStartNavi(((pageInfo.getCurrentPage() -1) / pageInfo.getPageNaviSize())*pageInfo.getPageNaviSize() +1  );
+		pageInfo.setMaxNavi(pageInfo.getTotalBoard() % pageInfo.getPageSize() ==0? pageInfo.getTotalBoard() / pageInfo.getPageSize() :  pageInfo.getTotalBoard() / pageInfo.getPageSize()+1);      
 		System.out.println("list view로 전달되는 내용 ");
 		System.out.println("boardlist = ");
 		System.out.println(boardlist);
@@ -141,6 +142,8 @@ public class BoardController {
 	    System.out.println(" bService.read(params) ");
 	    System.out.println(boardDto);
 		mv.addObject(boardDto);
+		mv.addObject("currentPage",params.get("currentPage"));
+
 		mv.setViewName("/board/read");
 		return mv;
 	}	
@@ -159,7 +162,8 @@ public class BoardController {
 		System.out.println("controller goToUpdate메서드의  bService.read(params)" );
 		System.out.println(boardDto);
 		mv.addObject(boardDto);
-		mv.setViewName("board/update");
+		mv.addObject("currentPage",params.get("currentPage"));
+		mv.setViewName("/board/update");
 		return mv;
 
 	}

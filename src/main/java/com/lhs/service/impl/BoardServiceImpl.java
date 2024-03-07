@@ -113,10 +113,12 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int delete(HashMap<String, Object> params) {
+		
 		if(Objects.nonNull(params.get("hasFile")) && params.get("hasFile").equals("Y")) { // 첨부파일 있으면 		
 			if( attFileDao.deleteAttFileByBoard(params)>= 1)
 				System.out.println("첨부 파일도 삭제했습니");
 		}
+		System.out.println(params);
 		return bDao.delete(params);
 	}
 

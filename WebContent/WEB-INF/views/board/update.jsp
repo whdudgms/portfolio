@@ -71,7 +71,7 @@
 			}
 			$('#content').val(content);
 			
-			customAjax("<c:url value='/board/update.do' />", "/board/read.do?boardSeq=${boardDto.boardSeq}");
+			customAjax("<c:url value='/board/update.do' />", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
 		
 		}); //#btnUpdate end 		
 }); //ready End 

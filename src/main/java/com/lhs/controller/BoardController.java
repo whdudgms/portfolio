@@ -195,6 +195,9 @@ public class BoardController {
 		System.out.println("controller goToUpdate메서드의  bService.read(params)" );
 		System.out.println(boardDto);
 		mv.addObject(boardDto);
+		 List<BoardAttach> attFiles;
+		    attFiles = attFileService.readAttFiles(params);
+		mv.addObject("attFiles",attFiles);
 		mv.addObject("currentPage",params.get("currentPage"));
 		mv.setViewName("/board/update");
 		return mv;
@@ -217,7 +220,7 @@ public class BoardController {
 		}
 		System.out.println("/board/update.do에서  전달받은 파라미터 출력  ");
 		System.out.println("boardDto  :"+boardDto);
-		int cnt = bService.update(boardDto, mReq.getFiles(typeSeq));
+		int cnt = bService.update(boardDto, mReq.getFiles("attFiles"));
 		HashMap<String, Object> map = new HashMap<String, Object>();
 	
 		map.put("cnt", cnt);
@@ -252,7 +255,15 @@ public class BoardController {
 		if(!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
-		return null;
+		boolean cnt = bService.deleteAttFile(params) ;
+				
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("cnt", cnt);
+		map.put("msg", cnt?"첨부파일 완료!!!":"첨부파일 실패!!!");
+		map.put("nextPage", cnt?"/board/list.do" : "/board/list.do");
+		
+		return map;
 	} 
 
 

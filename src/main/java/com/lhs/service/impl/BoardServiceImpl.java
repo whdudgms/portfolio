@@ -90,6 +90,13 @@ public class BoardServiceImpl implements BoardService{
 			bDao.updateHasFile(params);
 		}
 		
+		if(attFileDao.countAtt(boardDto.getBoardSeq() +"") <1) {
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("boardSeq", boardDto.getBoardSeq() +"");
+			params.put("hasFile", "N");
+			bDao.updateHasFile(params);
+		}
+		
 		
 		System.out.println("result of boardDto : "  + boardDto);
 		return write;
@@ -102,14 +109,49 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.read(params);
 	}
 
+	@Transactional
 	@Override
 	public int update(BoardDto boardDto, List<MultipartFile> mFiles) {
-		if(boardDto.getHasFile().equals("Y")) { // 첨부파일 존재시 			
-			// 기존 첨부파일 삭제 
-				// 기존 첨부파일 검색 받아오기 >>  행 삭제, 실물 데이터 삭
-			// 전달 받은 첨부 파일 넣기 
-				// 기존 
-		}	
+//		if(boardDto.getHasFile().equals("Y")) { // 첨부파일 존재시 			
+//			// 기존 첨부파일 삭제 
+//				// 기존 첨부파일 검색 받아오기 >>  행 삭제, 실물 데이터 삭
+//			// 전달 받은 첨부 파일 넣기 
+//				// 기존 
+//		}
+		for(MultipartFile mFile: mFiles) {
+			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
+				continue;
+			System.out.println(" 첨부파일 업데이트  시작이요 ! ");
+			BoardAttach boardAttach = new BoardAttach();
+			boardAttach.setBoardSeq(boardDto.getBoardSeq());  // boardSeq
+			boardAttach.setTypeSeq(boardDto.getTypeSeq());	   //
+			boardAttach.setFileType(mFile.getContentType());   // file_type
+			boardAttach.setFileName(mFile.getOriginalFilename()); //file_name
+			boardAttach.setFileSize(mFile.getSize());  // file_size
+			System.out.println("--");
+			boardAttach.setSaveLoc( saveLocation);
+
+			
+			String fakeName = UUID.randomUUID().toString().replaceAll("-", "");
+			boardAttach.setFakeFilename(fakeName);
+			
+			try {
+				fileUtil.copyFile(mFile, fakeName);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("값이 모두 넣어진 boardAttach");
+			System.out.println(boardAttach);
+			attFileDao.addAttFile(boardAttach);
+			  
+		//file seq  board seq =write
+			HashMap<String,Object> params = new HashMap<String,Object>();
+			params.put("boardSeq", boardDto.getBoardSeq());
+			params.put("hasFile", "Y");
+			bDao.updateHasFile(params);
+		}
+		
 		// 글 수정 dao 
 		return bDao.update(boardDto);
 	}
@@ -141,7 +183,22 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public boolean deleteAttFile(HashMap<String, Object> params) {
-		boolean result = false;		
-		return result;
+		
+
+		HashMap<String, Object> attlist = attFileDao.readAttFileByPk(Integer.parseInt((String)params.get("fileIdx")));
+		fileUtil.deleteFile((String)attlist.get("fake_filename"));
+		
+		
+		int result = attFileDao.deleteAttFile(params);
+		
+		if( result>= 1)
+			System.out.println("첨부 파일도 삭제했습니");
+	
+		if(attFileDao.countAtt((String) params.get("boardSeq")) <1) {
+			params.put("hasFile", "N");
+			bDao.updateHasFile(params);
+		}
+		
+		return result == 1;
 	}
 }

@@ -58,10 +58,9 @@
 			
 																
 						
-<%-- 						<c:set var="totalPages" value="${pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : (pageInfo.totalBoard / pageInfo.pageSize) + 1}" />
- --%>
+
 						<c:forEach begin="${pageInfo.startNavi}" end="${pageInfo.startNavi + pageInfo.pageNaviSize - 1}" var="i">
-						    <c:if test="${i <= totalPages}">
+						    <c:if test="${i <= pageInfo.maxNavi }">
 						        <li class="page-item ${i == pageInfo.currentPage ? 'active' : ''}">
 						            <a class="page-link" href="javascript:movePage('/board/list.do?currentPage=${i}')">${i}</a>
 						        </li>

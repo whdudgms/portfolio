@@ -62,7 +62,12 @@
 				
 				return;		
 			}
+			
+			
+			
 			//ck editor 가 textarea 위에 씌워져있어서 ck editor 불러와야함. 
+			
+			
 			var content = _summernote.code();
 			if(content.length < 0 ){
 				alert("내용을 입력하세요.");
@@ -80,7 +85,7 @@ function customAjax(url, responseUrl) {
   var frm = document.updateForm;
   var formData = new FormData(frm);
      $.ajax({
-         url : "<c:url value='/board/update.do'/>",
+         url : url,
          data : formData,
          type : 'POST',
          dataType : "text",
@@ -116,6 +121,10 @@ function deleteFile(fileIdx, boardSeq){
 	  if("${sessionScope.memberId}" != null) {
        	 if(confirm("첨부파일을 삭제하시겠습니까?")){
         	// code here
+        	
+ 			customAjax("<c:url value='/board/deleteAttFile.do?fileIdx="+fileIdx+"' />", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+
+        	
        	}	       
   	}
 }//func deletefile
@@ -168,8 +177,7 @@ function deleteFile(fileIdx, boardSeq){
 									<div class="col-md-12 col-sm-12">
 										<label>내용</label>
 										<textarea class="summernote form-control" data-height="200"
-											data-lang="en-US" name="content" id="content" rows="4">
-												${boardDto.content }
+											data-lang="en-US" name="content" id="content" rows="4">${boardDto.content}
 											</textarea>
 
 									</div>
@@ -208,14 +216,14 @@ function deleteFile(fileIdx, boardSeq){
 													<div class="fancy-file-upload fancy-file-primary">
 														<i class="fa fa-upload"></i> <input type="text"
 															class="form-control"
-															placeholder="${file.file_name} (${file.file_size} bytes)"
+															placeholder="${file.fileName} (${file.fileSize} bytes)"
 															readonly="" />
 													</div>
 
 												</div>
 												<div class="col-md-4 col-sm-4">
 													<button type="button" class="btn btn-primary"
-														onclick="deleteFile(${file.file_idx} , ${file.board_seq});">
+														onclick="deleteFile(${file.fileIdx} , ${file.boardSeq});">
 														첨부파일 삭제</button>
 												</div>
 											</div>

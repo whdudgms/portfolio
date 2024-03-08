@@ -23,12 +23,17 @@ public interface AttFileDao {
 	 */
 	public List<BoardAttach> readAttFiles(HashMap<String, Object> params);
 	
+	
+	
+	public Integer countAtt(String boardSeq);
+
+	
 	/**
 	 *	pk를 통해 해당 첨부파일 불러오기.
 	 * @param fileIdx
 	 * @return
 	 */
-	public HashMap<String, Object> readAttFileByPk(int fileIdx);
+	public HashMap<String, Object> readAttFileByPk(Integer fileIdx);
 	
 	
 	/**첨부파일 삭제(수정 페이지에서 삭제버튼 눌러 삭제하는 경우임) 

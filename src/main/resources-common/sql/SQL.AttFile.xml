@@ -17,14 +17,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		FROM S_whdudgms.board_attach where  board_seq = #{boardSeq} ;
 
 	</select>
+	
+		<select id="countAtt" parameterType="String" resultType="Int"
+		>
+		SELECT count(1)
+		FROM S_whdudgms.board_attach where  board_seq = #{boardSeq};
+	</select>
 
-	<select id="readAttFileByPk" parameterType="int"
+	<select id="readAttFileByPk" parameterType="Integer"
 		resultType="HashMap">
 		SELECT file_idx, type_seq, board_seq, file_name, fake_filename, file_size, file_type, save_loc, create_dtm
 FROM S_whdudgms.board_attach where  file_idx = #{fileIdx} ;
 	</select>
 
 	<delete id="deleteAttFile" parameterType="HashMap">
+	DELETE FROM S_whdudgms.board_attach
+		WHERE file_idx=#{fileIdx};
 	</delete>
 
 	<delete id="deleteAttFileByBoard" parameterType="HashMap">

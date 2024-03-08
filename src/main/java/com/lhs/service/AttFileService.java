@@ -25,7 +25,8 @@ public interface AttFileService {
 
 		 /* 파일 없으면 컬럼 linked 값 수정 1건. 
 		 */
-		public int updateLinkedInfo();
+	public int updateLinkedInfo();
+		
 		
 
 

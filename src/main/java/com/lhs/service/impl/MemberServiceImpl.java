@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import com.lhs.exception.UserNotFoundException;
 import com.lhs.service.MemberService;
 import com.lhs.util.AES256Util;
 import com.lhs.util.EmailUtil;
-import com.lhs.util.RandomNum;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -140,7 +138,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String getVNum(String email, HttpSession session) {
 		//이메일 인증 번호 나중에 메서드로 바꾸기 !!!!
-		String VNum = RandomNum.randum();
+		String VNum ="123456";
 		session.setAttribute("VNum", VNum);
 		
 		com.lhs.dto.EmailDto emailDto = new com.lhs.dto.EmailDto();

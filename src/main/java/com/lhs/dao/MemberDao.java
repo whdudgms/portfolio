@@ -22,5 +22,6 @@ public interface MemberDao {
 	public String makeCipherText(HashMap<String, String> params);
 	
 	public int delMember(HashMap<String,Object> params);
-	
+	public HashMap<String, Object>  findMember(String memberId);
+
 }

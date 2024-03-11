@@ -161,7 +161,7 @@ $(document).ready(function(){
 						</div>
 						<div class="row">
 							<div class="col-md-12 text-right">
-								<c:if test="${ true }">
+								<c:if test="${not empty sessionScope.memberId && sessionScope.memberId == boardDto.memberId}">
 									<a
 										href="javascript:movePage('/board/goToUpdate.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}')">
 										<button type="button" class="btn btn-primary">

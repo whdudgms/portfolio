@@ -3,6 +3,8 @@ package com.lhs.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.lhs.dto.BoardAttach;
 
 public interface AttFileService {

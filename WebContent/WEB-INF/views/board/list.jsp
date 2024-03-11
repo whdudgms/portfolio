@@ -1,14 +1,18 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
+<script>
+	
+
+</script>
 <body>
-	<section>
+	
 	<div class="container">
 		<h4>자유게시판</h4>
 		<div class="table-responsive">
@@ -82,15 +86,30 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 text-right">
-				<a href="javascript:movePage('/board/goToWrite.do')">
-					<button type="button" class="btn btn-primary">
-						<i class="fa fa-pencil"></i> 글쓰기
-					</button>
-				</a>
+			
+						
+		<c:choose>
+		    <c:when test="${not empty sessionScope.memberId}">
+		        <a href="javascript:movePage('/board/goToWrite.do')">
+		            <button type="button" class="btn btn-primary">
+		                <i class="fa fa-pencil"></i> 글쓰기
+		            </button>
+		        </a>
+		    </c:when>
+		    <c:otherwise>
+		        <a href="javascript:movePage('/member/goLoginPage.do')">
+		            <button type="button" class="btn btn-primary">
+		                글쓰기 
+		            </button>
+		        </a>
+		    </c:otherwise>
+		</c:choose>
+			
+			
 			</div>
 		</div>
 	</div>
-	</section>
+	
 	<!-- / -->
 </body>
 <script>

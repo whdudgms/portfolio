@@ -19,7 +19,36 @@ $(document).ready(function(){
 	
 	$('#btnDelete').on('click', function(){		
 		if(confirm("삭제하시겠습니까?")){
-			// code here
+			// code here /board/delete.do 삭제 버튼 클릭시 
+					$.ajax({
+				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}&hasFile=${boardDto.hasFile}&currentPage=${currentPage}'/>",
+				type: "GET",
+				//data: formData,
+				dataType:'TEXT',
+				cache: false,
+				processData: false,
+				contentType: false,
+				success: function(data, textStatus, jqXHR) {
+					data = $.parseJSON(data);
+					console.log(data);
+					if(data.msg != undefined && data.msg != ''){
+						alert(data.msg)
+						javascript:movePage('/notice/list.do?currentPage=${currentPage}' )
+						//window.location.href = ctx + data.nextPage;
+					}
+					else {
+						javascript:movePage('/notice/list.do?currentPage=${currentPage}' )
+
+						//window.location.href = ctx + data.nextPage;
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					$("#loading-div-background").hide();	// overlay 숨기기					
+					console.log(jqXHR);
+					console.log(textStatus);
+					console.log(errorThrown);
+				}
+			});
 		}
 	});
 	
@@ -28,7 +57,6 @@ $(document).ready(function(){
 
 </head>
 <body>
-	<section>
 	<div class="container">
 		<div class="row">
 			<!-- LEFT -->
@@ -42,9 +70,9 @@ $(document).ready(function(){
 				<!-- post -->
 				<div class="clearfix mb-80">
 					<div class="border-bottom-1 border-top-1 p-12">
-						<span class="float-right fs-10 mt-10 text-muted">작성일시</span>
+						<span class="float-right fs-10 mt-10 text-muted">작성일시${boardDto.createDtm}</span>
 						<center>
-							<strong>타이틀</strong>
+							<strong>${boardDto.title }</strong>
 						</center>
 					</div>
 					<div class="block-review-content">
@@ -55,14 +83,14 @@ $(document).ready(function(){
 										alt="avatar">
 									<!--  <i class="fa fa-user" style="font-size:30px"></i>-->
 								</div>
-								<small class="block">닉네임</small>
+								<small class="block">${boardDto.memberNick}</small>
 								<hr />
 							</div>
-							<p>본문 내용</p>
+							<p>${boardDto.content}</p>
 							<!-- 컬렉션 형태에서는 (list) items  -->
 
 							<!-- 첨부파일 없으면  -->
-							<c:if test="${empty attFiles}">
+								<c:if test="${empty attFiles}">
 								<tr>
 									<th class="tright">#첨부파일 다운로드 횟수</th>
 									<td colspan="6" class="tright"></td>
@@ -71,30 +99,35 @@ $(document).ready(function(){
 							</c:if>
 
 							<!-- 파일있으면  -->
-							<c:forEach items="${attFiles}" var="file" varStatus="f">
-								</tr>
+						<c:forEach items="${attFiles}" var="file" varStatus="f">
+								
 								<tr>
 									<th class="tright">첨부파일 ${ f.count }</th>
-									<td colspan="6" class="tleft"><c:choose>
-											<c:when test="${file.linked == 0}">
-												${file.file_name} (서버에 파일을 찾을 수 없습니다.)
-											</c:when>
+									<td colspan="6" class="tleft">
+								 	<c:choose>
+										 	<c:when test="${file.fileSize == 0}">
+												${file.fileName} (서버에 파일을 찾을 수 없습니다.)
+											</c:when> 
 
-											<c:otherwise>
+											<c:otherwise> 
 												<a
-													href="<c:url value='/notice/downloadFile.do?fileIdx=${file.file_idx}'/>">
-													${file.file_name} ( ${file.file_size } bytes) </a>
+												href="<c:url value='/board/download.do?fileIdx=${file.fileIdx}'/>">
+													${file.fileName} ( ${file.fileSize } bytes) </a>
 												<br />
-											</c:otherwise>
-										</c:choose></td>
+											</c:otherwise> 
+								 		</c:choose> 
+										</td>
 								</tr>
 							</c:forEach>
+							
 						</div>
 						<div class="row">
 							<div class="col-md-12 text-right">
+							<%--<c:if test="${not empty sessionScope.memberId && sessionScope.memberId == boardDto.memberId}"> --%> 
+							
 								<c:if test="${ true }">
 									<a
-										href="javascript:movePage('/notice/goToUpdate.do?boardSeq=PK1')">
+										href="javascript:movePage('/notice/goToUpdate.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}')">
 										<button type="button" class="btn btn-primary">
 											<i class="fa fa-pencil"></i> 수정
 										</button>
@@ -111,7 +144,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<a
-											href="javascript:movePage('/notice/list.do?page=currentPage')">
+											href="javascript:movePage('/notice/list.do?currentPage=${currentPage}')">
 											<button type="button" class="btn btn-primary">목록</button>
 										</a>
 									</c:otherwise>
@@ -123,6 +156,5 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	</section>
 </body>
 </html>

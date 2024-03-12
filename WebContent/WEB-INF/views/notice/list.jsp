@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<section>
+	
 	<div class="container">
 		<h4>공지사항</h4>
 		<div class="table-responsive">
@@ -33,9 +33,9 @@
 				</thead>
 				<tbody>
 					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
-    	                <tr>
+                    <tr>
                         <th class="text-center">${rowStatus.index} </th>
-                        <th>${board.title} </th>
+                       <th> <a href="javascript:movePage('/notice/read.do?boardSeq=${board.boardSeq}&currentPage=${pageInfo.currentPage}')" >${board.title}</a></th>
                         <th>${board.memberNick} </th>
                         <th>${board.hits} </th>
                         <th>${board.hasFile} </th>
@@ -49,36 +49,67 @@
 			<div class="col-md-12">
 				<ul class="pagination pagination-simple pagination-sm">
 					<!-- 페이징 -->
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=1')">&laquo;</a></li>
-					<li class="page-item"><a class="page-link">1</a></li>
-					<li class="page-item active"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=2')">2</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=3')">3</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=4')">4</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=5')">5</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=6')">6</a></li>
-					<li class="page-item"><a class="page-link"
-						href="javascript:movePage('/notice/list.do?page=99')">&raquo;</a></li>
-					</li>
+					
+					<c:if test="${pageInfo.currentPage != 1}">
+									<li class="page-item"><a class="page-link"
+						href="javascript:movePage('/notice/list.do?currentPage=${pageInfo.currentPage - 1}')">&laquo;</a></li>
+					</c:if>
+			
+																
+						
+
+						<c:forEach begin="${pageInfo.startNavi}" end="${pageInfo.startNavi + pageInfo.pageNaviSize - 1}" var="i">
+						    <c:if test="${i <= pageInfo.maxNavi }">
+						        <li class="page-item ${i == pageInfo.currentPage ? 'active' : ''}">
+						            <a class="page-link" href="javascript:movePage('/notice/list.do?currentPage=${i}')">${i}</a>
+						        </li>
+						    </c:if>
+						</c:forEach>
+						
+						
+						
+						
+					<c:if test="${pageInfo.currentPage < pageInfo.maxNavi  }">
+							<li class="page-item"><a class="page-link"
+						href="javascript:movePage('/notice/list.do?currentPage=${pageInfo.currentPage + 1}')">&raquo;</a></li>
+					</c:if>
+					
+						
+						
 				</ul>
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="col-md-12 text-right">
-				<a href="javascript:movePage('/notice/goToWrite.do')">
-					<button type="button" class="btn btn-primary">
-						<i class="fa fa-pencil"></i> 글쓰기
-					</button>
-				</a>
+			
+
+						
+		<c:choose>
+			<c:when test="${not empty sessionScope.memberId and sessionScope.typeSeq == 9}">
+		        <a href="javascript:movePage('/notice/goToWrite.do')">
+		            <button type="button" class="btn btn-primary">
+		                <i class="fa fa-pencil"></i> 글쓰기 
+		            </button>
+		        </a>
+		    </c:when>
+		    <c:otherwise>
+		   
+		    </c:otherwise>
+		</c:choose>
+			
+			
 			</div>
 		</div>
 	</div>
-	</section>
+	
 	<!-- / -->
 </body>
+<script>
+		var totalNavi = '${(pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : pageInfo.totalBoard / pageInfo.pageSize +1)  }'
+		console.log(totalNavi);
+		var typeSeq = '${sessionScope.typeSeq }'
+		console.log(typeSeq);
+
+</script>
 </html>

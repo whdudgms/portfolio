@@ -90,11 +90,9 @@ function customAjax(url, responseUrl) {
              var data = $.parseJSON(result);
              alert(data.msg);
              var boardSeq = data.boardSeq;
-             if(data.result == 1){
-                movePage(responseUrl);
-             } else {
-               window.location.href="<c:url value='/index.do'/>";
-             }
+             
+        	 javascript:movePage('/notice/list.do' )
+
          },
          error : function (XMLHttpRequest, textStatus, errorThrown) {
         	 alert("작성 에러\n관리자에게 문의바랍니다.");
@@ -167,7 +165,9 @@ function customAjax(url, responseUrl) {
 										<div class="fancy-file-upload fancy-file-primary">
 											<i class="fa fa-upload"></i> <input type="file"
 												class="form-control" name="attFiles"
-												onchange="jQuery(this).next('input').val(this.value);" /> <input
+												onchange="jQuery(this).next('input').val(this.value);" /> 
+												
+												<input
 												type="text" class="form-control"
 												placeholder="no file selected" readonly="" /> <span
 												class="button">Choose File</span>

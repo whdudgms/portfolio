@@ -6,7 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script src="<c:url value='/resources/js/scripts.js'/>"></script>
+<script src="<c:url value='/resources/js/scripts.js'/>">
+
+
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){	
@@ -16,44 +19,8 @@ $(document).ready(function(){
 		var formData = new FormData(frm);
 	    // code here
 	});
-	
-	$('#btnDelete').on('click', function(){		
-		if(confirm("삭제하시겠습니까?")){
-			// code here /board/delete.do 삭제 버튼 클릭시 
-					$.ajax({
-				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}'/>",
-				type: "GET",
-				//data: formData,
-				dataType:'TEXT',
-				cache: false,
-				processData: false,
-				contentType: false,
-				success: function(data, textStatus, jqXHR) {
-					data = $.parseJSON(data);
-					console.log(data);
-					if(data.msg != undefined && data.msg != ''){
-						alert(data.msg)
-						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
-						//window.location.href = ctx + data.nextPage;
-					}
-					else {
-						javascript:movePage('/board/list.do?currentPage=${currentPage}' )
 
-						//window.location.href = ctx + data.nextPage;
-					}
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					$("#loading-div-background").hide();	// overlay 숨기기					
-					console.log(jqXHR);
-					console.log(textStatus);
-					console.log(errorThrown);
-				}
-			});
-		}
-	});
-	
-	
-	
+		
 	
 	$('#btnDelete').on('click', function(){		
 		if(confirm("삭제하시겠습니까?")){

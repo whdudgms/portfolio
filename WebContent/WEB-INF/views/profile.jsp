@@ -68,7 +68,7 @@
 					<li class="active"><a href="#tab1" data-toggle="tab">Web
 							Development</a></li>
 
-					<li><a href="#tab3" data-toggle="tab">Mysql</a></li>
+					<li><a href="#tab3" data-toggle="tab">MariaDB</a></li>
 				</ul>
 
 				<div class="tab-content">
@@ -113,8 +113,8 @@
 					<!-- progress bar -->
 					<div
 						class="progress-bar progress-bar-warning progress-bar-striped active text-left"
-						role="progressbar" aria-valuenow="90" aria-valuemin="0"
-						aria-valuemax="100" style="width: 90%; min-width: 2em;">
+						role="progressbar" aria-valuenow="50" aria-valuemin="0"
+						aria-valuemax="100" style="width: 50%; min-width: 2em;">
 						<span>JAVA 90%</span>
 					</div>
 				</div>

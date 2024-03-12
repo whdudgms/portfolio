@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
 				
 				session.setAttribute("memberId", member.getMemberId());
 				session.setAttribute("memberNick", member.getMemberNick());
-				session.setAttribute("typeSep", member.getTypeSeq());
+				session.setAttribute("typeSeq", member.getTypeSeq());
 				session.setAttribute("memberIdx", member.getMemberIdx());
 				return true;
 			}

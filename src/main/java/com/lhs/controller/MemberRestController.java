@@ -116,6 +116,8 @@ public class MemberRestController {
 				System.out.println(session.getAttribute("memberId"));
 				System.out.println(session.getAttribute("memberNick"));
 				System.out.println(session.getAttribute("memberIdx"));
+				System.out.println(session.getAttribute("typeSeq"));
+
 
 				
 				map.put("nextPage", "/index.do");

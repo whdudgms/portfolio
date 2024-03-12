@@ -71,7 +71,7 @@
 			}
 			$('#content').val(content);
 			
-			customAjax("<c:url value='/notice/update.do' />", "/notice/read.do?boardSeq=${boardInfo.board_seq}");
+			customAjax("<c:url value='/notice/update.do' />", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
 		
 		}); //#btnUpdate end 		
 }); //ready End 
@@ -89,16 +89,21 @@ function customAjax(url, responseUrl) {
          success : function (result, textStatus, XMLHttpRequest) {
              var data = $.parseJSON(result);
              
-             console.log('data' + data);
-             console.log('boardSeq' + data.boardSeq);
-             
+             console.log('data 내용출력.  ' + data);
+             console.log('boardSeq 내용출력.  ' + data.boardSeq);
+             console.log('XMLHttpRequest 내용출력.  '+XMLHttpRequest);
+             console.log('data.result 내용출력.  '+data.result);
+
              alert(data.msg);
              var boardSeq = data.boardSeq;
-             if(data.result == 1){
-                movePage(responseUrl);
-             } else {
+/*              if(data.result == 1){
+ */
+             
+                movePage(responseUrl)
+                
+          /*    } else {
                window.location.href="<c:url value='/index.do'/>";
-             }
+             } */
          },
          error : function (XMLHttpRequest, textStatus, errorThrown) {
                alert("작성 에러\n관리자에게 문의바랍니다.");
@@ -111,6 +116,8 @@ function deleteFile(fileIdx, boardSeq){
 	  if("${sessionScope.memberId}" != null) {
        	 if(confirm("첨부파일을 삭제하시겠습니까?")){
         	// code here
+  			customAjax("<c:url value='/board/deleteAttFile.do?fileIdx="+fileIdx+"' />", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+
        	}	       
   	}
 }//func deletefile
@@ -137,10 +144,10 @@ function deleteFile(fileIdx, boardSeq){
 							<input type="hidden" name="memberId"
 								value="${ sessionScope.memberId }" /> <input type="hidden"
 								name="memberIdx" value="${ sessionScope.memberIdx }" /> <input
-								type="hidden" name="typeSeq" value="${ boardInfo.type_seq}" /> <input
-								type="hidden" name="boardSeq" value="${ boardInfo.board_seq }" />
+								type="hidden" name="typeSeq" value="${ boardDto.typeSeq}" /> <input
+								type="hidden" name="boardSeq" value="${ boardDto.boardSeq }" />
 							<input type="hidden" name="hasFile"
-								value="${ boardInfo.has_file }" />
+								value="${ boardDto.hasFile }" />
 
 							<fieldset>
 								<!-- required [php action request] -->
@@ -148,12 +155,12 @@ function deleteFile(fileIdx, boardSeq){
 								<div class="row">
 									<div class="col-md-8 col-sm-8">
 										<label>제목</label> <input type="text" name="title" id="title"
-											value="타이틀" class="form-control required">
+											value="${boardDto.title }" class="form-control required">
 									</div>
 
 									<div class="col-md-4 col-sm-4">
 										<label>작성자</label> <input type="text" id="memberNick"
-											name="memberNick" value="작성자" class="form-control"
+											name="memberNick" value="${boardDto.memberNick }" class="form-control"
 											readonly="readonly">
 									</div>
 
@@ -164,8 +171,8 @@ function deleteFile(fileIdx, boardSeq){
 										<label>내용</label>
 										<textarea class="summernote form-control" data-height="200"
 											data-lang="en-US" name="content" id="content" rows="4">
-												내용내용내용내용내용내용내용
-											</textarea>
+										${boardDto.content}											
+										</textarea>
 
 									</div>
 								</div>
@@ -203,14 +210,14 @@ function deleteFile(fileIdx, boardSeq){
 													<div class="fancy-file-upload fancy-file-primary">
 														<i class="fa fa-upload"></i> <input type="text"
 															class="form-control"
-															placeholder="${file.file_name} (${file.file_size} bytes)"
+															placeholder="${file.fileName} (${file.fileSize} bytes)"
 															readonly="" />
 													</div>
 
 												</div>
 												<div class="col-md-4 col-sm-4">
 													<button type="button" class="btn btn-primary"
-														onclick="deleteFile(${file.file_idx} , ${file.board_seq});">
+														onclick="deleteFile(${file.fileIdx} , ${file.boardSeq});">
 														첨부파일 삭제</button>
 												</div>
 											</div>

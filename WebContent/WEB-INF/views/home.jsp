@@ -35,7 +35,7 @@
 				<li data-transition="random" data-slotamount="1"
 					data-masterspeed="1000" data-saveperformance="off"
 					data-title="Slide 1"><img
-					data-lazyload="resources/demo_files/images/index/index-min.jpg"
+					data-lazyload="resources/demo_files/images/index/images1.jpg"
 					alt="" data-bgfit="cover" data-bgposition="center bottom"
 					data-bgrepeat="no-repeat" />
 
@@ -47,7 +47,7 @@
 						data-endelementdelay="0.1" data-endspeed="1000"
 						data-endeasing="Power4.easeIn"
 						style="z-index: 10; font-size: 20px;">
-						<span class="fw-300"> 잘 오셨습니다. <b style="font-size: 20px">아무개</b>의
+						<span class="fw-300"> 잘 오셨습니다. <b style="font-size: 20px">조영</b>의
 							포트폴리오 사이트 입니다. :)
 						</span>
 					</div>
@@ -79,9 +79,9 @@
 									log 4.12</li>
 								<br />
 								<li>Languages : JAVA, JSP, JavaScript</li>
-								<li>Server : AWS t2.micro free tier</li>
-								<li>DBMS : MySql 5.7</li>
-								<li>WAS : Tomcat 8.5</li>
+								<li>Server : AWS EC2 ,RDS</li>
+								<li>DBMS : MariaDB</li>
+								<li>WAS : 톰캣 9.0</li>
 
 							</ul>
 						</span>
@@ -92,7 +92,7 @@
 				<li data-transition="random" data-slotamount="1"
 					data-masterspeed="1000" data-saveperformance="off"
 					data-title="Slide 2"><img src=""
-					data-lazyload="resources/demo_files/images/index/24-min.jpg" alt=""
+					data-lazyload="resources/demo_files/images/index/images.jpg" alt=""
 					data-bgposition="center center" data-kenburns="on"
 					data-duration="10000" data-ease="Linear.easeNone" data-bgfit="100"
 					data-bgfitend="110" />

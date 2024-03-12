@@ -77,7 +77,7 @@ public class BoardController {
 		pageInfo.setMaxNavi(pageInfo.getTotalBoard() % pageInfo.getPageSize() ==0? pageInfo.getTotalBoard() / pageInfo.getPageSize() :  pageInfo.getTotalBoard() / pageInfo.getPageSize()+1);      
 		System.out.println("list view로 전달되는 내용 ");
 		System.out.println("boardlist = ");
-		System.out.println(boardlist);
+	
 		System.out.println();
 		System.out.println("pageInfo = ");
 		System.out.println(pageInfo);

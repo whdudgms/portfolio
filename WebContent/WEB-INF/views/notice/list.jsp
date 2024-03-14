@@ -23,7 +23,7 @@
 
 				<thead>
 					<tr>
-						<th class="fw-30" align="center">&emsp;&emsp;&emsp;#</th>
+						<th class="fw-30" align="center">&emsp;&emsp;&emsp;공지사항번호</th>
 						<th align="center">제목</th>
 						<th align="center">글쓴이</th>
 						<th align="center">조회수</th>
@@ -34,7 +34,7 @@
 				<tbody>
 					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
                     <tr>
-                        <th class="text-center">${rowStatus.index} </th>
+                        <th class="text-center">${board.boardSeq} </th>
                        <th> <a href="javascript:movePage('/notice/read.do?boardSeq=${board.boardSeq}&currentPage=${pageInfo.currentPage}')" >${board.title}</a></th>
                         <th>${board.memberNick} </th>
                         <th>${board.hits} </th>

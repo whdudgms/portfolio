@@ -15,6 +15,27 @@
 	
 	<div class="container">
 		<h4>자유게시판</h4>
+		
+		<div class="container">
+		    <div class="row justify-content-center">
+		        <div class="col-md-12">
+		            <form action="/board/list.do" method="get" class="form-inline justify-content-center">
+		                <div class="form-group mx-2">
+		                    <select name="searchType" class="form-control">
+		                        <option value="title">제목</option>
+		                        <option value="content">내용</option>
+		                        <option value="titleContent">제목+내용</option>
+		                    </select>
+		                </div>
+		                <div class="form-group mx-2">
+		                    <input type="text" placeholder="검색어 입력..." name="searchKeyword" class="form-control">
+		                </div>
+		                <button type="submit" class="btn btn-primary mx-2">검색</button>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+			
 		<div class="table-responsive">
 			<table class="table table-sm">
 				<colgroup>
@@ -25,10 +46,13 @@
 					<col width="8%" />
 					<col width="15%" />
 				</colgroup>
+				
+				
+				
 
 				<thead>
 					<tr>
-						<th class="fw-30" align="center">&emsp;&emsp;&emsp;#</th>
+						<th class="fw-30" align="center">&emsp;&emsp;&emsp;게시글번호</th>
 						<th align="center">제목</th>
 						<th align="center">글쓴이</th>
 						<th align="center">조회수</th>
@@ -39,7 +63,7 @@
 				<tbody>
 					<c:forEach var="board" items="${Boardlist}" varStatus="rowStatus">
                     <tr>
-                        <th class="text-center">${rowStatus.index} </th>
+                        <th class="text-center">${board.boardSeq} </th>
                        <th> <a href="javascript:movePage('/board/read.do?boardSeq=${board.boardSeq}&currentPage=${pageInfo.currentPage}')" >${board.title}</a></th>
                         <th>${board.memberNick} </th>
                         <th>${board.hits} </th>

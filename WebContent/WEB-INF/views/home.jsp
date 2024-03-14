@@ -114,7 +114,7 @@
 						data-endeasing="Power4.easeIn">
 						Happiness is an accident of nature,<br /> a beautiful and flawless
 						aberration.<br /> <span style="font-size: 24px; font-weight: 400;">&ndash;
-							Hyesue Lee</span>
+						YeongHeun Jo</span>
 					</div></li>
 
 

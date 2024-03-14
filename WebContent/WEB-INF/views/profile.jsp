@@ -67,7 +67,9 @@
 				<ul class="nav nav-tabs nav-clean">
 					<li class="active"><a href="#tab1" data-toggle="tab">Web
 							Development</a></li>
-
+					<li class="active"><a href="#tab1" data-toggle="tab">Web
+							Development</a></li>		
+							
 					<li><a href="#tab3" data-toggle="tab">MariaDB</a></li>
 				</ul>
 

@@ -24,6 +24,25 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		;
 	</select>
 	
+<!-- 		<select id="searchList" parameterType="HashMap" resultType="com.lhs.dto.BoardDto">
+		SELECT 
+		board_seq, 
+		type_seq, 
+		member_id, 
+		member_nick, 
+		title, 
+		content, 
+		has_file, 
+		hits, 
+		create_dtm, 
+		update_dtm
+		FROM S_whdudgms.board
+		where type_seq = #{typeSeq}
+		ORDER BY board_seq ASC
+		limit #{startBoard}, #{pageSize}
+		;
+	</select> -->
+	
 	
 	<select id="read" parameterType="String" resultType="com.lhs.dto.BoardDto">
 		SELECT 

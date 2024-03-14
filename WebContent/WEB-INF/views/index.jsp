@@ -269,10 +269,9 @@
 								data-splitout="none" data-elementdelay="0.01"
 								data-endelementdelay="0.1" data-endspeed="500"
 								data-endeasing="Power4.easeIn">
-								Happiness is an accident of nature,<br /> a beautiful and
-								flawless aberration.<br /> <span
+								<br>포트폴리오 작업기간 2024-02-27 ~ ing <br/> <span
 									style="font-size: 24px; font-weight: 400;">&ndash;
-									Hyesue Lee</span>
+									조영흔</span>
 							</div></li>
 					</ul>
 

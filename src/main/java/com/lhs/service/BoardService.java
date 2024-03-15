@@ -13,6 +13,8 @@ public interface BoardService {
 	public ArrayList<BoardDto> list(HashMap<String, Object> params);
 	
 	public int getTotalArticleCnt(Integer typeSeq);
+	public int searchGetTotalArticleCnt(Integer typeSeq,String searchType,String searchWord);
+
 	
 	public int write(BoardDto boardDto, List<MultipartFile> mFiles);
 

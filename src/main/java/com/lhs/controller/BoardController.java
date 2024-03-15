@@ -70,7 +70,19 @@ public class BoardController {
 		// 총 페이지, 현재 페이지 
 		//  
 		
-		pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
+		
+		if(Objects.nonNull(params.get("searchType"))  && Objects.nonNull(params.get("searchWord"))
+				&&!("".equals((String)params.get("searchWord")))
+				) {
+			pageInfo.setTotalBoard(bService.searchGetTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))
+					,(String)params.get("searchType"),(String)params.get("searchWord")
+					));
+
+		}else {
+			pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
+
+		}
+		
 		//pageInfo.setTotalPageSize(pageInfo.get)
 		//112 111 
 		pageInfo.setStartNavi(((pageInfo.getCurrentPage() -1) / pageInfo.getPageNaviSize())*pageInfo.getPageNaviSize() +1  );
@@ -87,6 +99,8 @@ public class BoardController {
 		return mv;
 	} 
 	
+	
+
 	@RequestMapping("/board/download.do")
 	@ResponseBody
 	public byte[] downloadFile(@RequestParam int fileIdx, HttpServletResponse response) throws UnsupportedEncodingException {

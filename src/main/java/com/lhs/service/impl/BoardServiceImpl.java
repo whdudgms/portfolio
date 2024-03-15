@@ -34,12 +34,39 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Override
 	public ArrayList<BoardDto> list(HashMap<String, Object> params) {
+		// list메서드와 searchList 이렇게 2개가 있다 따라서 params에 값이 있으면 쓰고 아니면 안 쓰는 식으로 수정헤야지 될 것 같다
+		System.out.println("    list =");
+		System.out.println(params);
+		System.out.println(params.get("searchType"));
+		System.out.println(params.get("searchWord"));
+		System.out.println("true false result");
+		System.out.println(Objects.nonNull(params.get("searchType")));
+		System.out.println(Objects.nonNull(params.get("searchWord")));
+		System.out.println(!("".equals((String)params.get("searchWord"))));
+		
+		
+		if(Objects.nonNull(params.get("searchType"))  && Objects.nonNull(params.get("searchWord"))
+				&&!("".equals((String)params.get("searchWord")))
+				) {
+			System.out.println("bdao.searchList() 결과");
+			System.out.println( bDao.searchList(params));
+		return bDao.searchList(params);
+		}
+		
+		System.out.println("bdao.list() 결과");
+		System.out.println( bDao.list(params));
 		return bDao.list(params);
+		
 	}
 
 	@Override
 	public int getTotalArticleCnt(Integer typeSeq) {
 		return bDao.getTotalArticleCnt(typeSeq);
+	}
+	
+	@Override
+	public int searchGetTotalArticleCnt(Integer typeSeq,String searchType,String searchWord) {
+		return bDao.searchGetTotalArticleCnt(typeSeq,searchType,searchWord);
 	}
 
 	@Transactional

@@ -3,6 +3,8 @@ package com.lhs.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.lhs.dto.BoardDto;
 
 public interface BoardDao {
@@ -13,6 +15,9 @@ public interface BoardDao {
 	 */
 	public ArrayList<BoardDto> list(HashMap<String, Object> params);
 	
+	public ArrayList<BoardDto> searchList(HashMap<String, Object> params);
+
+	
 	/**
 	 * 총 글 수 
 	 * @param params
@@ -20,6 +25,9 @@ public interface BoardDao {
 	 */
 	
 	public int getTotalArticleCnt(Integer typeSeq);
+	
+	public int searchGetTotalArticleCnt(@Param("typeSeq")Integer typeSeq,@Param("searchType")String searchType,@Param("searchWord")String searchWord);
+
 	
 	/**
 	 * 글 작성 insert 

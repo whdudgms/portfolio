@@ -114,11 +114,11 @@
 						
 								<div class="col-md-8 col-sm-8 col-8 text-left">
 								<button type="button"  id="btnVNum" class="btn btn-primary">
-									Get verification number  </button>
+									이메일 인증번호 전송  </button>
 							</div>
 							<div class="col-md-4 col-sm-4 col-4 text-right">
 								<button type="button" id="btnEmail" class="btn btn-primary">
-									Submit</button>
+									인증 </button>
 							</div>
 					
 						</div>

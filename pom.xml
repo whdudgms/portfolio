@@ -1,3 +1,4 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -269,7 +270,8 @@
    </dependencies>
 
 
-	<!-- 적혀진 id에 해당하는 profile의 env 설정 -->
+	<!-- 적혀진 id에 해당하는 profile의 env 설정 
+	빌드랑 같은 레벨임 -->
 	<profiles>
 		<profile>
 			<id>local</id>
@@ -293,6 +295,9 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources-common</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources-${env}</directory>
 			</resource>
 			<resource>
 				<directory>${project.build.sourceDirectory}</directory>
@@ -344,11 +349,6 @@
 					<warSourceDirectory>WebContent</warSourceDirectory>
 				</configuration>
 			</plugin>
-			
-			
-			
-			
-			
 		</plugins>
 	</build>
 </project>

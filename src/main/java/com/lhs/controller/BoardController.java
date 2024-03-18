@@ -42,9 +42,7 @@ public class BoardController {
 	public ModelAndView goList(@RequestParam HashMap<String, Object> params){
 		ModelAndView mv = new ModelAndView();
 		PageInfo pageInfo = new PageInfo();
-
 		mv.setViewName("board/list");
-		
 		// 게시물 목록을 가져오기 위한 요소들  
 		// 게시물 타입 
 		// 시작 게시물 번호 = (현재페이지 -1) * 10  현재페이지를 전달받아서 구함 
@@ -69,14 +67,13 @@ public class BoardController {
 		// 게시믈에서 페이지 네이션을 표현하기 위한 요소들 
 		// 총 페이지, 현재 페이지 
 		//  
-		
-		
 		if(Objects.nonNull(params.get("searchType"))  && Objects.nonNull(params.get("searchWord"))
 				&&!("".equals((String)params.get("searchWord")))
 				) {
 			pageInfo.setTotalBoard(bService.searchGetTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))
-					,(String)params.get("searchType"),(String)params.get("searchWord")
-					));
+					,(String)params.get("searchType"),(String)params.get("searchWord")));
+			pageInfo.setSearchWord((String)params.get("searchWord"));
+			pageInfo.setSearchType((String)params.get("searchType"));
 
 		}else {
 			pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
@@ -84,7 +81,6 @@ public class BoardController {
 		}
 		
 		//pageInfo.setTotalPageSize(pageInfo.get)
-		//112 111 
 		pageInfo.setStartNavi(((pageInfo.getCurrentPage() -1) / pageInfo.getPageNaviSize())*pageInfo.getPageNaviSize() +1  );
 		pageInfo.setMaxNavi(pageInfo.getTotalBoard() % pageInfo.getPageSize() ==0? pageInfo.getTotalBoard() / pageInfo.getPageSize() :  pageInfo.getTotalBoard() / pageInfo.getPageSize()+1);      
 		System.out.println("list view로 전달되는 내용 ");
@@ -99,40 +95,7 @@ public class BoardController {
 		return mv;
 	} 
 	
-	
 
-	@RequestMapping("/board/download.do")
-	@ResponseBody
-	public byte[] downloadFile(@RequestParam int fileIdx, HttpServletResponse response) throws UnsupportedEncodingException {
-		
-		
-		
-		// fileIdx를 가지고 첨부파일 정보 가져오기 
-		System.out.println("파일 번호 값을 출력합니다 "
-				+ "fileIdx  =  "
-				);
-		System.out.println(fileIdx);
-		
-		
-		
-		
-		 // 첨부파일 정보 조회
-        HashMap<String, Object> fileInfo = attFileService.readAttFileByPk(fileIdx);
-        if (fileInfo == null) {
-            // 파일 정보가 없는 경우, 적절한 HTTP 상태 코드 반환
-            return null;
-        }
-		
-		response.setContentType((String) fileInfo.get("file_type"));
-		response.setHeader("Content-Disposition", "attachment; filename=\"" +  URLEncoder.encode((String) fileInfo.get("file_name") , "UTF-8").replaceAll("\\+", "%20")+ "\"");
-		
-		 
-		
-		return	fileUtil.readFile(fileInfo);
-		
-
-		
-	}
 
 	@RequestMapping("/test.do")
 	public ModelAndView test() {
@@ -152,27 +115,7 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping("/board/write.do")
-	@ResponseBody
-	public HashMap<String, Object> write(
-			BoardDto boardDto, 
-			MultipartHttpServletRequest mReq,HttpSession session) {
-		
 
-//		boardDto.put("memberId","whdudgms1234");
-		System.out.println(mReq);
-		if(Objects.nonNull(boardDto.getTypeSeq())) {
-			boardDto.setTypeSeq(Integer.parseInt(this.typeSeq));
-		}
-		
-		int cnt = bService.write(boardDto, mReq.getFiles("attFiles"));
-
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("cnt", cnt);
-		map.put("msg", cnt==1?"게시물 삽입 완료!!!":"게시물 삽입 실패!!!");
-		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
-		return map;
-	}
 
 	@RequestMapping("/board/read.do")
 	public ModelAndView read(@RequestParam HashMap<String, Object> params) {
@@ -217,68 +160,7 @@ public class BoardController {
 		return mv;
 
 	}
-//	int cnt = bService.delete(params);
-//	HashMap<String, Object> map = new HashMap<String, Object>();
-//
-//	map.put("cnt", cnt);
-//	map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
-//	map.put("nextPage", cnt==1?"/board/ .do" : "/board/list.do");
-
-	@RequestMapping("/board/update.do")
-	@ResponseBody // !!!!!!!!!!!! 비동기 응답 
-	public HashMap<String, Object> update(BoardDto boardDto, 
-			MultipartHttpServletRequest mReq) {
-
-		if(Objects.isNull( boardDto.getTypeSeq())) {
-			boardDto.setTypeSeq(Integer.parseInt (this.typeSeq ));
-		}
-		System.out.println("/board/update.do에서  전달받은 파라미터 출력  ");
-		System.out.println("boardDto  :"+boardDto);
-		int cnt = bService.update(boardDto, mReq.getFiles("attFiles"));
-		HashMap<String, Object> map = new HashMap<String, Object>();
-	
-		map.put("cnt", cnt);
-		map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
-		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
-		return map;
-	}
-
-	@RequestMapping("/board/delete.do")
-	@ResponseBody
-	public HashMap<String, Object> delete(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		System.out.println("controller delete메서드." );
-		System.out.println(params);
-
-		if(!params.containsKey("typeSeq")) {
-			params.put("typeSeq", this.typeSeq);
-		}
-		int cnt = bService.delete(params);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("cnt", cnt);
-		map.put("msg", cnt==1?"게시물 삭제 완료!!!":"게시물 삭제 실패!!!");
-		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
-		
-		return map; // 비동기: map return 
-	}
-
-	@RequestMapping("/board/deleteAttFile.do")
-	@ResponseBody
-	public HashMap<String, Object> deleteAttFile(@RequestParam HashMap<String, Object> params) {
-		
-		if(!params.containsKey("typeSeq")) {
-			params.put("typeSeq", this.typeSeq);
-		}
-		boolean cnt = bService.deleteAttFile(params) ;
-				
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		map.put("cnt", cnt);
-		map.put("msg", cnt?"첨부파일 완료!!!":"첨부파일 실패!!!");
-		map.put("nextPage", cnt?"/board/list.do" : "/board/list.do");
-		
-		return map;
-	} 
+ 
 
 
 

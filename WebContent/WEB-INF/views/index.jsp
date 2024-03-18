@@ -105,10 +105,10 @@
 									class="glyphicon glyphicon-off"></i> LOGOUT</a></li>
 						<c:choose>
 					
-						<c:when test='${sessionScope.typeSep != "5" || sessionScope.typeSep != "9"}'>
+						<c:when test='${sessionScope.typeSeq != "5" && sessionScope.typeSeq != "9"}'>
 								<li><a tabindex="-1"
 								href="javascript:movePage('/member/email.do')"><i
-								class="glyphicon glyphicon-off"></i>register Email</a></li>
+								class="glyphicon glyphicon-off"></i>이메일 인증하기</a></li>
 						</c:when>	
 						</c:choose>
 						

@@ -89,7 +89,7 @@
 						<c:forEach begin="${pageInfo.startNavi}" end="${pageInfo.startNavi + pageInfo.pageNaviSize - 1}" var="i">
 						    <c:if test="${i <= pageInfo.maxNavi }">
 						        <li class="page-item ${i == pageInfo.currentPage ? 'active' : ''}">
-						            <a class="page-link" href="javascript:movePage('/board/list.do?currentPage=${i}')">${i}</a>
+						            <a class="page-link" href="javascript:movePage('/board/list.do?currentPage=${i}&searchWord=${pageInfo.searchWord}&searchType=${pageInfo.searchType}')">${i}</a>
 						        </li>
 						    </c:if>
 						</c:forEach>

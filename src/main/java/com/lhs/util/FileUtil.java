@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-//물리적 위치로 파일 저장 
+import lombok.extern.slf4j.Slf4j;
 
+//물리적 위치로 파일 저장 
+@Slf4j
 public class FileUtil {
 	
 	private Logger logger = Logger.getLogger(FileUtil.class);
@@ -34,8 +36,11 @@ public class FileUtil {
 	 * 파일 복사(저장) 
 	 */
 	public void copyFile(MultipartFile mf, String fakename) throws IOException {
+		
+		
 		//1. 디렉토리(폴더) 지정.
 		File destDir = new File(this.saveLocation);// 지정 
+		logger.debug(this.saveLocation);
 		if(!destDir.exists()) {	//존재하지 않으면 
 			destDir.mkdirs();//만들라 
 		}

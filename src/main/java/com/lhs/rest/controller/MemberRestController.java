@@ -1,5 +1,5 @@
 
-package com.lhs.controller;
+package com.lhs.rest.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +68,9 @@ public class MemberRestController {
 		mService.getVNum(params.get("email"),session);
 	    return map;
 	}
+	
+	
+	
 	
 	// 입력 받은 이메일 검증하고 검증결과에 따라 Member Type을 바꾸는 메서드 
 		@RequestMapping("/member/VNumCheck.do")

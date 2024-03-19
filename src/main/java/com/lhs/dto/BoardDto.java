@@ -15,14 +15,14 @@ import lombok.ToString;
 @ToString
 @Alias(value = "board")
 public class BoardDto {
-	int boardSeq;
-	int typeSeq;
+	Integer boardSeq;
+	Integer typeSeq;
 	String memberId;
 	String memberNick;
 	String title;
 	String content;
 	String hasFile;
-	int hits;
+	Integer hits;
 	String createDtm;
 	String updateDtm;
 }

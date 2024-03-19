@@ -1,4 +1,5 @@
 
+
 package com.lhs.rest.controller;
 
 import java.util.ArrayList;
@@ -58,6 +59,9 @@ public class MemberRestController {
 		map.put("nextPage", cnt==1?"/member/goLoginPage.do" : "/member/goRegisterPage.do");
 		return map;
 	}
+	
+	
+	
 
 	// 이메일주소로 인증번호 보내는 메서드 
 	@RequestMapping("/member/sendemail.do")

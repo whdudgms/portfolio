@@ -10,6 +10,30 @@
 	
 	<div class="container">
 		<h4>공지사항</h4>
+		
+			
+		<div class="container">
+		    <div class="row justify-content-center">
+		        <div class="col-md-12">
+		            <form   class="form-inline justify-content-center" id="searchForm" name="searchForm">
+		                <div class="form-group mx-2">
+		                    <select name="searchType" id="searchType" class="form-control">
+		                        <option value="title">제목</option>
+		                        <option value="content">내용</option>
+		                        <option value="titleContent">제목+내용</option>
+		                    </select>
+		                </div>
+		                <div class="form-group mx-2">
+		                    <input type="text" id="searchWord"  name="searchWord" class="form-control">
+		                </div>
+		                <button type="button" id="btnSearch" name="btnSearch" class="btn btn-primary mx-2">검색</button>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+			
+		
+		
 		<div class="table-responsive">
 			<table class="table table-sm">
 				<colgroup>
@@ -104,6 +128,21 @@
 	</div>
 	
 	<!-- / -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#btnSearch').click(function(){
+        if($('#searchType').val() == '' || $('#searchWord').val() == ''){
+            window.alert("검색 조건과 검색어를 입력하세요.");
+            return;
+        }
+       var searchWord = $("#searchWord").val()
+        var searchType  = $("#searchType").val()
+       window.alert(searchWord+"     "+searchType)
+        javascript:movePage('/notice/list.do?searchWord='+searchWord+'&searchType='+searchType)
+        
+    });
+});
+</script>
 </body>
 <script>
 		var totalNavi = '${(pageInfo.totalBoard % pageInfo.pageSize == 0 ? pageInfo.totalBoard / pageInfo.pageSize : pageInfo.totalBoard / pageInfo.pageSize +1)  }'

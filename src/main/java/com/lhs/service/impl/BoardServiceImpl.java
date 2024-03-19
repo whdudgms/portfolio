@@ -145,6 +145,8 @@ public class BoardServiceImpl implements BoardService{
 //			// 전달 받은 첨부 파일 넣기 
 //				// 기존 
 //		}
+		
+		int result = 0;
 		for(MultipartFile mFile: mFiles) {
 			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
 				continue;
@@ -164,6 +166,7 @@ public class BoardServiceImpl implements BoardService{
 			
 			try {
 				fileUtil.copyFile(mFile, fakeName);
+				result++;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -180,7 +183,7 @@ public class BoardServiceImpl implements BoardService{
 		}
 		
 		// 글 수정 dao 
-		return bDao.update(boardDto);
+		return result+bDao.update(boardDto);
 	}
 
 	@Override
@@ -209,19 +212,22 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteAttFile(HashMap<String, Object> params) {
 		
 
-		HashMap<String, Object> attlist = attFileDao.readAttFileByPk(Integer.parseInt((String)params.get("fileIdx")));
+		HashMap<String, Object> attlist = attFileDao.readAttFileByPk((Integer)params.get("fileIdx"));
 		fileUtil.deleteFile((String)attlist.get("fake_filename"));
 		
 		
 		int result = attFileDao.deleteAttFile(params);
 		
-		if( result>= 1)
-			System.out.println("첨부 파일도 삭제했습니");
+		if( result>= 1) 
+			System.out.println("첨부 파일도 삭제했습니다");
 	
-		if(attFileDao.countAtt((String) params.get("boardSeq")) <1) {
+		System.out.println("첨부파일의 갯수 :"+attFileDao.countAtt( params.get("boardSeq") +""));
+		if(attFileDao.countAtt( params.get("boardSeq") +"") < 1) {
+			System.out.println("parmas 의 값 여기서 hasFile만 변경합니다." +params);
 			params.put("hasFile", "N");
 			bDao.updateHasFile(params);
 		}

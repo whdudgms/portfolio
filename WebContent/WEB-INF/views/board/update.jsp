@@ -76,39 +76,27 @@
 			}
 			$('#content').val(content);
 			
-			customAjax("<c:url value='/board/update.do' />", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+			customAjax("<c:url value='/board/${boardDto.boardSeq}'/>", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}","POST");
 		
 		}); //#btnUpdate end 		
 }); //ready End 
 
-function customAjax(url, responseUrl) {
+function customAjax(url, responseUrl,method) {
   var frm = document.updateForm;
   var formData = new FormData(frm);
      $.ajax({
          url : url,
          data : formData,
-         type : 'POST',
+         type : method,
          dataType : "text",
          processData : false,
-         contentType : false,
+         contentType :false,
          success : function (result, textStatus, XMLHttpRequest) {
-             var data = $.parseJSON(result);
-             
-             console.log('data 내용출력.  ' + data);
-             console.log('boardSeq 내용출력.  ' + data.boardSeq);
-             console.log('XMLHttpRequest 내용출력.  '+XMLHttpRequest);
-             console.log('data.result 내용출력.  '+data.result);
-
-             alert(data.msg);
-             var boardSeq = data.boardSeq;
-/*              if(data.result == 1){
- */
-             
+        	 var data = $.parseJSON(result);
+             alert(data.message);
+          
                 movePage(responseUrl)
-                
-          /*    } else {
-               window.location.href="<c:url value='/index.do'/>";
-             } */
+
          },
          error : function (XMLHttpRequest, textStatus, errorThrown) {
                alert("작성 에러\n관리자에게 문의바랍니다.");
@@ -122,9 +110,8 @@ function deleteFile(fileIdx, boardSeq){
        	 if(confirm("첨부파일을 삭제하시겠습니까?")){
         	// code here
         	
- 			customAjax("<c:url value='/board/deleteAttFile.do?fileIdx="+fileIdx+"' />", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+       		customAjax("<c:url value='/attFile/"+boardSeq+"/"+fileIdx+"'/>", "/board/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}", "DELETE");
 
-        	
        	}	       
   	}
 }//func deletefile
@@ -145,12 +132,14 @@ function deleteFile(fileIdx, boardSeq){
 						<h2 class="card-title">공지 글 수정</h2>
 					</div>
 					<div class="card-block">
-						<form name="updateForm" class="validate" method="post"
+						<form name="updateForm" class="validate" 
+						
 							enctype="multipart/form-data" data-success="Sent! Thank you!"
 							data-toastr-position="top-right">
 							<input type="hidden" name="memberId"
 								value="${ sessionScope.memberId }" /> <input type="hidden"
-								name="memberIdx" value="${ sessionScope.memberIdx }" /> <input
+								name="memberIdx" value="${ sessionScope.memberIdx }" /> 
+								<input
 								type="hidden" name="typeSeq" value="${ boardDto.typeSeq}" /> <input
 								type="hidden" name="boardSeq" value="${ boardDto.boardSeq }" />
 							<input type="hidden" name="hasFile"

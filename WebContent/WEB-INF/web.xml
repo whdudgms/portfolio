@@ -46,7 +46,7 @@
 
 	<servlet-mapping>
 		<servlet-name>smarty</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!-- Spring servlet end -->
 

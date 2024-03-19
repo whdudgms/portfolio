@@ -55,6 +55,20 @@ public class NoticeController {
 		params.put("typeSeq", "1");
 		ArrayList<BoardDto> boardlist= bService.list(params);
 		pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
+		
+		
+		if(Objects.nonNull(params.get("searchType"))  && Objects.nonNull(params.get("searchWord"))
+				&&!("".equals((String)params.get("searchWord")))
+				) {
+			pageInfo.setTotalBoard(bService.searchGetTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))
+					,(String)params.get("searchType"),(String)params.get("searchWord")));
+			pageInfo.setSearchWord((String)params.get("searchWord"));
+			pageInfo.setSearchType((String)params.get("searchType"));
+
+		}else {
+			pageInfo.setTotalBoard(bService.getTotalArticleCnt((Integer.parseInt((String)params.get("typeSeq")))));
+
+		}
 		//pageInfo.setTotalPageSize(pageInfo.get)
 		//112 111 
 		pageInfo.setStartNavi(((pageInfo.getCurrentPage() -1) / pageInfo.getPageNaviSize())*pageInfo.getPageNaviSize() +1  );

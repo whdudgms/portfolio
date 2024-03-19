@@ -72,7 +72,7 @@
 				return;		
 			}
 			$('#content').val(content);
-			customAjax("<c:url value='/board/write.do' />", "/board/list.do");
+			customAjax("<c:url value='/boards'/>", "/board/list.do");
 	});
 });
 
@@ -88,7 +88,7 @@ function customAjax(url, responseUrl) {
          contentType : false,
          success : function (result, textStatus, XMLHttpRequest) {
              var data = $.parseJSON(result);
-             alert(data.msg);
+             alert(data.message);
              var boardSeq = data.boardSeq;
          
         	 javascript:movePage('/board/list.do' )

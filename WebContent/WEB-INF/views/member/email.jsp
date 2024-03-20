@@ -18,7 +18,7 @@
 			 $("#btnEmail").click(function(event){
 			var formData = new FormData(document.emailForm);
 			$.ajax({
-				url: "<c:url value='/member/VNumCheck.do'/>",
+				url: "<c:url value='/member/VNum'/>",
 				type: "POST",
 				data: formData,
 				dataType:'TEXT',
@@ -28,10 +28,12 @@
 				success: function(data, textStatus, jqXHR) {
 					data = $.parseJSON(data);
 					console.log(data);
-					if(data.msg != undefined && data.msg != ''){
-						var msgTag = $("<strong>").text(data.msg);
+					if(data.msg != undefined && data.message != ''){
+						var msgTag = $("<strong>").text(data.message);
 						$('#msgDiv').html(msgTag).show();
 						$("#loading-div-background").hide();	// overlay 숨기기
+						
+						movePage(data.nextPage);
 					}
 					else {
 						window.location.href = ctx + data.nextPage;
@@ -46,22 +48,19 @@
 			});
 		});
 			
-			
-			
-			
-		
-			
-			
+
 			 $("#btnVNum").click(function(event){
 			        event.preventDefault(); // 폼 전송 방지
 			        $.ajax({
-			            url: "<c:url value='/member/sendemail.do'/>", // 요청을 보낼 서버의 URL
-			            type: 'POST', // 요청 방식
+			            url: "<c:url value='/authEmail'/>", // 요청을 보낼 서버의 URL
+			            type: 'GET', // 요청 방식
 			            data: {
 			                // 서버로 보낼 데이터
 			                email: $("#email").val() // 예시: email 필드의 값을 전송
 			            },
-			            success: function() {
+			            success: function(data) {
+			            	/* var msgTag = $("<strong>").text(data.message);
+							$('#msgDiv').html(msgTag).show(); */
 			            	alert('정상적으로 메일이 전송 됐습니다.')
 			            },
 			            error: function() {

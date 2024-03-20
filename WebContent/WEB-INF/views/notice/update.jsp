@@ -71,30 +71,26 @@
 			}
 			$('#content').val(content);
 			
-			customAjax("<c:url value='/notice/update.do' />", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+			customAjax("<c:url value='/notice/${boardDto.boardSeq}'/>", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}","POST");
 		
 		}); //#btnUpdate end 		
 }); //ready End 
 
-function customAjax(url, responseUrl) {
+function customAjax(url, responseUrl,method) {
   var frm = document.updateForm;
   var formData = new FormData(frm);
      $.ajax({
          url : url,
          data : formData,
-         type : 'POST',
+         type : method,
          dataType : "text",
          processData : false,
          contentType : false,
          success : function (result, textStatus, XMLHttpRequest) {
-             var data = $.parseJSON(result);
-             
-             console.log('data 내용출력.  ' + data);
-             console.log('boardSeq 내용출력.  ' + data.boardSeq);
-             console.log('XMLHttpRequest 내용출력.  '+XMLHttpRequest);
-             console.log('data.result 내용출력.  '+data.result);
+        	 var data = $.parseJSON(result);
+             alert(data.message);
 
-             alert(data.msg);
+             alert(data.message);
              var boardSeq = data.boardSeq;
 /*              if(data.result == 1){
  */
@@ -116,7 +112,7 @@ function deleteFile(fileIdx, boardSeq){
 	  if("${sessionScope.memberId}" != null) {
        	 if(confirm("첨부파일을 삭제하시겠습니까?")){
         	// code here
-  			customAjax("<c:url value='/board/deleteAttFile.do?fileIdx="+fileIdx+"' />", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}");
+       		customAjax("<c:url value='/attFile/"+boardSeq+"/"+fileIdx+"'/>", "/notice/read.do?boardSeq=${boardDto.boardSeq}&currentPage=${currentPage}", "DELETE");
 
        	}	       
   	}

@@ -36,7 +36,7 @@ $(document).ready(function(){
 				success: function(data, textStatus, jqXHR) {
 					data = $.parseJSON(data);
 					console.log(data);
-					if(data.msg != undefined && data.msg != ''){
+					if(data.msg != undefined && data.message != ''){
 						alert(data.message)
 						
 						javascript:movePage('/board/list.do?currentPage=${currentPage}' )

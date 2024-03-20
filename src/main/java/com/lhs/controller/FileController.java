@@ -17,29 +17,29 @@ public class FileController {
 	
 	// 메서드가 1개 밖에 없지만 ResponseBody이므로 일단 주석 처리하고 옮김 
 
-//	@Autowired ApplicationContext context;
-//
-//	@RequestMapping("/file/downloadERD.do")
-//	@ResponseBody
-//	public byte[] downloadERD(HttpServletResponse rep) {
-//
-//		File file;
-//		try {
-//			file = context.getResource("classpath:files/portfolio_ERD.mwb").getFile();
-//
-//			rep.setHeader("Content-Disposition", "attachment; filename=\""+file.getName()+"\"");
-//			rep.setHeader("Prama", "no-cache");
-//			rep.setHeader("Cache-Control", "no-cache");
-//			rep.setContentLength((int) file.length());
-//
-//			return FileUtils.readFileToByteArray(file);
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;	
-//
-//	}
+	@Autowired ApplicationContext context;
+
+	@RequestMapping("/file/downloadERD.do")
+	@ResponseBody
+	public byte[] downloadERD(HttpServletResponse rep) {
+
+		File file;
+		try {
+			file = context.getResource("classpath:files/portfolio_ERD.mwb").getFile();
+
+			rep.setHeader("Content-Disposition", "attachment; filename=\""+file.getName()+"\"");
+			rep.setHeader("Prama", "no-cache");
+			rep.setHeader("Cache-Control", "no-cache");
+			rep.setContentLength((int) file.length());
+
+			return FileUtils.readFileToByteArray(file);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	
+
+	}
 
 }

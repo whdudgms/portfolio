@@ -21,7 +21,7 @@
 			$("#loading-div-background").css({'z-index' : '9999'}).show();
 			var formData = new FormData(document.loginForm);
 			$.ajax({
-				url: "<c:url value='/member/login.do'/>",
+				url: "<c:url value='/sessions'/>",
 				type: "POST",
 				data: formData,
 				dataType:'TEXT',
@@ -31,8 +31,8 @@
 				success: function(data, textStatus, jqXHR) {
 					data = $.parseJSON(data);
 					console.log(data);
-					if(data.msg != undefined && data.msg != ''){
-						var msgTag = $("<strong>").text(data.msg);
+					if(data.msg != undefined && data.message != ''){
+						var msgTag = $("<strong>").text(data.message);
 						$('#msgDiv').html(msgTag).show();
 						$("#loading-div-background").hide();	// overlay 숨기기
 					}

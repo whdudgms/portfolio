@@ -152,18 +152,21 @@ public class MemberServiceImpl implements MemberService {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "성공";
 	}
 
+	
 	@Override
 	public boolean checkVNum(HashMap<String, String> params, HttpSession session) {
 		System.out.println("Service checkVNum()");
 		System.out.println("params.get(\"VNum\")      "+params.get("VNum"));
 		System.out.println("session.getAttribute(\"VNum\")      "+session.getAttribute("VNum"));
 		
+		
 		boolean result = params.get("VNum").equals( session.getAttribute("VNum"));
 		if(result) {
 			System.out.println("입력값 변경 !!");
+			session.setAttribute("typeSeq", "5");
 		 mDao.updatetype((String)session.getAttribute("memberId"));
 			System.out.println("입력값 변경 !!");
 

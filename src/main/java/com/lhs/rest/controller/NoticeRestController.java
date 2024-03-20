@@ -1,11 +1,22 @@
 package com.lhs.rest.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,79 +38,119 @@ public class NoticeRestController {
 	private String typeSeq = "1";
 	
 	
-	
-	@RequestMapping("/notice/write.do")
+	@GetMapping("/notice/file/{fileIdx}")
 	@ResponseBody
-	public HashMap<String, Object> write(
-			BoardDto boardDto, 
-			MultipartHttpServletRequest mReq,HttpSession session) {		
+	public ResponseEntity<byte[]> downloadFile(@PathVariable int fileIdx, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		// 첨부파일 정보 조회.
+		HashMap<String, Object> fileInfo = attFileService.readAttFileByPk(fileIdx);
+		if (fileInfo == null) {
+			// 파일 정보가 없는 경우, 적절한 HTTP 상태 코드 반환
+			return null;
+		}
+
+		byte[] fileContent = fileUtil.readFile(fileInfo);
+	    String fileName = URLEncoder.encode((String) fileInfo.get("file_name"), "UTF-8").replaceAll("\\+", "%20");
+	    return ResponseEntity.ok()
+	            .contentType(MediaType.parseMediaType((String) fileInfo.get("file_type")))
+	            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+	            .body(fileContent);
+	}
+
+	
+	@PostMapping("/notices")
+	public ResponseEntity<?> 
+	write(
+	        String memberId,
+	        String memberNick,
+	        String title,
+	        String content, 
+	         MultipartHttpServletRequest mReq, 
+	        HttpSession session) {
 		
-		System.out.println(mReq);
-		if(Objects.nonNull(boardDto.getTypeSeq())) {
+		BoardDto boardDto = new BoardDto();
+		boardDto.setMemberId(memberId);
+		boardDto.setMemberNick(memberNick);
+		boardDto.setTitle(title);
+		boardDto.setContent(content);
+
+		if (Objects.isNull(boardDto.getTypeSeq())) {
 			boardDto.setTypeSeq(Integer.parseInt(this.typeSeq));
 		}
 
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		int result = bService.write(boardDto, mReq.getFiles("attFiles"));
-		String msg = (result == 1) ? "성공" : "실패";
-
-		map.put("result", result);
-		map.put("msg", msg);
-		map.put("boardSeq", boardDto.getBoardSeq());
-		return map;
+		   // 나머지 비즈니스 로직 처리
+	    int cnt = bService.write(boardDto, mReq.getFiles("attFiles"));
+	    if(cnt == 1) {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 삽입 완료!!!", "nextPage", "/board/list.do"));
+	    } else {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 삽입 실패!!!", "nextPage", "/board/list.do"));
+	    }
 	}
 	
 	
-	@RequestMapping("/notice/delete.do")
+	@DeleteMapping("/notice/{boardSeq}")
 	@ResponseBody
-	public HashMap<String, Object> delete(@RequestParam HashMap<String, Object> params, HttpSession session) {
+	public ResponseEntity<?> delete(
+			@PathVariable Integer boardSeq,
+			String hasFile,
+			Integer currentPage, HttpSession session) {
+		
+		
+		HashMap<String,Object> params = new HashMap<String, Object>();
+		params.put("boardSeq", boardSeq);
+		params.put("hasFile", hasFile);
+		params.put("currentPage", currentPage);
 
-		if(!params.containsKey("typeSeq")) {
+		if (!params.containsKey("typeSeq")) {
 			params.put("typeSeq", this.typeSeq);
 		}
-		//비동기 리턴해줄 맵 생성
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		if(session.getAttribute("memberId") != null) { // 세션에 값있을 : 로긴상태일때만 
-			//1. 글 정보 검사 - has_file 추출.  
-			BoardDto boardInfo = bService.read(params);
-			params.put("hasFile", boardInfo.getHasFile());
-			//삭제 쿼리 호출 
-			int result = 0;
-
-			//쿼리결과따라 msg 값 대입 
-			String msg = (result == 1 ? "성공" : "실패");
-
-			//필요정보 map에 put 
-			map.put("msg", msg);
-			map.put("result", result);
-			map.put("typeSeq", params.get("typeSeq"));
-
-		}else {
-			// 로그인 세션 풀렸을때
-		}
-		return map; // 비동기: map return 
+		int cnt = bService.delete(params);
+		if(cnt >= 1) {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 삭제 완료!!!", "nextPage", "/board/list.do"));
+	    } else {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 삭제 실패!!!", "nextPage", "/board/list.do"));
+	    }
 	}
 
 	
 	
-	@RequestMapping("/notice/update.do")
-	@ResponseBody // !!!!!!!!!!!! 비동기 응답 
-	public HashMap<String, Object> update(BoardDto boardDto, 
-			MultipartHttpServletRequest mReq) {
+	@PostMapping("/notice/{boardSeq}")
+	@ResponseBody // !!!!!!!!!!!! 비동기 응답
+	public ResponseEntity<?>  update(
+			//BoardDto boardDto,
+			@PathVariable Integer	boardSeq,
+	        String memberId,
+	        String memberNick,
+	        String title,
+	        String content, 
+			String hasFile,
+			
+	         MultipartHttpServletRequest mReq) {
 
-		if(Objects.isNull( boardDto.getTypeSeq())) {
-			boardDto.setTypeSeq(Integer.parseInt (this.typeSeq ));
+		BoardDto boardDto = new BoardDto();
+		boardDto.setBoardSeq(boardSeq);
+		boardDto.setMemberId(memberId);
+		boardDto.setMemberNick(memberNick);
+		boardDto.setTitle(title);
+		boardDto.setContent(content);
+		boardDto.setHasFile(hasFile);
+		
+		System.out.println("update method  파라미터 체크.:" +boardDto);
+		
+		if (Objects.isNull(boardDto.getTypeSeq())) {
+			boardDto.setTypeSeq(Integer.parseInt(this.typeSeq));
 		}
-		System.out.println("/board/update.do에서  전달받은 파라미터 출력  ");
-		System.out.println("boardDto  :"+boardDto);
+		System.out.println("update method :" +boardDto);
+		
 		int cnt = bService.update(boardDto, mReq.getFiles("attFiles"));
-		HashMap<String, Object> map = new HashMap<String, Object>();
-	
-		map.put("cnt", cnt);
-		map.put("msg", cnt==1?"게시물 업데이트 완료!!!":"게시물 업데이트 실패!!!");
-		map.put("nextPage", cnt==1?"/board/list.do" : "/board/list.do");
-		return map;
+		
+		System.out.println("int cnt = bService.update(boardDto, mReq.getFiles(\"attFiles\")):" +cnt);
+		
+		if(cnt >= 1) {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 업데이트 완료!!!", "nextPage", "/board/list.do"));
+	    } else {
+	        return ResponseEntity.ok().body(Map.of("message", "게시물 업데이트 실패!!!", "nextPage", "/board/list.do"));
+	    }
 	}
 
 	

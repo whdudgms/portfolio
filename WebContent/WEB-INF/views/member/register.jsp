@@ -22,13 +22,13 @@ $(document).ready(function(){
 		$("#loading-div-background").css({'z-index' : '9999'}).show();
 		
 		$.ajax({
-			url: "<c:url value='/member/checkId.do'/>",
+			url: "<c:url value='/memberId'/>",
 			data : {memberId : $('#memberId').val() },
 			success : function (data, textStatus, XMLHttpRequest) {
 				console.log(data);
 				if(data.cnt == 1){
 // 					alert(data.msg);
-					var msgTag = $('<strong>').text(data.msg);
+					var msgTag = $('<strong>').text(data.message);
 					$('#msgDiv').show().html(msgTag);
 					$('#memberId').focus();
 					// overlay 숨기기
@@ -40,7 +40,7 @@ $(document).ready(function(){
 // 					var formData = $("#registerForm").serialize();
 					console.log(formData);
 					$.ajax({
-						url: '<c:url value="/member/join.do" />',
+						url: '<c:url value="/member"/>',
 						type: "POST",
 						data: formData,
 						dataType:'TEXT',
@@ -50,7 +50,7 @@ $(document).ready(function(){
 						success: function(data, textStatus, jqXHR) {
 							data = $.parseJSON(data);
 // 							console.log(data);
-							alert(data.msg);
+							alert(data.message);
 
 							$("#loading-div-background").hide();	// overlay 숨기기
 							

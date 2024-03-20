@@ -72,7 +72,7 @@
 				return;		
 			}
 			$('#content').val(content);
-			customAjax("<c:url value='/notice/write.do' />", "/notice/list.do");
+			customAjax("<c:url value='/notices' />", "/notice/list.do");
 	});
 });
 
@@ -87,8 +87,8 @@ function customAjax(url, responseUrl) {
          processData : false,
          contentType : false,
          success : function (result, textStatus, XMLHttpRequest) {
-             var data = $.parseJSON(result);
-             alert(data.msg);
+        	 var data = $.parseJSON(result);
+             alert(data.message);
              var boardSeq = data.boardSeq;
              
         	 javascript:movePage('/notice/list.do' )

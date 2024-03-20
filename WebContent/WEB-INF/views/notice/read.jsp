@@ -21,8 +21,8 @@ $(document).ready(function(){
 		if(confirm("삭제하시겠습니까?")){
 			// code here /board/delete.do 삭제 버튼 클릭시 
 					$.ajax({
-				url: "<c:url value='/board/delete.do?boardSeq=${boardDto.boardSeq}&hasFile=${boardDto.hasFile}&currentPage=${currentPage}'/>",
-				type: "GET",
+				url: "<c:url value='/notice/${boardDto.boardSeq}?&hasFile=${boardDto.hasFile}&currentPage=${currentPage}'/>",
+				type: "DELETE",
 				//data: formData,
 				dataType:'TEXT',
 				cache: false,
@@ -31,8 +31,8 @@ $(document).ready(function(){
 				success: function(data, textStatus, jqXHR) {
 					data = $.parseJSON(data);
 					console.log(data);
-					if(data.msg != undefined && data.msg != ''){
-						alert(data.msg)
+					if(data.msg != undefined && data.message != ''){
+						alert(data.message)
 						javascript:movePage('/notice/list.do?currentPage=${currentPage}' )
 						//window.location.href = ctx + data.nextPage;
 					}
@@ -110,8 +110,7 @@ $(document).ready(function(){
 											</c:when> 
 
 											<c:otherwise> 
-												<a
-												href="<c:url value='/board/download.do?fileIdx=${file.fileIdx}'/>">
+												<a href="<c:url value='/notice/file/${file.fileIdx}' />">>
 													${file.fileName} ( ${file.fileSize } bytes) </a>
 												<br />
 											</c:otherwise> 

@@ -13,6 +13,8 @@
 - **Backend**: Java, Spring Framework, MyBatis
 - **Frontend**: JavaScript, AJAX
 - **Database**: MariaDB
+- **Deployment: AWS  EC2
+- **API Documentation: Swagger
 
 ## 시작하기
 

@@ -37,14 +37,14 @@
 	</bean>
 
 
-	<!-- Annotation 기반의 Component Scan 필터(service package 만 검색) -->
 	<context:component-scan base-package="com.lhs">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-		<context:include-filter type="regex"
-			expression="\.*\.dao\.*" />
-	</context:component-scan>
+    <!-- 기존 필터 설정 유지 -->
+    <context:include-filter type="annotation"
+        expression="org.springframework.stereotype.Service" />
+    <context:include-filter type="regex"
+        expression="\.*\.dao\.*" />
 
+	</context:component-scan>
 
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

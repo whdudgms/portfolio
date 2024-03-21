@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                    
+                                            
+    
+    
     
     
     
@@ -8,7 +10,9 @@
     
     
     <wb-module deploy-name="whdud">
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -17,7 +21,9 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -26,7 +32,9 @@
         
         
         <wb-resource deploy-path="/" source-path="/WebContext"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -35,7 +43,9 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -44,7 +54,9 @@
         
         
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -53,7 +65,9 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -62,7 +76,9 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-                                                                        
+                                                                                        
+        
+        
         
         
         
@@ -72,8 +88,10 @@
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main"/>
                 
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-local"/>
-                                                                        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources-common"/>
+                                                                                        
+        
+        
         
         
         
@@ -82,11 +100,10 @@
         
         
         <property name="java-output-path" value="/77_SpringJdbc/build/classes"/>
-                                
-        
-        
         <property name="context-root" value="whdud"/>
-                                                                    
+                                                                                    
+    
+    
     
     
     
@@ -95,7 +112,9 @@
     
     
     </wb-module>
-                                
+                                        
+
+
 
 
 

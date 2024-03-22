@@ -12,7 +12,7 @@
 		<h4>공지사항</h4>
 		
 			
-		<div class="container">
+	<div class="container">
 		    <div class="row justify-content-center">
 		        <div class="col-md-12">
 		            <form   class="form-inline justify-content-center" id="searchForm" name="searchForm">
@@ -47,7 +47,7 @@
 
 				<thead>
 					<tr>
-						<th class="fw-30" align="center">&emsp;&emsp;&emsp;공지사항번호</th>
+						<th class="fw-30" align="center">&emsp;&emsp;공지사항 번호</th>
 						<th align="center">제목</th>
 						<th align="center">글쓴이</th>
 						<th align="center">조회수</th>

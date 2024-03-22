@@ -54,21 +54,21 @@ public class MemberRestController {
 	@PostMapping("/member")
 	@ResponseBody
 	public ResponseEntity<?> join(
-			String memberId, 
-			String memberPw,
-			String againPw,
-			String memberName,
-			String memberNick,
-			String email
-//			MemberDto memberDto
+//			String memberId, 
+//			String memberPw,
+//			String againPw,
+//			String memberName,
+//			String memberNick,
+//			String email
+			MemberDto memberDto
 			){
-		MemberDto memberDto =  new MemberDto();
-		memberDto.setMemberId(memberId);
-		memberDto.setMemberPw(memberPw);
-		memberDto.setAgainPw(againPw);
-		memberDto.setMemberName(memberName);
-		memberDto.setMemberNick(memberNick);
-		memberDto.setEmail(email);
+//		MemberDto memberDto =  new MemberDto();
+//		memberDto.setMemberId(memberId);
+//		memberDto.setMemberPw(memberPw);
+//		memberDto.setAgainPw(againPw);
+//		memberDto.setMemberName(memberName);
+//		memberDto.setMemberNick(memberNick);
+//		memberDto.setEmail(email);
 		
 		System.out.println("\"/member/login.do\")의 시작.");
 		System.out.println("MemberController의 join메서드에 전달받은 파라미터 출력");
@@ -80,9 +80,6 @@ public class MemberRestController {
 		return ResponseEntity.ok().body(Map.of("cnt",cnt,"nextPage",cnt==1?"/member/goLoginPage.do" : "/member/goRegisterPage.do",
 				"message",cnt==1?"회원 가입 완료!!!":"회원 가입 실패!!!"));
 	}
-	
-	
-	
 
 	// 이메일주소로 인증번호 보내는 메서드 
 	@GetMapping("/authEmail")
@@ -98,12 +95,17 @@ public class MemberRestController {
 	// 입력 받은 이메일 검증하고 검증결과에 따라 Member Type을 바꾸는 메서드 
 		@PostMapping("/member/VNum")
 		@ResponseBody
-		public ResponseEntity<?> checkVNum(String memberId, String email, String VNum, HttpSession session){
+		public ResponseEntity<?> checkVNum(
+				HashMap params,
+//				String memberId,
+//				String email,
+//				String VNum,
+				HttpSession session){
 			
-			HashMap params = new HashMap<String,String>();
-			params.put("memberId", memberId);
-			params.put("eamil", email);
-			params.put("VNum", VNum);
+//			HashMap params = new HashMap<String,String>();
+//			params.put("memberId", memberId);
+//			params.put("eamil", email);
+//			params.put("VNum", VNum);
 			
 			
 			System.out.println(params);

@@ -143,6 +143,11 @@
 					class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
 					<nav class="nav-main">
 					<ul id="topMain" class="nav nav-pills nav-main">
+					
+						<li class="dropdown active">
+							<!-- HOME --> <a class="dropdown-toggle noicon"
+							href="<c:url value='/swagger-ui.html'/>"> SWAGGER(API) </a>
+						</li>
 						<li class="dropdown active">
 							<!-- HOME --> <a class="dropdown-toggle noicon"
 							href="<c:url value='/index.do'/>"> HOME </a>
@@ -241,6 +246,8 @@
 										<li>Server : AWS EC2</li>
 										<li>DBMS : MariaDB</li>
 										<li>WAS : Tomcat 9.0</li>
+										<li>API : Swagger</li>
+										<li>...</li>
 									</ul>
 								</span>
 							</div></li>
@@ -287,10 +294,10 @@
 					<!-- Contact Address -->
 					<address>
 						<ul class="list-unstyled">
-							<li class="footer-sprite address">주소<br> zip code ~~~<br>
+							<li class="footer-sprite address">주소<br> Seoul <br>
 							</li>
-							<li class="footer-sprite phone">010-cccc-3333</li>
-							<li class="footer-sprite email"><a href="mailto:#">your_email</a>
+							<li class="footer-sprite phone">010-8946-0975</li>
+							<li class="footer-sprite email"><a href="mailto:#">whdudgms123@naver.com</a>
 							</li>
 						</ul>
 					</address>
@@ -314,7 +321,7 @@
 					<p>
 						제가 구현한 스프링 게시판의 주요기능 확인을 위해 회원가입을 해주세요. :) <br /> 이 게시판은 관리자 / 일반
 						모드를 구분하여 구현하였으며 회원가입시 일반회원 모드로 가입됩니다.<br /> * 임의의 관리자 계정으로 로그인:
-					<h3>ID: admin123 / PW: admin12#</h3>
+					<h3>ID: admin123 / PW: admin123</h3>
 				</div>
 
 				<div id="sidepanel" class="sidepanel-light">
@@ -323,7 +330,7 @@
 					</a>
 
 					<div class="sidepanel-content">
-						<h2 class="sidepanel-title">HYESUE's Portfolio</h2>
+						<h2 class="sidepanel-title">Yeongheun's Portfolio</h2>
 
 						<!-- SIDE NAV -->
 						<ul class="list-group">
@@ -346,11 +353,11 @@
 							</a></li>
 
 							<li class="list-group-item"><a
-								href="javascript:movePage('/tables.do')"> <i
-									class="ico-category et-happy"></i> DEV-NOTES
+								href="https://www.notion.so/9f93f53de2e74ae7a846fb658a2a3265?pvs=4"> <i
+									class="ico-category et-happy"></i> Notion Blog
 							</a></li>
-							<li class="list-group-item"><a href="#"> <i
-									class="ico-category et-beaker"></i> LEARNING
+							<li class="list-group-item"><a href="https://github.com/whdudgms/portfolio"> <i
+									class="ico-category et-beaker"></i> Github
 							</a></li>
 
 
@@ -359,24 +366,12 @@
 
 						<!-- Social Icons -->
 						<div class="mt-20">
-							<a href="#" target='_blank'
+							<a href="https://github.com/whdudgms" target='_blank'
 								class="social-icon social-icon-border social-gplus float-left"
 								data-toggle="tooltip" data-placement="top" title="Google plus">
 								<i class="icon-github-circled"></i> <i
 								class="icon-github-circled"></i>
-							</a> <a href="#" target='_blank'
-								class="social-icon social-icon-border social-facebook float-left"
-								data-toggle="tooltip" data-placement="top" title="Facebook">
-								<i class="icon-facebook"></i> <i class="icon-facebook"></i>
-							</a> <a href="#"
-								class="social-icon social-icon-border social-twitter float-left"
-								data-toggle="tooltip" data-placement="top" title="Twitter">
-								<i class="icon-instagram"></i> <i class="icon-instagram"></i>
-							</a> <a href="#"
-								class="social-icon social-icon-border social-linkedin float-left"
-								data-toggle="tooltip" data-placement="top" title="Linkedin">
-								<i class="icon-linkedin"></i> <i class="icon-linkedin"></i>
-							</a>
+							</a> 
 						</div>
 						<!-- /Social Icons -->
 					</div>

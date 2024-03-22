@@ -31,7 +31,7 @@
 				success: function(data, textStatus, jqXHR) {
 					data = $.parseJSON(data);
 					console.log(data);
-					if(data.msg != undefined && data.message != ''){
+					if(data.message != undefined && data.message != ''){
 						var msgTag = $("<strong>").text(data.message);
 						$('#msgDiv').html(msgTag).show();
 						$("#loading-div-background").hide();	// overlay 숨기기

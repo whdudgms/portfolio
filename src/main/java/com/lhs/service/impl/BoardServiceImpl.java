@@ -132,7 +132,7 @@ public class BoardServiceImpl implements BoardService{
 	//글 조회 
 	@Override
 	public BoardDto read(HashMap<String, Object> params) {
-		
+		bDao.updateHits(params);
 		return bDao.read(params);
 	}
 

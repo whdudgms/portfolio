@@ -144,11 +144,11 @@
 					<nav class="nav-main">
 					<ul id="topMain" class="nav nav-pills nav-main">
 					
-						<li class="dropdown active">
+						<li class="dropdown">
 							<!-- HOME --> <a class="dropdown-toggle noicon"
 							href="<c:url value='/swagger-ui.html'/>"> SWAGGER(API) </a>
 						</li>
-						<li class="dropdown active">
+						<li class="dropdown">
 							<!-- HOME --> <a class="dropdown-toggle noicon"
 							href="<c:url value='/index.do'/>"> HOME </a>
 						</li>

@@ -9,7 +9,15 @@
 $(document).ready(function(){
 	$('#msgDiv').hide();
 	$("#loading-div-background").css({ opacity: 1 });
+	function validateEmail(email) {
+	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,4}\.[0-9]{1,4}\.[0-9]{1,4}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(String(email).toLowerCase());
+	}
+	
+	
 	$('#btnSignUp').click(function(e){
+		
+
 		if( $('#memberId').val() == '' || $('#memberName').val() == '' || $('#pwAgain').val() == '' 
 				|| $('#memberNick').val() == '' || $('#memberPw').val() == '' || $('#email').val() == ''){
 			var msgTag = $('<strong>').text("모든 항목은 필수입니다.");
@@ -17,6 +25,28 @@ $(document).ready(function(){
 			e.preventDefault();
 			return;
 		}
+		
+		if( $('#pwAgain').val().length < 6 || $('#memberPw').val().length < 6 ){
+			var msgTag = $('<strong>').text("패스워드가 너무 짧아요 6글자 이상만 가능해요.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
+		
+		if( $('#pwAgain').val() != $('#memberPw').val() ){
+		var msgTag = $('<strong>').text("패스워드가 일치하지 않습니다.");
+		$('#msgDiv').html(msgTag).show();
+		e.preventDefault();
+		return;
+		}
+		
+		var email = $('#email').val();
+	    if (!validateEmail(email)) {
+	        var msgTag = $('<strong>').text("유효하지 않은 이메일 형식입니다.");
+	        $('#msgDiv').html(msgTag).show();
+	        e.preventDefault();
+	        return;
+	    }
 		
 		// overlay 보이기
 		$("#loading-div-background").css({'z-index' : '9999'}).show();

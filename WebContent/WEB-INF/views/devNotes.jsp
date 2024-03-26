@@ -33,10 +33,10 @@
 					<button type="button" class="btn btn-default btn-lg lightbox"
 						data-toggle="modal" data-target="#myModal">DB &nbsp;
 						Modeling &nbsp; &nbsp;(IMG)</button>
-					<br> <br /> <a href="<c:url value='/file/downloadERD.do'/>">
+					<br> <br /> <%-- <a href="<c:url value='/file/downloadERD.do'/>">
 						<button type="button" class="btn btn-default btn-lg lightbox"
 							data-toggle="modal">ERD Download (MWB)</button>
-					</a> <br />
+					</a> --%> <br />
 				</div>
 
 			</div>

@@ -25,6 +25,13 @@ $(document).ready(function(){
 			e.preventDefault();
 			return;
 		}
+		if( $('#memberId').val().length < 4 ){
+			var msgTag = $('<strong>').text("아이디가 너무 짧아요 4글자 이상만 가능해요.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
+		
 		
 		if( $('#pwAgain').val().length < 6 || $('#memberPw').val().length < 6 ){
 			var msgTag = $('<strong>').text("패스워드가 너무 짧아요 6글자 이상만 가능해요.");
@@ -47,6 +54,33 @@ $(document).ready(function(){
 	        e.preventDefault();
 	        return;
 	    }
+	    
+	    
+	    if( $('#pwAgain').val().length > 20 || $('#memberPw').val().length > 20 ){
+			var msgTag = $('<strong>').text("패스워드가 너무 길어요 20글자보다는 짧아야 해요.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
+	    
+	    if( $('#memberName').val().length > 30 || $('#memberNick').val().length > 30 ){
+			var msgTag = $('<strong>').text("멤버 이름 또는 멤버닉네임이 너무 길어요. 30글자보다는 짧아야 해요.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
+	    if( $('#memberId').val().length > 35 ){
+			var msgTag = $('<strong>').text("멤버 아이디가 너무 길어요 35글자보다는 짧아야 해요.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
+	    if( $('#email').val().length > 50 ){
+			var msgTag = $('<strong>').text("이메일이 이건 너무 길어요 아무리 길어도 총 50글자는 안 넘어야죠.");
+			$('#msgDiv').html(msgTag).show();
+			e.preventDefault();
+			return;
+		}
 		
 		// overlay 보이기
 		$("#loading-div-background").css({'z-index' : '9999'}).show();

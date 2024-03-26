@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JohnDoe's Portfolio</title>
+<title>Yeongheun's Portfolio</title>
 <meta name="description" content="" />
 <meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
 

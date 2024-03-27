@@ -1,14 +1,13 @@
 package com.lhs.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.HashMap;
 
 import com.lhs.entity.EmailAuth;
 
-
-
-@Repository
 public interface EmailAuthDao {
 	
-	public int addEmailAuth(EmailAuth dto);
+	public int insertEAuth(EmailAuth dto);
+	public int updateElAuth(HashMap<String, String> params); 
+
 
 }

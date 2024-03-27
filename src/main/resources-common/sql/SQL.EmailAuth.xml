@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.lhs.dao.EmailAuthDao">
+
+ 	<insert id="insertEAuth" parameterType="com.lhs.entity.EmailAuth"
+        useGeneratedKeys="true" keyProperty="authIdx">
+    INSERT INTO S_whdudgms.email_auth
+    (member_idx, member_id, email, link, expire_dtm, send_dtm, auth)
+    VALUES( #{memberIdx}, 
+            #{memberId}, 
+            #{email}, 
+            #{link},
+            (current_timestamp() + interval 1 day),
+            DATE_FORMAT(now(), '%Y%m%d%H%i%s'),
+            'N');
+</insert>
+	
+	<update id="updateElAuth" parameterType="HashMap">
+		UPDATE S_whdudgms.email_auth
+		SET auth='Y'
+		WHERE auth_idx=#{authIdx};
+	</update>
+	
+	
+
+	
+	
+
+</mapper>

@@ -18,12 +18,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @Alias("EmailAuth")
 public class EmailAuth {
-	private int idx;
+	private int authIdx;
 	private int memberIdx;
-	private String memberTypeSeq;
 	private String memberId;
 	private String email;
 	private String link;
+	private String expireDtm;
 	private String sendDtm;
-
+	private String auth;
 }
+
+
+
+ 

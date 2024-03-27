@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.lhs.dao.EmailAuthDao;
 import com.lhs.dao.MemberDao;
 import com.lhs.dto.MemberDto;
+import com.lhs.entity.EmailAuth;
 import com.lhs.exception.PasswordMissMatchException;
 import com.lhs.exception.UserNotFoundException;
 import com.lhs.service.MemberService;
@@ -30,6 +33,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	AES256Util encoder;
+	
+	@Autowired
+	EmailAuthDao eAuth;
 	
 	
 	
@@ -136,10 +142,19 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public String getVNum(String email, HttpSession session) {
 		//이메일 인증 번호 나중에 메서드로 바꾸기 !!!!
 		String VNum =RandomNum.randum();
+		EmailAuth emailAuth = new EmailAuth();
+		emailAuth.setAuth("N");
+		emailAuth.setEmail(email);
+		emailAuth.setLink("Null");
+		emailAuth.setMemberId((String)session.getAttribute("memberId"));
+		emailAuth.setMemberIdx((Integer)session.getAttribute("memberIdx"));
+		
+
 		session.setAttribute("VNum", VNum);
 		
 		com.lhs.dto.EmailDto emailDto = new com.lhs.dto.EmailDto();
@@ -147,8 +162,14 @@ public class MemberServiceImpl implements MemberService {
 		emailDto.setReceiver(email);
 		emailDto.setSubject("이메일 인증번호");
 		emailDto.setText("인증번호 입니다."+ VNum);
+		eAuth.insertEAuth(emailAuth);
+
 		try {
 			emailUtil.sendHtmlMail(emailDto);
+			session.setAttribute("authIdx", emailAuth.getAuthIdx());
+			System.out.println("authIdx :");
+			System.out.println("authIdx :");
+			System.out.println(session.getAttribute("authIdx"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -161,12 +182,13 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("Service checkVNum()");
 		System.out.println("params.get(\"VNum\")      "+params.get("VNum"));
 		System.out.println("session.getAttribute(\"VNum\")      "+session.getAttribute("VNum"));
-		
+		params.put("authIdx", session.getAttribute("authIdx") + "");
 		
 		boolean result = params.get("VNum").equals( session.getAttribute("VNum"));
 		if(result) {
 			System.out.println("입력값 변경 !!");
 			session.setAttribute("typeSeq", "5");
+			eAuth.updateElAuth(params);
 		 mDao.updatetype((String)session.getAttribute("memberId"));
 			System.out.println("입력값 변경 !!");
 

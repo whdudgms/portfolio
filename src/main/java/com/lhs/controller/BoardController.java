@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,12 @@ import com.lhs.util.FileUtil;
 import com.lhs.util.PageInfo;
 
 @Controller
+@RequiredArgsConstructor
 public class BoardController {
 
-	@Autowired BoardService bService;
-	@Autowired AttFileService attFileService;
-	@Autowired FileUtil fileUtil;
+	private final BoardService bService;
+	private final AttFileService attFileService;
+	private final FileUtil fileUtil;
 
 	private String typeSeq = "2";  // 이코드가 꼭 필요할까?? 
 	

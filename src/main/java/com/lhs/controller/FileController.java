@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequiredArgsConstructor
 public class FileController {
 	
 	// 메서드가 1개 밖에 없지만 ResponseBody이므로 일단 주석 처리하고 옮김 
 
-	@Autowired ApplicationContext context;
+	private final ApplicationContext context;
 
 	@RequestMapping("/file/downloadERD.do")
 	@ResponseBody

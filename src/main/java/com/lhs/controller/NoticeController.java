@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +25,12 @@ import com.lhs.util.FileUtil;
 import com.lhs.util.PageInfo;
 
 @Controller
+@RequiredArgsConstructor
 public class NoticeController {
 
-	@Autowired BoardService bService;
-	@Autowired AttFileService attFileService;
-	@Autowired FileUtil fileUtil;
+	private final  BoardService bService;
+	private final AttFileService attFileService;
+	private final FileUtil fileUtil;
 
 	private String typeSeq = "1";
 	

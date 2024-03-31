@@ -7,6 +7,7 @@ import java.util.List;
 import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,10 +25,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
+
 public class MemberController {
 
-	@Autowired
-	MemberService mService;
+
+	private final MemberService mService;
 
 	@Value("#{config['site.context.path']}")
 	String ctx;

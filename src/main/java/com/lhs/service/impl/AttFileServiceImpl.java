@@ -3,6 +3,7 @@ package com.lhs.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,10 @@ import com.lhs.dto.BoardAttach;
 import com.lhs.service.AttFileService;
 
 @Service
+@RequiredArgsConstructor
 public class AttFileServiceImpl implements AttFileService{
 
-	@Autowired AttFileDao attFileDao;
+	private final AttFileDao attFileDao;
 
 	//해당게시글의 모든첨부파일(다중이니까)
 	@Override

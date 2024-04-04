@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,12 @@ import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 
-	@Autowired BoardDao bDao;
-	@Autowired AttFileDao attFileDao;
-	@Autowired FileUtil fileUtil;
+	private final BoardDao bDao;
+	private final AttFileDao attFileDao;
+	private final FileUtil fileUtil;
 	
 	
 	@Value("#{config['project.file.upload.location']}")

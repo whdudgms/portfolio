@@ -27,7 +27,6 @@ public class BoardController {
 
 	private final BoardService bService;
 	private final AttFileService attFileService;
-//	private final FileUtil fileUtil;
 
 	private String typeSeq = "2";  // 이코드가 꼭 필요할까?? 
 	

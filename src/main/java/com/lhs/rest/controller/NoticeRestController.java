@@ -9,6 +9,7 @@ import java.util.Objects;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -29,11 +30,12 @@ import com.lhs.service.BoardService;
 import com.lhs.util.FileUtil;
 
 @RestController
+@RequiredArgsConstructor
 public class NoticeRestController {
 
-	@Autowired BoardService bService;
-	@Autowired AttFileService attFileService;
-	@Autowired FileUtil fileUtil;
+	private final BoardService bService;
+	private final AttFileService attFileService;
+	private final FileUtil fileUtil;
 
 	private String typeSeq = "1";
 	

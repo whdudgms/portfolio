@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,18 +25,18 @@ import com.lhs.util.EmailUtil;
 import com.lhs.util.RandomNum;
 
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 	
-	@Autowired MemberDao mDao; 
+	private final MemberDao mDao;
 	
-	@Autowired
-	EmailUtil emailUtil;
-	
-	@Autowired
-	AES256Util encoder;
-	
-	@Autowired
-	EmailAuthDao eAuth;
+
+	private final EmailUtil emailUtil;
+
+	private final AES256Util encoder;
+
+
+	private final EmailAuthDao eAuth;
 	
 	
 	

@@ -1,24 +1,16 @@
 package com.lhs.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import javax.mail.Session;
+
 import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.lhs.exception.PasswordMissMatchException;
-import com.lhs.exception.UserNotFoundException;
+
+
 import com.lhs.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;

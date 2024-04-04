@@ -85,7 +85,7 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println(write);
 		System.out.println();
 		for(MultipartFile mFile: mFiles) {
-			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
+			if(mFile.getSize() == 0 || "".equals(mFile.getOriginalFilename()))
 				continue;
 			BoardAttach boardAttach = new BoardAttach();
 			boardAttach.setBoardSeq(boardDto.getBoardSeq());  // boardSeq
@@ -150,7 +150,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		int result = 0;
 		for(MultipartFile mFile: mFiles) {
-			if(mFile.getSize() == 0 ||mFile.getOriginalFilename()== "" )
+			if(mFile.getSize() == 0 || "".equals(mFile.getOriginalFilename()) )
 				continue;
 			System.out.println(" 첨부파일 업데이트  시작이요 ! ");
 			BoardAttach boardAttach = new BoardAttach();

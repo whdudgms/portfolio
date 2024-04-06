@@ -141,6 +141,10 @@ $(document).ready(function(){
             window.alert("검색 조건과 검색어를 입력하세요.");
             return;
         }
+        if($('#searchWord').val().includes('%')){
+            window.alert("% 문자를 검색어에 포함할 수 없습니다. 다시 입력하세요.");
+            return;
+        }
        var searchWord = $("#searchWord").val()
         var searchType  = $("#searchType").val()
        window.alert(searchWord+"     "+searchType)

@@ -72,7 +72,7 @@
 				<ul class="nav nav-tabs nav-clean">
 					<li class="active"><a href="#tab1" data-toggle="tab">개인 포트폴리오
 					프로젝트</a></li>
-					<li class="active"><a href="#tab2" data-toggle="tab">쇼핑몰 프로젝트</a></li>		
+					<!-- <li class="active"><a href="#tab2" data-toggle="tab">쇼핑몰 프로젝트</a></li> -->		
 							
 					<!-- <li><a href="#tab3" data-toggle="tab">MariaDB</a></li> -->
 				</ul>
@@ -89,13 +89,13 @@
 						
 					</div>
 					<div id="tab2" class="tab-pane fade">
-						<img class="pull-right"
+					<!-- 	<img class="pull-right"
 							src="demo_files/images/mockups/600x399/20-min.jpg" width="200"
 							alt="" />
 						<p>국비지원 학원 당시에 만들었던 쇼핑몰 프로젝트입니다. JSP Servlet기반으로 만들었습니다.
 						 관리자 관련 기능 구현
 						</p>
-
+ -->
 					</div>
 					<!-- <div id="tab3" class="tab-pane fade">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -125,7 +125,7 @@
             <li>
                 <strong>기간:</strong> 2022년 9월 - 2023년 3월 
                 <br>
-                <strong>학원명 : 과정명</strong> 강남IT윌 : 프로젝트 기반 자바 핀테크 웹 개발자 양성과정
+                <strong>학원명 : 과정명</strong> 강남ITWill : 프로젝트 기반 자바 핀테크 웹 개발자 양성과정
             </li>
         </ul>
     </div>

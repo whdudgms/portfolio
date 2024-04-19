@@ -74,11 +74,10 @@
 	    	// 뒤로가기 버튼 죽이기
 	          history.pushState(null, document.title, location.href); 
 	          window.addEventListener('popstate', function(event) { 
-	             if(confirm('사이트를 벗어나시겠습니까?')){
-	               if(!confirm('꼭 가시겠어요?'))
+	             if(!confirm('버튼으로 눌러서 이동해주세요! \n 계속 확인을 누르시면 완전히 사이트를 벗어나게됩니다.')){
 	                  history.pushState(null, document.title, location.href);
-	               else
-	                  history.back();
+	             }else{
+	            	 history.back();
 	             }
 	          });
 			

@@ -22,3 +22,6 @@
 - JDK 11 
 - MariaDB 서버
 - Maven
+
+## 에러 정리 
+[오류 해결]([URL](https://www.notion.so/6454904a0dd34db99195672b18fc8155?v=040c18cc08994fbf87df6e800726bf16))
